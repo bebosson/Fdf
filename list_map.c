@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 03:25:03 by bebosson          #+#    #+#             */
-/*   Updated: 2019/02/15 22:50:05 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/02/17 00:53:13 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,7 @@ int		ft_x_max(t_point *list)
 	return (x_max);
 
 }
-void	ft_echelle(int *x_win, int *y_win)
-{
-	int echelle;
 
-	echelle = 100;
-	*x_win = echelle * (*x_win);
-	*y_win = echelle * (*y_win);
-}
 void	read_to_list(char **av, int *x_max, int *y_max)
 {
 	int y;
@@ -104,112 +97,8 @@ void	read_to_list(char **av, int *x_max, int *y_max)
 	*y_max = y;
 
 }
-void	vertical(void *mlx_ptr, void *win_ptr, int x_win, int y_win)
-{
-	int x;
-	int y;
 
-	x = 0;
-	while (x < x_win)
-	{
-		y = -1;
-		while (++y < y_win)
-			mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0xFF0000);
-		x += 100;
-	}
-	y = -1;
-		while (++y < y_win)
-			mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0xFF0000);
-
-}
-
-void	horizontal(void *mlx_ptr, void *win_ptr, int x_win, int y_win)
-{
-	int x;
-	int y;
-
-	y = 0;
-	while (y < y_win)
-	{
-		x = -1;
-		while (++x < x_win)
-			mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0xFF0000);
-		y += 100;
-	}
-	x = -1;
-	while (++x < x_win)
-		mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0xFF0000);
-
-}
-
-int		deal_key(int key, t_win *display)
-{
-	void	*mlx;
-	void	*win;
-
-	printf("key = %d \n", key);
-	mlx = display->mlx;
-	win = display->win_ptr_s;
-	if (key == 12)
-	{
-		mlx_destroy_window(mlx, win);
-		return (0);
-	}
-//	printf("[%c] \n", key);
-//	printf("%d",'b');
-	return (0);
-}
-
-int	barre_pixel(int button, int x, int y, t_win *display)
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	float ratio; //e1
-	float e,e2;
-	int x_v;
-	int y_v;
-	mlx_ptr = display->mlx;
-	win_ptr = display->win_ptr_s;
-//	int i;
-	//SIGNE <=> SENS
-	//
-	ratio = (float) y / x;
-//	printf("ratio %.6f \n",ratio);
-//	if (ratio < 1)
-//		printf("1/ratio = %6.f \n",(float) 1/ratio);
-//	if (ratio < 0)
-//		return (0);
-	printf("x = %d || y = %d \n", x,y);
-//	while ((float)i * ratio < 1)
-//		i++;
-//	printf("i = %d \n", i);
-	// on part de 0
-	e = 0;
-	e2 = -1;
-	x_v = 0;
-	y_v = 0;
-	while (x_v < x)
-	{
-		mlx_pixel_put(mlx_ptr, win_ptr, x_v, y_v, 0xFF0000);
-		e = e + ratio;
-		printf("e = %3.f \n",e);
-		if (e >= 0.5)
-		{
-			y_v++;
-			e = e + e2;
-		}
-		printf("x_v = %d || y_v = %d \n",x_v,y_v);
-		x_v++;
-	}
-
-/*
-	while ( < )
-		mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0xFF0000);
-*/
-	return (0);
-
-}
-
+// ratio < 1
 
 int		deal_mouse_display(int button, int x, int y, t_win *display)
 {
@@ -306,24 +195,25 @@ void	graphic(t_win *display, int x_win, int y_win)
 	display->mlx = mlx_init();
 	mlx_ptr = (display)->mlx;
 //	mlx_ptr = mlx_init();
-	(display)->win_ptr_s = mlx_new_window(mlx_ptr, 200, 200,"juepee");
+	(display)->win_ptr_s = mlx_new_window(mlx_ptr, 2000, 2000,"juepee");
 	win_ptr = display->win_ptr_s;
-	printf("x_win(disply) = %d \n",display->x_win);
+//	printf("x_win(disply) = %d \n",display->x_win);
 	if (!(tclique =(t_point*)malloc(sizeof(t_point))))
 		return ;
 	display->tpoint = tclique;
 	tclique->prev = NULL;
 	tclique->next = NULL;
 	/////////////////////////////////////////
-
-//	vertical(mlx_ptr, win_ptr, x_win, y_win);
-//	horizontal(mlx_ptr, win_ptr, x_win, y_win);
-//	if (mlx_key_hook(win_ptr, deal_key,display) == 0)
-//		mlx_ptr = NULL;
+	display->x_win = x_win;
+	display->y_win = y_win;
+//	display->x_o = 0;
+//	display->y_o = 0;
+	if (mlx_key_hook(win_ptr, deal_key,display) == 0)
+		mlx_ptr = NULL;
 //	mlx_key_hook(win_ptr, deal_mouse_display,(void *)0);
 	
-	mlx_mouse_hook(win_ptr, deal_mouse_display,display);
-	mlx_mouse_hook(win_ptr, barre_pixel,display);
+//	mlx_mouse_hook(win_ptr, deal_mouse_display,display);
+//	mlx_mouse_hook(win_ptr, barre_pixel,display);
 	//		mlx_string_put(mlx_ptr, win_ptr,x,200,0xFFD700,"ox");
 	//	mlx_new_image(mlx_ptr, 300, 300);
 	if (mlx_ptr)
@@ -341,7 +231,9 @@ int		coor_to_graph(char **av)
 	display =(t_win *)malloc(sizeof(t_win));
 	read_to_list(av, &x_win, &y_win);
 	ft_echelle(&x_win, &y_win);
-	display->x_win = x_win;
+	display->x_o = 0;
+	display->y_o = 0;
+
 	graphic(display, x_win, y_win);
 	return (0);
 }
