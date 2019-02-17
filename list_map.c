@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 03:25:03 by bebosson          #+#    #+#             */
-/*   Updated: 2019/02/17 00:53:13 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/02/17 03:06:26 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,7 +194,7 @@ void	graphic(t_win *display, int x_win, int y_win)
 
 	display->mlx = mlx_init();
 	mlx_ptr = (display)->mlx;
-//	mlx_ptr = mlx_init();
+	display->screen = 2000;
 	(display)->win_ptr_s = mlx_new_window(mlx_ptr, 2000, 2000,"juepee");
 	win_ptr = display->win_ptr_s;
 //	printf("x_win(disply) = %d \n",display->x_win);
@@ -206,6 +206,12 @@ void	graphic(t_win *display, int x_win, int y_win)
 	/////////////////////////////////////////
 	display->x_win = x_win;
 	display->y_win = y_win;
+	display->x_o = 0;
+	display->y_o = 0;
+
+
+//	vertical(display, 0, 0);
+//	horizontal(display, 0, 0);
 //	display->x_o = 0;
 //	display->y_o = 0;
 	if (mlx_key_hook(win_ptr, deal_key,display) == 0)
