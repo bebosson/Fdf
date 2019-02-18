@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 03:25:03 by bebosson          #+#    #+#             */
-/*   Updated: 2019/02/18 17:09:50 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/02/18 18:45:01 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,8 +194,8 @@ void	graphic(t_win *display, int x_win, int y_win)
 
 	display->mlx = mlx_init();
 	mlx_ptr = (display)->mlx;
-	display->screen = 2000;
-	(display)->win_ptr_s = mlx_new_window(mlx_ptr, 2000, 2000,"juepee");
+	display->screen = 1000;
+	(display)->win_ptr_s = mlx_new_window(mlx_ptr, display->screen, display->screen,"juepee");
 	win_ptr = display->win_ptr_s;
 //	printf("x_win(disply) = %d \n",display->x_win);
 	if (!(tclique =(t_point*)malloc(sizeof(t_point))))
@@ -204,11 +204,11 @@ void	graphic(t_win *display, int x_win, int y_win)
 	tclique->prev = NULL;
 	tclique->next = NULL;
 	/////////////////////////////////////////
-	display->x_win = x_win;
-	display->y_win = y_win;
-	display->x_o = 0;
-	display->y_o = 0;
-
+//	display->x_win = x_win;
+//	display->y_win = y_win;
+//	display->x_o = 0;
+//	display->y_o = 0;
+	set_display(display, x_win, y_win, 50);
 
 //	vertical(display, 0, 0);
 //	horizontal(display, 0, 0);
@@ -236,7 +236,7 @@ int		coor_to_graph(char **av)
 
 	display =(t_win *)malloc(sizeof(t_win));
 	read_to_list(av, &x_win, &y_win);
-	ft_echelle(&x_win, &y_win);
+	//ft_echelle(&x_win, &y_win);
 	display->x_o = 0;
 	display->y_o = 0;
 

@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 02:08:25 by bebosson          #+#    #+#             */
-/*   Updated: 2019/02/18 17:03:56 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/02/18 18:49:33 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct	s_win
 	t_point *tpoint;
 }				t_win;
 
+void	ft_display(t_win *display);
+void	set_display(t_win *display, int x_win, int y_win, int echelle);
 void	vertical(t_win *display, int trans);
 void	horizontal(t_win *display,  int trans);
 int		deal_key(int key, t_win *display);
