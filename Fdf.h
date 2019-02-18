@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 02:08:25 by bebosson          #+#    #+#             */
-/*   Updated: 2019/02/17 03:06:24 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/02/18 17:03:56 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ void	vertical(t_win *display, int trans);
 void	horizontal(t_win *display,  int trans);
 int		deal_key(int key, t_win *display);
 void	ft_echelle(int *x_win, int *y_win);
+int	barre_pixel(int button, int x, int y, t_win *display);
+int	trait(int max, int min, float ratio, t_win *display, int toto);
 
 #endif

@@ -6,40 +6,11 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 21:13:22 by bebosson          #+#    #+#             */
-/*   Updated: 2019/02/16 22:13:02 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/02/18 16:58:05 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-int	barre_pixel(int button, int x, int y, t_win *display)
-{
-	float ratio;
-	float dx;
-	float dy;
-	display->x_win = 500;
-	display->y_win = 0;
-	
-	dx = (float)display->x_win - x;
-	dy = (float)display->y_win - y;
-	ratio = dy / dx;
-
-	printf("ratio %.5f \n", ratio);
-//	ratio = (float) y / x;
-	if (fabsf(ratio) < 1 && ratio > 0) //
-		trait(x , y,ratio, display,0);
-	else if(fabsf(ratio) > 1 && ratio > 0)
-		trait(y , x, 1 / ratio, display,1);
-/*	else if(fabsf(ratio) < 1 && ratio < 0)
-	{
-		if (dx < 0)
-
-	}
-*/	//else if (ratio == 1 && x == y)
-		//trait
-	
-
-	return (0);
-}
+#include "Fdf.h"
 
 int	trait(int max, int min, float ratio, t_win *display, int toto)
 {
@@ -77,3 +48,34 @@ int	trait(int max, int min, float ratio, t_win *display, int toto)
 	return (0);
 
 }
+
+int	barre_pixel(int button, int x, int y, t_win *display)
+{
+	float ratio;
+	float dx;
+	float dy;
+	display->x_win = 500;
+	display->y_win = 0;
+	
+	dx = (float)display->x_win - x;
+	dy = (float)display->y_win - y;
+	ratio = dy / dx;
+
+	printf("ratio %.5f \n", ratio);
+//	ratio = (float) y / x;
+	if (fabsf(ratio) < 1 && ratio > 0) //
+		trait(x , y,ratio, display,0);
+	else if(fabsf(ratio) > 1 && ratio > 0)
+		trait(y , x, 1 / ratio, display,1);
+/*	else if(fabsf(ratio) < 1 && ratio < 0)
+	{
+		if (dx < 0)
+
+	}
+*/	//else if (ratio == 1 && x == y)
+		//trait
+	
+
+	return (0);
+}
+
