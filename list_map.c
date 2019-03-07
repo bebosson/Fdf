@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 03:25:03 by bebosson          #+#    #+#             */
-/*   Updated: 2019/02/18 18:45:01 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/03/06 16:56:03 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,12 +214,11 @@ void	graphic(t_win *display, int x_win, int y_win)
 //	horizontal(display, 0, 0);
 //	display->x_o = 0;
 //	display->y_o = 0;
-	if (mlx_key_hook(win_ptr, deal_key,display) == 0)
-		mlx_ptr = NULL;
+//	if (mlx_key_hook(win_ptr, deal_key,display) == 0)
+//		mlx_ptr = NULL;
 //	mlx_key_hook(win_ptr, deal_mouse_display,(void *)0);
-	
 //	mlx_mouse_hook(win_ptr, deal_mouse_display,display);
-//	mlx_mouse_hook(win_ptr, barre_pixel,display);
+	mlx_mouse_hook(win_ptr, barre_pixel,display);
 	//		mlx_string_put(mlx_ptr, win_ptr,x,200,0xFFD700,"ox");
 	//	mlx_new_image(mlx_ptr, 300, 300);
 	if (mlx_ptr)

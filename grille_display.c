@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 19:38:33 by bebosson          #+#    #+#             */
-/*   Updated: 2019/02/18 18:50:37 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/02/20 16:10:49 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,67 +52,14 @@ void	horizontal(t_win *display, int trans)
 		vertical(display, 0);
 }
 
-/*
-void	horizontal(t_win *display, int trans)
-{
-	int x;
-	int y;
-	
-	display->y_win += trans;
-	y = display->y_o + trans;
-	mlx_clear_window(display->mlx,display->win_ptr_s);
-	while (y <= display->y_win)
-	{
-		x = display->x_o;
-		while (++x <= display->x_win)
-			mlx_pixel_put(display->mlx,display->win_ptr_s, x+trans, y+trans, 0xFF0000);
-		y += 100;
-	}
-	display->y_o += trans;
-	display->y_o = y_ref + trans;
-		while (++display->y_o < display->y_win)
-			mlx_pixel_put(display->mlx,display->win_ptr_s, display->x_o,display->y_o, 0xFF0000);
-
-}
-
-
-
-void	horizontal(t_win *display, int y_ref, int x_ref, int trans)
-{
-	int x;
-	int y;
-
-	display->x_win += trans;
-	display->x_o += trans;
-	while (display->y_o < display->y_win)
-	{
-		display->x_o = x_ref + trans;
-		while (++display->x_o < display->x_win)
-			mlx_pixel_put(display->mlx,display->win_ptr_s, display->x_o, display->y_o, 0xFF0000);
-		display->y_o += 100;
-	}
-	display->x_o = x_ref + trans;
-		while (++display->x_o < display->x_win)
-			mlx_pixel_put(display->mlx,display->win_ptr_s, display->x_o,display->y_o, 0xFF0000);
-
-	display->y_o = y_ref;
-	display->x_o = x_ref + trans;
-}
-*/
 int		deal_key(int key, t_win *display)
 {
 	int i;
 	
 	i = 0;
-	printf("y_o(disply) = %d \n",display->y_o);
-	printf("y_win(disply) = %d \n",display->y_win);
-	printf("x_o(disply) = %d \n",display->x_o);
-	printf("x_win(disply) = %d \n",display->x_win);
-
-	printf("screen(display) = %d \n",display->screen);
 //	vertical(display, 0);
 //	horizontal(display,  0);
-
+	display_display(display);
 	printf("key = %d \n", key);
 	if (key == 124 && display->x_win < display->screen) // ->
 		vertical(display, 10);
@@ -126,15 +73,22 @@ int		deal_key(int key, t_win *display)
 		horizontal(display,50);
 	if (key == 12)
 	{
-		display->echelle /= 2;
+		ft_echelle(display, 0.5);
+		//display->echelle /= 2;
 		ft_display(display);
 	}
 	if (key == 13)
 	{
-		display->echelle *= 2;
+		ft_echelle(display, 2);
 		ft_display(display);
 	}
-	printf("i = %d \n", i);
+	if (key == 14)
+	{
+		mlx_clear_window(display->mlx,display->win_ptr_s);
+	}
+//		while (y <= display->y_win)
+	
+//	printf("i = %d \n", i);
 	//	printf("[%c] \n", key);
 //	printf("%d",'b');
 	return (0);
@@ -155,20 +109,28 @@ int		translation(t_win	**display, int transl, int chx)
 	return (0);
 }
 
-void	ft_echelle(int *x_win, int *y_win)
+void	ft_echelle(t_win *display, float echelle)
 {
-	int echelle;
-
-	echelle = 50;
-	*x_win = echelle * (*x_win);
-	*y_win = echelle * (*y_win);
+	display->echelle *= echelle;
 }
 
-void	set_display(t_win *display, int x_win, int y_win, int echelle)
+void	set_display(t_win *display, int x_win, int y_win, float echelle)
 {
 	display->x_win = x_win * echelle;
 	display->y_win = y_win * echelle;
 	display->x_o = 0;
 	display->y_o = 0;
 	display->echelle = echelle;
+}
+
+void	display_display(t_win *display)
+{
+	printf("----------------------------\n");
+	printf("y_o(disply) = %d \n",display->y_o);
+	printf("x_o(disply) = %d  \n",display->x_o);
+	printf("y_win(disply) = %d  \n",display->y_win);
+	printf("x_win(disply) = %d \n",display->x_win);
+	printf("screen(display) = %d \n",display->screen);
+	printf("echelle (display) = %.5f \n", display->echelle);
+	printf("----------------------------\n");
 }
