@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 06:09:09 by bebosson          #+#    #+#             */
-/*   Updated: 2019/03/11 22:22:11 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/03/12 19:24:04 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,18 @@ void	rotation_x(float teta, int *x, int *y)
 
 void	ligne_vert(t_win *display, t_point *list)
 {
-	int y;
+	int y_i;
+	int x_i;
+	int y_f;
+	int x_f;
+
 	int i;
 	
 	t_point *tmp;
 	t_point *tmp2;
 	tmp = list;
 	tmp2 = list;
-	y = tmp->y;
+//	y = tmp->y;
 	i = 0;
 //	rotation_x(0.52,&display->x_win,&display->y_win);
 	printf("display->y_win = %d \n",display->y_win);
@@ -56,11 +60,17 @@ void	ligne_vert(t_win *display, t_point *list)
 	printf("display->y_win = %d \n",tmp2->y);
 
 	printf("x = %d \n",tmp2->x);
+	
+	
 	while (tmp->y == 0)
 	{
-		rotation_x(1.04, &tmp->x, &tmp->y);
-		rotation_x(1.04, &tmp2->x, &tmp2->y);
-		ligne(tmp->x + 100,tmp->y + 50,tmp2->x + 100,tmp2->y + 50,display);
+		x_i = tmp->x * 20;
+		y_i = tmp->y * 20;
+		x_f = tmp2->x * 20;
+		y_f = tmp2->y * 20;
+	//	rotation_x(0.52, &tmp->x, &tmp->y);
+	//	rotation_x(0.52, &tmp2->x, &tmp2->y);
+		ligne(x_i,y_i,x_f,y_f,display);
 		tmp = tmp->next;
 		tmp2 = tmp2->next;
 		i++;
@@ -73,81 +83,45 @@ void	ligne_vert(t_win *display, t_point *list)
 
 void	ligne_hor(t_win *display, t_point *list)
 {
-	int y;
-	int i;
-	
+	int y_i;
+	int x_i;
+	int x_f;
+	int y_f;
 	t_point *tmp;
-	t_point *tmp2;
+	
 	tmp = list;
-	tmp2 = list;
-	y = tmp->y;
-	i = 0;
 //	rotation_x(0.52,&display->x_win,&display->y_win);
 	printf("display->y_win = %d \n",display->y_win);
-	while (tmp2->x != display->x_win)
-		tmp2 = tmp2->next;
-
-	printf("display->y_win = %d \n",tmp2->y);
-
-	printf("x = %d \n",tmp2->x);
-	while (tmp->y == 0)
+	while (tmp->x != display->x_win && tmp->y != display->y_win)
 	{
-		rotation_x(1.04, &tmp->x, &tmp->y);
-		rotation_x(1.04, &tmp2->x, &tmp2->y);
-		ligne(tmp->x,tmp->y,tmp2->x,tmp2->y,display);
+		x_i = tmp->x;
+		y_i = tmp->y;
+		while (tmp->x != display->x_win)
+			tmp = tmp->next;
+		x_f = tmp->x;
+		y_f = tmp->y;
+
+//		rotation_x(1.04, &x_i, &y_i);
+//		rotation_x(1.04, &x_f, &y_f);
+		ligne(x_i * 20,y_i * 20,x_f * 20,y_f * 20,display);
 		tmp = tmp->next;
-		tmp2 = tmp2->next;
-		i++;
 	}
-	printf("i = %d \n",i);
+		
+	x_i = tmp->x;
+	y_i = tmp->y;
+		while (tmp->x != display->x_win)
+			tmp = tmp->next;
+
+	x_f = tmp->x;
+	y_f = tmp->y;
+	ligne(x_i * 20,y_i * 20,x_f * 20,y_f * 20,display);
+//	printf("display->y_win = %d \n",tmp->y);
+
+//	printf("x = %d \n",tmp->x);
+//	printf("i = %d \n",i);
 //	rotation(0.52,&(display->x_win),&(tmp->y));
 //	rotation(0.52,&(tmp->x),&(display->y_win));
 
-}
-
-
-void	ligne_oblique(t_win *display, t_point *list)
-{
-	int x;
-	int y;
-	int somme;
-	t_point *tmp;
-	t_point *tmp2;
-
-	tmp = list;
-	tmp2 = list;
-	x = 0;
-	y = 0;
-	somme = 0;
-
-
-//Horizontale
-		while (tmp2->next)
-		{
-			y = tmp2->y * 10;
-			while (tmp->next)
-			{
-				tmp->x *= 10;
-//				printf("------Horizontal----\n");
-				ligne(y, y, display->x_win + y, y, display);
-//				printf("------Diagonale----\n");
-				ligne(tmp->x,0,tmp->x + display->x_win,display->y_win,display);
-//				x = tmp->x * 5;
-				tmp = tmp->next;
-			}
-//			somme += tmp2->y;
-			tmp2 = tmp2->next;
-			tmp = list;
-		}
-	//	ligne(x, y, x, display->y_win, display);
-//		printf("x = %d / ", x);
-//		printf("tmp->x = %d / ",tmp->x);
-//		printf("y = %d / ", y);
-//		x = tmp->x * 64;
-//		y = tmp->y * 64;
-//	display_display(display);
-//	display_repere(list);
-//	printf("coucou \n");
 }
 
 void	graphic(t_win *display, int x_win, int y_win, t_point *list)
@@ -167,17 +141,22 @@ void	graphic(t_win *display, int x_win, int y_win, t_point *list)
 //	display->tpoint = tclique;
 	
 //	display_repere(list);
-	set_display(display, x_win, y_win, 1);
+	set_display(display, x_win, y_win, 20);
 //	ligne_oblique(display,list);
 //	ligne (0,64,64,64, display);
 //	ligne (64,0,128,0, display);
 //	ligne (0,64,64,0, display);
 //	ligne (64,64,128,0, display);
-	ligne_vert(display, list);
-//	rotation(3.14, 1, 0);
+	rotation_list(list, display);
+//	ligne_hor(display, list);
+//	ligne_vert(display, list);
+
+	
+	display_repere(list);
+//rotation(3.14, 1, 0);
 	printf("coucou \n");
-	//	if (mlx_key_hook(win_ptr, deal_key,display) == 0)
-//		mlx_ptr = NULL;
+		if (mlx_key_hook(win_ptr, deal_key,display) == 0)
+		mlx_ptr = NULL;
 //	mlx_mouse_hook(win_ptr, barre_pixel,display);
 	if (mlx_ptr)
 		mlx_loop(mlx_ptr);
@@ -192,7 +171,9 @@ int		coor_to_graph(char **av)
 	t_win	*display;
 	t_point *list;
 	display =(t_win *)malloc(sizeof(t_win));
-	list = read_to_list(av, &x_win, &y_win);
+	list = read_to_list(av, &x_win, &y_win); // faire sauter x_win et y_win
+	//les renommer x_max et y_max
+	//
 
 	graphic(display, x_win, y_win, list);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 19:38:33 by bebosson          #+#    #+#             */
-/*   Updated: 2019/03/11 16:16:30 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/03/12 18:48:18 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ void ligne(int xi,int yi,int xf,int yf, t_win *display)
 	dx = abs(dx) ;
 	dy = abs(dy) ;
 	;
+	printf("x_i = %d\n",xi);
+	printf("y_i = %d\n",yi);
+	printf("x_f= %d\n",xf);
+	printf("y_f = %d\n",yf);
+
 			mlx_pixel_put(display->mlx,display->win_ptr_s, x, y, 0xFF0000);
 	if ( dx > dy ) {
 		cumul = dx / 2 ;
@@ -134,6 +139,12 @@ void	ft_echelle(t_win *display, float echelle)
 	display->echelle *= echelle;
 }
 
+/*void	set_data(t_win *display, void *, void *, int)
+{
+
+
+}
+*/
 void	set_display(t_win *display, int x_win, int y_win, float echelle)
 {
 	display->x_win = x_win * echelle;

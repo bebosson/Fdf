@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 02:08:25 by bebosson          #+#    #+#             */
-/*   Updated: 2019/03/09 19:54:13 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/03/12 18:42:47 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct	s_win
 }				t_win;
 
 
+void	rotation_x(float teta, int *x, int *y);
+void	rotation_list(t_point *list, t_win *display);
 void ligne(int xi,int yi,int xf,int yf, t_win *display);
 void	ft_print_tables(char **tab_pts);
 t_point		*init_repere(char **tab_pts, t_point **list, int y);
