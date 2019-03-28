@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 03:25:03 by bebosson          #+#    #+#             */
-/*   Updated: 2019/03/09 15:16:33 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/03/21 18:23:37 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	ft_print_tables(char **tab_pts)
 	x = -1;
 	while (tab_pts[++x])
 		printf("%s",tab_pts[x]);
-
 }
+// INCLURE display_max et display_min
 
 t_point		*init_repere(char **tab_pts, t_point **list, int y)
 {
@@ -34,6 +34,8 @@ t_point		*init_repere(char **tab_pts, t_point **list, int y)
 	{
 		tmp->z = ft_atoi(tab_pts[x]);
 		tmp->x = x;
+		tmp->coor_x = x;
+		tmp->coor_y = y;
 		tmp->y = y;
 		elem = (t_point*)malloc(sizeof(t_point));
 		tmp->next = elem;
@@ -43,19 +45,36 @@ t_point		*init_repere(char **tab_pts, t_point **list, int y)
 	return (tmp);
 	//tmp->next = NULL;
 }
+void		display_point(t_point *tmp)
+{
+	printf("x = %d / ", tmp->x);
+	printf("y = %d / ", tmp->y);
+	printf("z = %d / ", tmp->z);
+	printf("coor_x = %d /", tmp->coor_x);
+	printf("coor_y = %d / \n",tmp->coor_y);
 
-void		display_repere(t_point *list)
+}
+void		display_repere(t_win *display)
 {
 	t_point *tmp;
 
-	tmp = list;
+	tmp = display->tpoint;
 	while (tmp->next)
 	{
-		printf("x = %d / ", tmp->x);
-		printf("y = %d / ", tmp->y);
-		printf("z = %d / \n", tmp->z);
+		display_point(tmp);
 		tmp = tmp->next;
 	}
+	display_max(&display);
+	display_min(&display);
+	printf("---------------------\n");
+	printf("x_max = %d \n", display->x_max);
+	printf("y_max = %d \n", display->y_max);
+	printf("x_min = %d \n", display->x_min);
+	printf("y_min = %d \n", display->y_min);
+	printf("x_win = %d \n", display->x_win);
+	printf("y_win = %d \n", display->y_win);
+	printf("angle = %.5f \n", display->angle);
+	printf("---------------------\n");
 }
 
 int		ft_x_max(t_point *list)
@@ -74,7 +93,7 @@ int		ft_x_max(t_point *list)
 	return (x_max);
 }
 
-t_point	*read_to_list(char **av, int *x_max, int *y_max)
+t_point	*read_to_list(char **av, t_win *display)
 {
 	int y;
 	char **tab_pts;
@@ -91,8 +110,6 @@ t_point	*read_to_list(char **av, int *x_max, int *y_max)
 		tab_pts = ft_strsplit(line, ' ');
 		tmp = init_repere(tab_pts,&tmp,++y);
 	}
-	display_repere(list);
-	*x_max = ft_x_max(list);
-	*y_max = y;
+	
 	return (list);
 }

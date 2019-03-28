@@ -6,12 +6,11 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 19:38:33 by bebosson          #+#    #+#             */
-/*   Updated: 2019/03/12 18:48:18 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/03/28 21:38:15 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fdf.h"
-
 void ligne(int xi,int yi,int xf,int yf, t_win *display)
 {
 //	printf("xi = %d \n",xi);
@@ -27,13 +26,13 @@ void ligne(int xi,int yi,int xf,int yf, t_win *display)
 	yinc = ( dy > 0 ) ? 1 : -1 ;
 	dx = abs(dx) ;
 	dy = abs(dy) ;
-	;
-	printf("x_i = %d\n",xi);
-	printf("y_i = %d\n",yi);
-	printf("x_f= %d\n",xf);
-	printf("y_f = %d\n",yf);
+	
+	//printf("x_i = %d\n",xi);
+//	printf("y_i = %d\n",yi);
+//	printf("x_f= %d\n",xf);
+//	printf("y_f = %d\n",yf);
 
-			mlx_pixel_put(display->mlx,display->win_ptr_s, x, y, 0xFF0000);
+	mlx_pixel_put(display->mlx,display->win_ptr_s, x, y, 0xFF0000);
 	if ( dx > dy ) {
 		cumul = dx / 2 ;
 		for ( i = 1 ; i <= dx ; i++ ) {
@@ -56,139 +55,221 @@ void ligne(int xi,int yi,int xf,int yf, t_win *display)
 			 } }
 }
 
-void	vertical(t_win *display, int trans)
+int		deal_key_rotation_z(int key, t_win *display)
 {
-	int x;
-	int y;
+//	float angle;
 
-	display->x_win += trans;
-	x = display->x_o + trans;
-	mlx_clear_window(display->mlx,display->win_ptr_s);
-	while (x <= display->x_win)
+	display->angle = 0;
+	printf("%.5f \n",display->angle);
+	if (key == 124) // ->
 	{
-		y = display->y_o;
-		while (++y <= display->y_win)
-			mlx_pixel_put(display->mlx,display->win_ptr_s, x, y, 0xFF0000);
-		x += display->echelle;
+		display->angle += 0.25;
+		rotation_list_z(display, display->angle);
+		centrer(&display);
+		ft_trace(display);
 	}
-	display->x_o += trans;
-	if (trans != 0)
-		horizontal(display, 0);
+	if (key == 123)// <-
+	{
+		display->angle -= 0.25;
+		rotation_list_z(display, display->angle);
+		centrer(&display);
+		ft_trace(display);
+	}
+	if (key == 31)
+		ft_trace(display);
+	if (key == 2)
+		display_repere(display);
+	if (key == 17)
+		mlx_key_hook(display->win_ptr_s, deal_key_translation, display);
+
+	return (0);
 }
 
-void	horizontal(t_win *display, int trans)
+int		deal_key_rotation_x(int key, t_win *display)
 {
-	int x;
-	int y;
+//	float angle;
 
-	display->y_win += trans;
-	y = display->y_o + trans;
-	mlx_clear_window(display->mlx,display->win_ptr_s);
-	while (y <= display->y_win)
+	display->angle = 0;
+	printf("%.5f \n",display->angle);
+	if (key == 124) // ->
 	{
-		x = display->x_o;
-		while (++x <= display->x_win)
-			mlx_pixel_put(display->mlx,display->win_ptr_s, x, y, 0xFF0000);
-		y += display->echelle;
+		display->angle += 0.25;
+		rotation_list_x(display, display->angle);
+		centrer(&display);
+		ft_trace(display);
 	}
-	display->y_o += trans;
-	if (trans != 0)
-		vertical(display, 0);
+	if (key == 123)// <-
+	{
+		display->angle -= 0.25;
+		rotation_list_x(display, display->angle);
+		centrer(&display);
+		ft_trace(display);
+	}
+	if (key == 31)
+	{
+//		ft_origin(&display);
+		ft_trace(display);
+	}
+	if (key == 2)
+		display_repere(display);
+	if (key == 17)
+		mlx_key_hook(display->win_ptr_s, deal_key_translation, display);
+
+	return (0);
+}
+
+int		deal_key_rotation_y(int key, t_win *display)
+{
+//	float angle;
+
+	display->angle = 0;
+	printf("%.5f \n",display->angle);
+	if (key == 124) // ->
+	{
+//		if (display->angle < 0)
+//			display->angle *= -1;
+		display->angle += 0.25;
+		rotation_list_y(display, display->angle);
+		centrer(&display);
+		ft_trace(display);
+//		centrer(&display);
+//		ft_origin(&display, 25, display->angle);
+//		iso_list(display);
+//		angle = 0;
+	}
+	if (key == 123)// <-
+	{
+//		if (display->angle > 0)
+//			display->angle *= -1;
+		display->angle -= 0.25;
+		rotation_list_y(display, display->angle);
+		centrer(&display);
+		ft_trace(display);
+//		ft_origin(&display, 25, display->angle);
+//		iso_list(display);
+	}
+	if (key == 31)
+	{
+//		ft_origin(&display);
+		ft_trace(display);
+	}
+	if (key == 2)
+		display_repere(display);
+	if (key == 17)
+		mlx_key_hook(display->win_ptr_s, deal_key_translation, display);
+
+	return (0);
+}
+
+
+int		deal_key_rotation(int key, t_win *display)
+{
+	if (key == 6)
+		mlx_key_hook(display->win_ptr_s, deal_key_rotation_z, display);
+	if (key == 7)
+		mlx_key_hook(display->win_ptr_s, deal_key_rotation_x, display);
+	if (key == 16)
+		mlx_key_hook(display->win_ptr_s, deal_key_rotation_y, display);
+	return (0);
+}
+int		deal_key_zoom(int key, t_win *display)
+{
+
+	if (key == 126) // ->
+	{
+		ft_echelle(&display, 2);
+		centrer(&display);
+		ft_trace(display);
+	}
+	if (key == 125)// <-
+	{
+		ft_echelle(&display, 0.5);
+		centrer(&display);
+		ft_trace(display);
+	}
+	if (key == 2)
+		display_repere(display);
+	if (key == 17)
+		mlx_key_hook(display->win_ptr_s, deal_key_translation, display);
+	return (0);
+}
+int		deal_key_translation(int key, t_win *display)
+{
+	
+	if (key == 124) // ->
+	{
+		ft_coor_x(&display, 100);
+		ft_trace(display);
+	}
+	if (key == 123)// <-
+	{
+		ft_coor_x(&display, -20);
+		ft_trace(display);
+	}
+	if (key == 125)
+	{
+		ft_coor_y(&display, 100);
+		ft_trace(display);
+	}
+	if (key == 126)
+	{
+		ft_coor_y(&display, -20);
+		ft_trace(display);
+	}
+	if (key == 15)
+		mlx_key_hook(display->win_ptr_s, deal_key_rotation, display);
+	if (key == 2)
+		display_repere(display);
+	if (key == 6)
+		mlx_key_hook(display->win_ptr_s, deal_key_zoom, display);
+	if (key == 8)
+	{
+		centrer(&display);
+		ft_trace(display);
+	}
+		 
+
+	return (0);
+}
+int		deal_key_ziso(int key, t_win *display)
+{
+	if (key == 124) // ->
+	{
+		ft_coor_x(&display, 20);
+		ft_trace(display);
+	}
+	if (key == 123)// <-
+	{
+		ft_coor_x(&display, -20);
+		ft_trace(display);
+	}
+	if (key == 125)
+	{
+		ft_coor_z(&display, -5);
+//		iso_list(display);
+		ft_trace(display);
+	}
+	if (key == 126)
+	{
+		ft_coor_z(&display, 5);
+//		iso_list(display);
+		ft_trace(display);
+	}
+	return (0);
 }
 
 int		deal_key(int key, t_win *display)
 {
-	int i;
+	if (key == 6)
+		mlx_key_hook(display->win_ptr_s, deal_key_zoom, display);
 
-	i = 0;
-	display_display(display);
-	printf("key = %d \n", key);
-	if (key == 124 && display->x_win < display->screen) // ->
-		vertical(display, 10);
-	if (key == 123 && display->x_o > 0) // <-
-		vertical(display, -10);
-	if (key == 125 && display->y_win < display->screen) // haut
-		horizontal(display, 10);
-	if (key == 126 && display->y_o > 0) // bas
-		horizontal(display, -10);
-	if (key == 116)
-		horizontal(display, 50);
-	if (key == 12)
-	{
-		ft_echelle(display, 0.5);
-		ft_display(display);
-	}
-	if (key == 13)
-	{
-		ft_echelle(display, 2);
-		ft_display(display);
-	}
-	if (key == 14)
-		mlx_clear_window(display->mlx,display->win_ptr_s);
-	return (0);
-}
-void	ft_display(t_win *display)
-{
-	vertical(display,0);
-	horizontal(display,0);
-
+	if (key == 15)
+		mlx_key_hook(display->win_ptr_s, deal_key_rotation, display);
+	
+	if (key == 17) // ->
+		mlx_key_hook(display->win_ptr_s, deal_key_translation, display);
+	if (key == 34)
+		mlx_key_hook(display->win_ptr_s, deal_key_ziso, display);
+		return (0);
 }
 
-void	ft_echelle(t_win *display, float echelle)
-{
-	display->echelle *= echelle;
-}
-
-/*void	set_data(t_win *display, void *, void *, int)
-{
-
-
-}
-*/
-void	set_display(t_win *display, int x_win, int y_win, float echelle)
-{
-	display->x_win = x_win * echelle;
-	display->y_win = y_win * echelle;
-	display->x_o = 0;
-	display->y_o = 0;
-	display->echelle = echelle;
-}
-
-void	set_display_oblique(t_win *display, int x, int y, float echelle)
-{
-	display->x_win = (x - y) * 64;
-	display->y_win = (x + y) * 32;
-	display->x_o = 0;
-	display->y_o = 0;
-	display->echelle = echelle;
-}
-void	display_display(t_win *display)
-{
-	printf("----------------------------\n");
-	printf("y_o(disply) = %d \n",display->y_o);
-	printf("x_o(disply) = %d  \n",display->x_o);
-	printf("y_win(disply) = %d  \n",display->y_win);
-	printf("x_win(disply) = %d \n",display->x_win);
-	printf("screen(display) = %d \n",display->screen);
-	printf("echelle (display) = %.5f \n", display->echelle);
-	printf("----------------------------\n");
-}
-/*
-   int		try_iso(t_win *display)
-   {
-   float ratio;
-   float dx;
-   float dy;
-   int x;
-   int y;
-
-   x = 30;
-   y = 30;
-
-   dx = (float)display->x_win - x;
-   dy = (float)display->y_win - y;
-   ratio = dy / dx;
-
-
-   }
-   */
