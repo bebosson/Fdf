@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 19:05:50 by bebosson          #+#    #+#             */
-/*   Updated: 2019/03/28 20:47:55 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/03/29 18:01:23 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,51 +22,15 @@ void	ft_echelle(t_win **display, float echelle)
 	{
 		tmp->x *= echelle;
 		tmp->y *= echelle;
-		tmp->z *= echelle;
+//		tmp->z *= echelle;
 		tmp = tmp->next;
 	}
 }
-
-
-void	ft_coor_x(t_win **display, int trans)
-{
-	t_point *tmp;
-
-	tmp = (*display)->tpoint;
-	while (tmp->next)
-	{
-		tmp->x += trans;
-		tmp = tmp->next;
-	}
-}
-void	ft_coor_y(t_win **display, int trans)
-{
-	t_point *tmp;
-
-	tmp = (*display)->tpoint;
-	while (tmp->next)
-	{
-		tmp->y += trans;
-		tmp = tmp->next;
-	}
-}
-void	ft_coor_z(t_win **display, int trans)
-{
-	t_point *tmp;
-
-	tmp = (*display)->tpoint;
-	while (tmp->next)
-	{
-		tmp->z += trans;
-		tmp = tmp->next;
-	}
-}
-
 
 void	display_max(t_win **display)
 {
-	int x_max;
-	int y_max;
+	float x_max;
+	float y_max;
 	t_point *tmp;
 
 	tmp = (*display)->tpoint;
@@ -88,8 +52,8 @@ void	display_max(t_win **display)
 
 void	display_min(t_win **display)
 {
-	int x_min;
-	int y_min;
+	float x_min;
+	float y_min;
 	t_point *tmp;
 
 	tmp = (*display)->tpoint;
@@ -107,66 +71,3 @@ void	display_min(t_win **display)
 	(*display)->y_min = y_min;
 }
 
-void	fix_display(t_win **display, int echelle, float angle)
-{
-
-	(*display)->angle = angle;
-	ft_echelle(display, echelle);
-//	rotation_list(*display,(*display)->angle);
-//	iso_list(*display);
-//	display_min(display);
-//	display_max(display);
-//	centrer(display);
-	display_repere(*display);
-}
-
-void	centrer(t_win **display)
-{
-	int delta_x;
-	int delta_y;
-	int sym_x;
-	int sym_y;
-
-	display_min(display);
-	display_max(display);
-	sym_x = ((*display)->x_max + (*display)->x_min) / 2;
-
-	sym_y = ((*display)->y_max + ((*display)->y_min)) / 2;
-	delta_x = ((*display)->screen / 2) - sym_x;
-
-	delta_y = ((*display)->screen/2) - sym_y;
-
-	printf("avant\n");
-	printf("----------------------\n");
-	printf("screen = %d \n",(*display)->screen);
-	printf("x_max = %d \n",(*display)->x_max);
-	printf("x_min = %d \n",(*display)->x_min);
-	printf("y_max = %d \n",(*display)->y_max);
-	printf("y_min = %d \n",(*display)->y_min);
-	printf("delta_y = %d \n",delta_y);
-	printf("delta_x = %d \n",delta_x);
-	printf("sym_x = %d \n",sym_x);
-	printf("sym_y = %d \n",sym_y);
-	printf("----------------------\n");
-//	mlx_string_put((*display)->mlx,(*display)->win_ptr_s, 500, 500,0xFF0000,"0");
-	ft_coor_y(display,delta_y);
-	ft_coor_x(display,delta_x);
-	display_min(display);
-	display_max(display);
-	sym_x = ((*display)->x_max) + ((*display)->x_min) / 2;
-
-	sym_y = ((*display)->y_max + ((*display)->y_min)) / 2;
-
-	printf("apres\n");
-	printf("----------------------\n");
-	printf("x_max = %d \n",(*display)->x_max);
-	printf("x_min = %d \n",(*display)->x_min);
-	printf("y_max = %d \n",(*display)->y_max);
-	printf("y_min = %d \n",(*display)->y_min);
-	printf("delta_y = %d \n",delta_y);
-	printf("delta_x = %d \n",delta_x);
-	printf("sym_x = %d \n",sym_x);
-	printf("sym_y = %d \n",sym_y);
-	printf("----------------------\n");
-
-}

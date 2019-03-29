@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 02:08:25 by bebosson          #+#    #+#             */
-/*   Updated: 2019/03/28 20:54:23 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/03/29 19:37:56 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ typedef struct	s_win
 	void	*mlx;
 	void	*win_ptr_s;
 	int		screen;
-	int		x_win;
-	int		y_win;
-	int		x_max;
-	int		y_max;
-	int		x_min;
-	int		y_min;
-//	int		x_o;
+	float		x_win;
+	float		y_win;
+	float		x_max;
+	float		y_max;
+	float		x_min;
+	float		y_min;
+	float		z;
 //	int		y_o;
 	float		echelle;
 	float		angle;
@@ -53,10 +53,10 @@ void	centrer(t_win **display);
 void	round_value(float x_p, float y_p, int *x, int *y);
 void	ft_coor_x(t_win **display, int trans);
 void	ft_coor_y(t_win **display, int trans);
-void	ft_coor_z(t_win **display, int trans);
+int		ft_coor_z(t_win **display, float trans);
 void	iso_list(t_win *display);
 void	trans_iso(float *x, float *y, int z);
-void	fix_display(t_win **display, int echelle, float angle);
+void	fix_display(t_win **display, int echelle, float angle, float z);
 int		deal_key_translation(int key, t_win *display);
 int		deal_key(int key, t_win *display);
 void	ft_trace(t_win *display);
@@ -85,7 +85,7 @@ void	display_display(t_win *display);
 void	ft_relier_h(t_win *display);
 void	display_point(t_point *tpoint);
 
-void	ft_origin(t_win **display, int echelle, float angle);
+void	ft_origin(t_win **display, int echelle, float angle, int iso);
 void	ft_relier_v(t_win *display);
 
 void	rotation_y(float teta, float *x, float *z, t_win *display);

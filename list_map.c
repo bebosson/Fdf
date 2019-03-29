@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 03:25:03 by bebosson          #+#    #+#             */
-/*   Updated: 2019/03/21 18:23:37 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/03/29 18:19:01 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ t_point		*init_repere(char **tab_pts, t_point **list, int y)
 }
 void		display_point(t_point *tmp)
 {
-	printf("x = %d / ", tmp->x);
-	printf("y = %d / ", tmp->y);
-	printf("z = %d / ", tmp->z);
+	printf("x = %.5f / ", tmp->x);
+	printf("y = %.5f / ", tmp->y);
+	printf("z = %.5f / ", tmp->z);
 	printf("coor_x = %d /", tmp->coor_x);
 	printf("coor_y = %d / \n",tmp->coor_y);
 
@@ -67,13 +67,14 @@ void		display_repere(t_win *display)
 	display_max(&display);
 	display_min(&display);
 	printf("---------------------\n");
-	printf("x_max = %d \n", display->x_max);
-	printf("y_max = %d \n", display->y_max);
-	printf("x_min = %d \n", display->x_min);
-	printf("y_min = %d \n", display->y_min);
-	printf("x_win = %d \n", display->x_win);
-	printf("y_win = %d \n", display->y_win);
+	printf("x_max = %.5f \n", display->x_max);
+	printf("y_max = %.5f \n", display->y_max);
+	printf("x_min = %.5f \n", display->x_min);
+	printf("y_min = %.5f \n", display->y_min);
+	printf("x_win = %.5f \n", display->x_win);
+	printf("y_win = %.5f \n", display->y_win);
 	printf("angle = %.5f \n", display->angle);
+	printf("z = %.5f \n", display->z);
 	printf("---------------------\n");
 }
 

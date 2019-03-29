@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 17:21:59 by bebosson          #+#    #+#             */
-/*   Updated: 2019/03/28 21:38:16 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/03/29 16:27:00 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_trace(t_win *display)
 }
 
 
-void	ft_origin(t_win **display, int echelle, float angle)
+void	ft_origin(t_win **display, int echelle, float angle, int iso)
 {
 	t_point *tmp;
 
@@ -32,7 +32,7 @@ void	ft_origin(t_win **display, int echelle, float angle)
 		tmp->y = tmp->coor_y;
 		tmp = tmp->next;
 	}
-	fix_display(display, echelle, angle);
+	fix_display(display, echelle, angle, iso);
 }
 
 void	ft_relier_h(t_win *display)

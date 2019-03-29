@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 19:38:33 by bebosson          #+#    #+#             */
-/*   Updated: 2019/03/28 21:38:15 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/03/29 19:49:53 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,7 @@ void ligne(int xi,int yi,int xf,int yf, t_win *display)
 
 int		deal_key_rotation_z(int key, t_win *display)
 {
-//	float angle;
-
 	display->angle = 0;
-	printf("%.5f \n",display->angle);
 	if (key == 124) // ->
 	{
 		display->angle += 0.25;
@@ -81,7 +78,8 @@ int		deal_key_rotation_z(int key, t_win *display)
 		display_repere(display);
 	if (key == 17)
 		mlx_key_hook(display->win_ptr_s, deal_key_translation, display);
-
+	if (key == 53)
+		exit(EXIT_SUCCESS);
 	return (0);
 }
 
@@ -170,18 +168,19 @@ int		deal_key_rotation(int key, t_win *display)
 		mlx_key_hook(display->win_ptr_s, deal_key_rotation_x, display);
 	if (key == 16)
 		mlx_key_hook(display->win_ptr_s, deal_key_rotation_y, display);
+	
+	mlx_string_put(display->mlx, display->win_ptr_s, 750,0, 0XFFFFF0, "Rot X pour X\nY pour Y\nZ pour Z");
 	return (0);
 }
 int		deal_key_zoom(int key, t_win *display)
 {
-
-	if (key == 126) // ->
+	if (key == 126) // ^
 	{
 		ft_echelle(&display, 2);
 		centrer(&display);
 		ft_trace(display);
 	}
-	if (key == 125)// <-
+	if (key == 125)// V
 	{
 		ft_echelle(&display, 0.5);
 		centrer(&display);
@@ -191,11 +190,38 @@ int		deal_key_zoom(int key, t_win *display)
 		display_repere(display);
 	if (key == 17)
 		mlx_key_hook(display->win_ptr_s, deal_key_translation, display);
+	mlx_string_put(display->mlx, display->win_ptr_s, 750,0, 0XFFFFF0, "ZOOM");
 	return (0);
 }
+
+int		deal_key_ziso(int key, t_win *display)
+{
+	float ziso;
+	if (key == 125)
+	{
+		ziso = -0.25;
+		display->z += ziso;
+		ft_coor_z(&display, display->z);
+		ft_origin(&display,25,display->angle, 1);
+		ft_trace(display);
+	}
+	if (key == 126)
+	{
+		ziso = 0.25;
+		display->z += ziso;
+		ft_coor_z(&display, display->z);
+		ft_origin(&display,25,display->angle, 1);
+		ft_trace(display);
+	}
+	if (key == 17) // ->
+		mlx_key_hook(display->win_ptr_s, deal_key_translation, display);
+
+	return (0);
+}
+
+
 int		deal_key_translation(int key, t_win *display)
 {
-	
 	if (key == 124) // ->
 	{
 		ft_coor_x(&display, 100);
@@ -218,48 +244,24 @@ int		deal_key_translation(int key, t_win *display)
 	}
 	if (key == 15)
 		mlx_key_hook(display->win_ptr_s, deal_key_rotation, display);
-	if (key == 2)
-		display_repere(display);
 	if (key == 6)
 		mlx_key_hook(display->win_ptr_s, deal_key_zoom, display);
+	if (key == 34)
+		mlx_key_hook(display->win_ptr_s, deal_key_ziso, display);
 	if (key == 8)
 	{
 		centrer(&display);
 		ft_trace(display);
 	}
 		 
+	mlx_string_put(display->mlx, display->win_ptr_s, 750,0, 0XFFFFF0, "DEPLACEMENT");
 
-	return (0);
-}
-int		deal_key_ziso(int key, t_win *display)
-{
-	if (key == 124) // ->
-	{
-		ft_coor_x(&display, 20);
-		ft_trace(display);
-	}
-	if (key == 123)// <-
-	{
-		ft_coor_x(&display, -20);
-		ft_trace(display);
-	}
-	if (key == 125)
-	{
-		ft_coor_z(&display, -5);
-//		iso_list(display);
-		ft_trace(display);
-	}
-	if (key == 126)
-	{
-		ft_coor_z(&display, 5);
-//		iso_list(display);
-		ft_trace(display);
-	}
 	return (0);
 }
 
 int		deal_key(int key, t_win *display)
 {
+
 	if (key == 6)
 		mlx_key_hook(display->win_ptr_s, deal_key_zoom, display);
 
@@ -270,6 +272,9 @@ int		deal_key(int key, t_win *display)
 		mlx_key_hook(display->win_ptr_s, deal_key_translation, display);
 	if (key == 34)
 		mlx_key_hook(display->win_ptr_s, deal_key_ziso, display);
-		return (0);
+	if (key == 53)
+		exit(EXIT_SUCCESS);
+
+	return (0);
 }
 
