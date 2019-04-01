@@ -6,16 +6,11 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/08 16:21:08 by bebosson          #+#    #+#             */
-/*   Updated: 2018/12/10 17:43:14 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/01/29 18:19:30 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "libft/libft.h"
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
 
 int		get_next_line1(const int fd, char **line, char *tmp[OPEN_MAX])
 {

@@ -6,12 +6,13 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 19:38:33 by bebosson          #+#    #+#             */
-/*   Updated: 2019/03/29 19:49:53 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/03/30 16:39:58 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fdf.h"
-void ligne(int xi,int yi,int xf,int yf, t_win *display)
+
+/*void ligne(int xi,int yi,int xf,int yf, t_win *display)
 {
 //	printf("xi = %d \n",xi);
 //	printf("yi = %d \n",yi);
@@ -26,7 +27,7 @@ void ligne(int xi,int yi,int xf,int yf, t_win *display)
 	yinc = ( dy > 0 ) ? 1 : -1 ;
 	dx = abs(dx) ;
 	dy = abs(dy) ;
-	
+
 	//printf("x_i = %d\n",xi);
 //	printf("y_i = %d\n",yi);
 //	printf("x_f= %d\n",xf);
@@ -54,6 +55,7 @@ void ligne(int xi,int yi,int xf,int yf, t_win *display)
 			mlx_pixel_put(display->mlx,display->win_ptr_s, x, y, 0xFF0000);
 			 } }
 }
+*/
 
 int		deal_key_rotation_z(int key, t_win *display)
 {

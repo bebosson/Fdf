@@ -6,12 +6,13 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 02:08:25 by bebosson          #+#    #+#             */
-/*   Updated: 2019/03/29 19:37:56 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/04/01 18:12:01 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef	FDF_H
 # define FDF_H
+# include <stdlib.h>
 # include "get_next_line.h"
 # include "libft/libft.h"
 # include "mlx.h"
@@ -24,8 +25,8 @@ typedef struct	s_point
 	float x;
 	float y;
 	float z;
-	struct s_point *next; // pas besoin
-	struct s_point *prev; // pas besoin
+	int couleur;
+	struct s_point *next; 
 }				t_point;
 // Tout faire en float ? 
 typedef struct	s_win
@@ -33,6 +34,8 @@ typedef struct	s_win
 	void	*mlx;
 	void	*win_ptr_s;
 	int		screen;
+	float x_o;
+	float y_o;
 	float		x_win;
 	float		y_win;
 	float		x_max;
@@ -40,14 +43,22 @@ typedef struct	s_win
 	float		x_min;
 	float		y_min;
 	float		z;
-//	int		y_o;
+	int			xinc;
+	int			yinc;
 	float		echelle;
 	float		angle;
+	int		couleur;
+	//Couleur (en hexa)
+	//screen en fonction de display->x_max et display->y_max
 	t_point *tpoint;
-	t_point *t_zpoint;
+//	t_point *t_zpoint;
 }				t_win;
 
 
+int				ft_atoi_base(const char *str, int str_base);
+void	ligne_2(t_point *pt1, t_point *pt2, t_win *display);
+void	inf(int dx, int dy, t_win *display, int i);
+void	sup(int dx, int dy, t_win *display, int i);
 void	rotation_list_x(t_win *display, float angle);
 void	centrer(t_win **display);
 void	round_value(float x_p, float y_p, int *x, int *y);
@@ -65,7 +76,6 @@ void	ligne_vert(t_win *display);
 void	ligne_hor(t_win *display);
 void	display_min(t_win **display);
 void	display_max(t_win **display);
-
 void	rotation_z(float teta, float *x, float *y, t_win *display);
 void	rotation_x(float teta, float *x, float *y, t_win *display);
 void	rotation_list_z(t_win *display, float angle);
@@ -74,21 +84,17 @@ void	ft_print_tables(char **tab_pts);
 t_point		*init_repere(char **tab_pts, t_point **list, int y);
 void		display_repere(t_win *display);
 int		ft_x_max(t_point *list);
-t_point	*read_to_list(char **av, t_win *display);
+t_point	*read_to_list(int fd, t_win *display);
 void	ft_display(t_win *display);
 void	set_display(t_win *display, int x_win, int y_win, float echelle);
 void	ft_echelle(t_win **display, float echelle);
 int	barre_pixel(int button, int x, int y, t_win *display);
 int	trait(int max, int min, float ratio, t_win *display, float toto);
 void	display_display(t_win *display);
-
 void	ft_relier_h(t_win *display);
 void	display_point(t_point *tpoint);
-
 void	ft_origin(t_win **display, int echelle, float angle, int iso);
 void	ft_relier_v(t_win *display);
-
 void	rotation_y(float teta, float *x, float *z, t_win *display);
-
 void	rotation_list_y(t_win *display, float angle);
 #endif
