@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 02:08:25 by bebosson          #+#    #+#             */
-/*   Updated: 2019/04/01 18:12:01 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/05/28 18:35:46 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ typedef struct	s_win
 {
 	void	*mlx;
 	void	*win_ptr_s;
+	void	*img;
+	int *addr;
+	//castablen en int
 	int		screen;
 	float x_o;
 	float y_o;
@@ -54,8 +57,10 @@ typedef struct	s_win
 //	t_point *t_zpoint;
 }				t_win;
 
-
-int				ft_atoi_base(const char *str, int str_base);
+void	display_borne(t_win *display);
+void	fix_image(t_win **display, int largeur, int hauteur);
+void	fill_image(t_win *display, int x, int y, int color);
+int		ft_atoi_base(const char *str, int str_base);
 void	ligne_2(t_point *pt1, t_point *pt2, t_win *display);
 void	inf(int dx, int dy, t_win *display, int i);
 void	sup(int dx, int dy, t_win *display, int i);
@@ -97,4 +102,5 @@ void	ft_origin(t_win **display, int echelle, float angle, int iso);
 void	ft_relier_v(t_win *display);
 void	rotation_y(float teta, float *x, float *z, t_win *display);
 void	rotation_list_y(t_win *display, float angle);
+int		deal_toto(int key, t_win *display);
 #endif

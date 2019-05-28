@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 06:09:09 by bebosson          #+#    #+#             */
-/*   Updated: 2019/04/01 19:13:25 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/05/28 09:35:17 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,21 @@ void	fix_display(t_win **display, int echelle, float angle, float z)
 	display_min(display);
 	display_max(display);
 	centrer(display);
-	//display_repere(*display);
-//	ft_trace(&display);
 }
 
 
 void	graphic(t_win *display)
 {
 	display->mlx = mlx_init();
-	display->screen = 2000;
-	(display)->win_ptr_s = mlx_new_window(display->mlx, display->screen, display->screen,"FDF");
-	fix_display(&display, 25, 4.2, 1);
-	mlx_key_hook(display->win_ptr_s, deal_key,display);
 
+//	mlx_do_key_autorepeaton(display->mlx);
+	display->screen = 1000;
+	(display)->win_ptr_s = mlx_new_window(display->mlx, display->screen, display->screen,"FDF");
+	fix_display(&display, 2, 4.2,1);
+	fix_image(&display, display->screen, display->screen);
+//	mlx_do_key_autorepeaton(display->mlx);
+	mlx_hook(display->win_ptr_s,2, 0, deal_key, display);
+//	mlx_loop_hook(display->mlx, deal_key,display);
 	if (display->mlx)
 		mlx_loop(display->mlx);
 

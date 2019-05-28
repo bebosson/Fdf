@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 03:25:03 by bebosson          #+#    #+#             */
-/*   Updated: 2019/04/01 19:13:20 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/05/28 18:17:09 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	ft_print_tables(char **tab_pts)
 	while (tab_pts[++x])
 		printf("%s",tab_pts[x]);
 }
-// INCLURE display_max et display_min
 
 t_point		*init_repere(char **tab_pts, t_point **list, int y)
 {
@@ -66,7 +65,6 @@ t_point		*init_repere(char **tab_pts, t_point **list, int y)
 		tmp = tmp->next;
 	}
 	return (tmp);
-	//tmp->next = NULL;
 }
 
 t_point		*init_repere_couleur(char **tab_pts, t_point **list, int y, int x)
@@ -76,7 +74,7 @@ t_point		*init_repere_couleur(char **tab_pts, t_point **list, int y, int x)
 	t_point *elem;
 
 	tmp = *list;
-	i = -1;
+	i = 0;
 	if (test_digit(tab_pts[i]) == 1)
 		tmp->z = ft_atoi(tab_pts[i]);
 	else 
@@ -89,35 +87,14 @@ t_point		*init_repere_couleur(char **tab_pts, t_point **list, int y, int x)
 	{
 		tab_pts[i] = ft_strsub(tab_pts[i], 2, ft_strlen(tab_pts[i]) - 2);
 		tmp->couleur = ft_atoi_base(tab_pts[i], 16);
-		printf("couleur ! = %s \n",tab_pts[i]);
-		printf("tmp = %d ", tmp->couleur);
 	}
 	else
 		tmp->couleur = 0xFFFFFF;
 	return (tmp);
 }
 
-void		display_point(t_point *tmp)
-{
-	printf("x = %.5f / ", tmp->x);
-	printf("y = %.5f / ", tmp->y);
-	printf("z = %.5f / ", tmp->z);
-	printf("coor_x = %d /", tmp->coor_x);
-	printf("coor_y = %d / ",tmp->coor_y);
-	printf("couleur = %d / \n", tmp->couleur);
-}
 
-void		display_repere(t_win *display)
-{
-	t_point *tmp;
 
-	tmp = display->tpoint;
-	while (tmp->next)
-	{
-		display_point(tmp);
-		tmp = tmp->next;
-	}
-}
 
 t_point	*read_couleur(char **tab_pts, t_point **list, int y)
 {
@@ -139,6 +116,7 @@ t_point	*read_couleur(char **tab_pts, t_point **list, int y)
 		tmp->next = elem;
 		tmp = tmp->next;
 	}
+//	free();
 	return (tmp);
 }
 
@@ -169,7 +147,7 @@ t_point	*read_to_list(int fd, t_win *display)
 			if (tmp == NULL)
 				return (0);
 		}
-
 	}
+	free(tmp);
 	return (list);
 }

@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 19:05:50 by bebosson          #+#    #+#             */
-/*   Updated: 2019/03/29 18:01:23 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/05/28 18:17:11 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	ft_echelle(t_win **display, float echelle)
 	{
 		tmp->x *= echelle;
 		tmp->y *= echelle;
-//		tmp->z *= echelle;
 		tmp = tmp->next;
 	}
+//	free(tmp);
 }
 
 void	display_max(t_win **display)
@@ -34,15 +34,13 @@ void	display_max(t_win **display)
 	t_point *tmp;
 
 	tmp = (*display)->tpoint;
-//	x_max = 0;
-//	y_max = 0;
 	x_max = tmp->x;
 	y_max = tmp->y;
 	while (tmp->next)
 	{
-		if (x_max <= tmp->x && tmp->z == 0)
+		if (x_max <= tmp->x && tmp->z)
 			x_max = tmp->x;
-		if (y_max <= tmp->y && tmp->z == 0)
+		if (y_max <= tmp->y && tmp->z)
 			y_max = tmp->y;
 		tmp = tmp->next;
 	}
@@ -61,9 +59,9 @@ void	display_min(t_win **display)
 	y_min = tmp->y;
 	while (tmp->next)
 	{
-		if (x_min >= tmp->x && tmp->z == 0)
+		if (x_min >= tmp->x)
 			x_min = tmp->x;
-		if (y_min >= tmp->y && tmp->z == 0)
+		if (y_min >= tmp->y)
 			y_min = tmp->y;
 		tmp = tmp->next;
 	}
@@ -71,3 +69,35 @@ void	display_min(t_win **display)
 	(*display)->y_min = y_min;
 }
 
+void		display_point(t_point *tmp)
+{
+	printf("x = %.5f / ", tmp->x);
+	printf("y = %.5f / ", tmp->y);
+	printf("z = %.5f / ", tmp->z);
+	printf("coor_x = %d /", tmp->coor_x);
+	printf("coor_y = %d / ",tmp->coor_y);
+	printf("couleur = %d / \n", tmp->couleur);
+}
+
+void		display_borne(t_win *display)
+{
+	printf("x_max = %.5f \n",display->x_max);
+	printf("y_max = %.5f \n",display->y_max);
+	printf("x_min = %.5f \n",display->x_min);
+	printf("y_min = %.5f \n",display->y_min);
+}
+
+void		display_repere(t_win *display)
+{
+	t_point *tmp;
+
+	tmp = display->tpoint;
+	display_max(&display);
+	display_min(&display);
+	while (tmp->next)
+	{
+		display_point(tmp);
+		tmp = tmp->next;
+	}
+	display_borne(display);
+}

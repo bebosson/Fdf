@@ -1,0 +1,39 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    note_commande                                      :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: bebosson <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/05/28 13:46:51 by bebosson          #+#    #+#              #
+#    Updated: 2019/05/28 16:36:40 by bebosson         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+"z" -> 6  -> zoom
+"+" -> 69 -> zoom avant
+"-" -> 78 -> zoom arriere
+
+"m" -> 46 -> menu
+
+"t" -> 17 -> translation
+"^" -> 126 -> translation haut
+"⇩" -> 125 -> translation bas
+"->" -> 124 -> translations droite
+"<-" -> 123 -> translation gauche
+
+"r" -> 15 -> rotation
+"y" -> 16 -> rotation selon y 
+	"6" -> 22 -> avant
+	"7" -> 26 -> arriere
+"x" -> 7 -> selon x
+	-> "s" -> 1 -> avant
+	-> "d" -> 2 -> arriere
+"z" -> 6 -> selon z
+	-> "a" -> 0 -> avant
+	-> "q" -> 12 -> arriere
+
+
+
+
+"esc" -> 53 -> exit
