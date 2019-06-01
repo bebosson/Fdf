@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 02:08:25 by bebosson          #+#    #+#             */
-/*   Updated: 2019/05/28 18:35:46 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/01 19:52:56 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct	s_point
 	float x;
 	float y;
 	float z;
+	float	z_o;
 	int couleur;
 	struct s_point *next; 
 }				t_point;
@@ -54,9 +55,12 @@ typedef struct	s_win
 	//Couleur (en hexa)
 	//screen en fonction de display->x_max et display->y_max
 	t_point *tpoint;
-//	t_point *t_zpoint;
+	t_point *middle;
 }				t_win;
 
+void	change_couleur_point(t_win **display, int couleur);
+void	ft_origin_z(t_win **display);
+void	point_central(t_win **display);
 void	display_borne(t_win *display);
 void	fix_image(t_win **display, int largeur, int hauteur);
 void	fill_image(t_win *display, int x, int y, int color);
@@ -67,8 +71,7 @@ void	sup(int dx, int dy, t_win *display, int i);
 void	rotation_list_x(t_win *display, float angle);
 void	centrer(t_win **display);
 void	round_value(float x_p, float y_p, int *x, int *y);
-void	ft_coor_x(t_win **display, int trans);
-void	ft_coor_y(t_win **display, int trans);
+void	ft_coor_delta(t_win **display, int trans_x, int trans_y);
 int		ft_coor_z(t_win **display, float trans);
 void	iso_list(t_win *display);
 void	trans_iso(float *x, float *y, int z);

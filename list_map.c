@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 03:25:03 by bebosson          #+#    #+#             */
-/*   Updated: 2019/05/28 18:17:09 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/01 18:59:44 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ t_point		*init_repere(char **tab_pts, t_point **list, int y)
 			tmp->z = ft_atoi(tab_pts[x]);
 		else 
 			return (0);
+		tmp->z_o = tmp->z;
 		tmp->x = x;
 		tmp->coor_x = x;
 		tmp->coor_y = y;
@@ -79,6 +80,7 @@ t_point		*init_repere_couleur(char **tab_pts, t_point **list, int y, int x)
 		tmp->z = ft_atoi(tab_pts[i]);
 	else 
 		return (0);
+	tmp->z_o = tmp->z;
 	tmp->x = x;
 	tmp->coor_x = x;
 	tmp->coor_y = y;

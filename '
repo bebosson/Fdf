@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 06:09:09 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/01 20:01:44 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/01 18:17:16 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	fix_display(t_win **display, int echelle, float angle, float z)
 	(*display)->z = z;
 	ft_echelle(display, echelle);
 	iso_list(*display);
-	(*display)->couleur = 100;
 //	display_min(display);
 //	display_max(display);
 	point_central(display);

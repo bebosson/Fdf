@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 23:42:39 by bebosson          #+#    #+#             */
-/*   Updated: 2019/03/29 22:04:00 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/01 19:14:41 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,19 @@
 
 
 
-void	ft_coor_x(t_win **display, int trans)
+void	ft_coor_delta(t_win **display, int trans_x , int trans_y)
 {
 	t_point *tmp;
 
 	tmp = (*display)->tpoint;
 	while (tmp->next)
 	{
-		tmp->x += trans;
+		tmp->x += trans_x;
+		tmp->y += trans_y;
 		tmp = tmp->next;
 	}
 }
-void	ft_coor_y(t_win **display, int trans)
-{
-	t_point *tmp;
 
-	tmp = (*display)->tpoint;
-	while (tmp->next)
-	{
-		tmp->y += trans;
-		tmp = tmp->next;
-	}
-}
 int	ft_coor_z(t_win **display, float trans)
 {
 	t_point *tmp;
@@ -46,32 +37,24 @@ int	ft_coor_z(t_win **display, float trans)
 	tmp_2 = (*display)->tpoint;
 	while (tmp->next)
 	{
-		if (tmp->z != 0)
-			tmp->z *= trans;
+		if (tmp->z_o != 0)
+			tmp->z += trans;
 		tmp = tmp->next;
-	}
-	while (tmp_2->next)
-	{
-		if (tmp_2->z < 1 && tmp_2->z > 0)
-		{
-			(*display)->z *= -20;
-			ft_coor_z(display,(*display)->z);
-			return (1);
-			//tmp_2 = tmp_2->next;
-		}
-		if (tmp_2->z > -1 && tmp_2->z < 0)
-		{
-			(*display)->z *= -20;
-			ft_coor_z(display,(*display)->z);
-			return (1);
-			//	tmp_2->z *= 10;
-		//	tmp_2 = tmp_2->next;
-		}
-		tmp_2 = tmp_2->next;
 	}
 	return (0);
 }
 
+void	ft_origin_z(t_win **display)
+{
+	t_point *tmp;
+	
+	tmp = (*display)->tpoint;
+	while (tmp->next)
+	{
+		tmp->z = tmp->z_o;
+		tmp = tmp->next;
+	}
+}
 void	centrer(t_win **display)
 {
 	float delta_x;
@@ -79,12 +62,10 @@ void	centrer(t_win **display)
 	float sym_x;
 	float sym_y;
 
-	display_min(display);
-	display_max(display);
-	sym_x = ((*display)->x_max + (*display)->x_min) / 2;
-	sym_y = ((*display)->y_max + ((*display)->y_min)) / 2;
+	display_repere(*display);
+	sym_x = (*display)->middle->x;
+	sym_y = (*display)->middle->y;
 	delta_x = ((*display)->screen / 2) - sym_x;
 	delta_y = ((*display)->screen / 2) - sym_y;
-	ft_coor_y(display,delta_y);
-	ft_coor_x(display,delta_x);
+	ft_coor_delta(display,delta_x,delta_y);
 }

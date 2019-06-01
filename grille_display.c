@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 19:38:33 by bebosson          #+#    #+#             */
-/*   Updated: 2019/05/28 19:09:21 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/01 20:13:41 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ int		deal_key_rotation_y(int key, t_win *display)
 
 int		deal_key_rotation(int key, t_win *display)
 {
-	if (key == 6)
+	
+	if (key == 3)
 		mlx_hook(display->win_ptr_s, 2, 0,deal_key_rotation_z, display);
 	if (key == 7)
 		mlx_hook(display->win_ptr_s, 2,0, deal_key_rotation_x, display);
@@ -104,27 +105,55 @@ int		deal_key_ziso(int key, t_win *display)
 	float ziso;
 	if (key == 125)
 	{
-		ziso = -0.25;
-		display->z += ziso;
-		ft_coor_z(&display, display->z);
-		ft_origin(&display,25,display->angle, 1);
-		fix_image(&display, display->screen, display->screen);
+		ziso = -10;
+		if (display->z > 0)
+			display->z *= -1;
 	}
 	if (key == 126)
 	{
-		ziso = 0.25;
-		display->z += ziso;
-		ft_coor_z(&display, display->z);
-		ft_origin(&display,25,display->angle, 1);
-		fix_image(&display, display->screen, display->screen);
+		ziso = 10;
+		if (display->z < 0)
+			display->z *= -1;
 	}
+	display->z += ziso;
+	ft_coor_z(&display, display->z);
+	ft_origin(&display,25,display->angle, 1);
+	fix_image(&display, display->screen, display->screen);
+
 	if (key == 17) // ->
 		mlx_hook(display->win_ptr_s, 2, 0,deal_key_translation, display);
 
 	return (0);
 }
 
+int		deal_key_couleur(int key, t_win *display)
+{
+	int couleur;
+	printf("couleur = %d\n",display->couleur);
+	if (key == 9)
+	{
+		couleur = 1000;
+//		if (display->couleur > 0)
+//			display->couleur *= -1;
+	}
+	if (key == 12)
+	{
+		couleur = 10;
+//		if (display->couleur < 0)
+//			display->couleur *= -1;
+	}
+//	display->couleur += couleur;
+	change_couleur_point(&display, couleur);
+	ft_origin(&display,25,display->angle, 1);
+	fix_image(&display, display->screen, display->screen);
 
+	if (key == 17) // ->
+		mlx_hook(display->win_ptr_s, 2, 0,deal_key_translation, display);
+	if (key == 53)
+		exit(EXIT_SUCCESS);
+
+	return (0);
+}
 int		deal_key_translation(int key, t_win *display)
 {
 	int y;
@@ -140,8 +169,7 @@ int		deal_key_translation(int key, t_win *display)
 		y = 5;
 	if (key == 126)
 		y = -5;
-	ft_coor_x(&display, x);
-	ft_coor_y(&display, y);
+	ft_coor_delta(&display, x, y);
 	fix_image(&display, display->screen, display->screen);
 	if (key == 46)
 		mlx_key_hook(display->win_ptr_s, deal_key, display);
@@ -153,6 +181,8 @@ int		deal_key_translation(int key, t_win *display)
 int		deal_key(int key, t_win *display)
 {
 	display_borne(display);
+	if (key == 8)
+		mlx_hook(display->win_ptr_s, 2, 0, deal_key_couleur, display);
 	if (key == 6)
 		mlx_hook(display->win_ptr_s, 2, 0, deal_key_zoom, display);
 	if (key == 15)

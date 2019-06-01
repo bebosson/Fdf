@@ -6,12 +6,33 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 19:05:50 by bebosson          #+#    #+#             */
-/*   Updated: 2019/05/28 18:17:11 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/01 20:07:22 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "Fdf.h"
+
+void	point_central(t_win **display)
+{
+	int coor_x;
+	int coor_y;	
+	t_point *tmp;
+	t_point *tmp2;
+	tmp = (*display)->tpoint;
+	tmp2 = (*display)->tpoint;
+	while (tmp->next)
+	{
+		coor_x = tmp->coor_x;
+		coor_y = tmp->coor_y;
+		tmp = tmp->next;
+	}
+	coor_x /= 2;
+	coor_y /= 2;
+	while (tmp2->coor_x != coor_x || tmp2->coor_y != coor_y)
+		tmp2 = tmp2->next;
+	(*display)->middle = tmp2;
+}
 
 void	ft_echelle(t_win **display, float echelle)
 {
@@ -24,7 +45,7 @@ void	ft_echelle(t_win **display, float echelle)
 		tmp->y *= echelle;
 		tmp = tmp->next;
 	}
-//	free(tmp);
+	//	free(tmp);
 }
 
 void	display_max(t_win **display)
@@ -85,6 +106,7 @@ void		display_borne(t_win *display)
 	printf("y_max = %.5f \n",display->y_max);
 	printf("x_min = %.5f \n",display->x_min);
 	printf("y_min = %.5f \n",display->y_min);
+	printf("couleur = %d \n",display->couleur);
 }
 
 void		display_repere(t_win *display)
