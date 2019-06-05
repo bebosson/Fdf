@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 19:05:50 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/01 20:07:22 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/05 04:56:45 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	ft_echelle(t_win **display, float echelle)
 {
 	t_point *tmp;
 
+	(*display)->echelle *= echelle;
 	tmp = (*display)->tpoint;
 	while (tmp->next)
 	{
@@ -50,23 +51,28 @@ void	ft_echelle(t_win **display, float echelle)
 
 void	display_max(t_win **display)
 {
-	float x_max;
-	float y_max;
+	float	x_max;
+	float	y_max;
+	float	z_max;
 	t_point *tmp;
 
 	tmp = (*display)->tpoint;
 	x_max = tmp->x;
 	y_max = tmp->y;
+	z_max = tmp->z;
 	while (tmp->next)
 	{
 		if (x_max <= tmp->x && tmp->z)
 			x_max = tmp->x;
 		if (y_max <= tmp->y && tmp->z)
 			y_max = tmp->y;
+		if (z_max <= tmp->z)
+			z_max = tmp->z;
 		tmp = tmp->next;
 	}
 	(*display)->x_max = x_max;
 	(*display)->y_max = y_max;
+	(*display)->z_max = z_max;
 }
 
 void	display_min(t_win **display)
@@ -92,21 +98,29 @@ void	display_min(t_win **display)
 
 void		display_point(t_point *tmp)
 {
-	printf("x = %.5f / ", tmp->x);
-	printf("y = %.5f / ", tmp->y);
+//	printf("x = %.5f / ", tmp->x);
+//	printf("y = %.5f / ", tmp->y);
 	printf("z = %.5f / ", tmp->z);
 	printf("coor_x = %d /", tmp->coor_x);
-	printf("coor_y = %d / ",tmp->coor_y);
-	printf("couleur = %d / \n", tmp->couleur);
+	printf("coor_y = %d / \n",tmp->coor_y);
+	//	printf("couleur = %d / \n", tmp->couleur);
+//	printf("r =  %d / \n", tmp->r);
+//	printf("g =  %d / \n", tmp->g);
+//	printf("b =  %d / \n", tmp->b);
 }
 
 void		display_borne(t_win *display)
 {
-	printf("x_max = %.5f \n",display->x_max);
-	printf("y_max = %.5f \n",display->y_max);
-	printf("x_min = %.5f \n",display->x_min);
-	printf("y_min = %.5f \n",display->y_min);
-	printf("couleur = %d \n",display->couleur);
+//	printf("x_max = %.5f \n",display->x_max);
+//	printf("y_max = %.5f \n",display->y_max);
+//	printf("x_min = %.5f \n",display->x_min);
+//	printf("y_min = %.5f \n",display->y_min);
+//	printf("couleur = %d \n",display->couleur);
+	printf("display->echelle = %.5f\n",display->echelle);
+	printf("display->z_max = %.5f\n",display->z_max);
+	//	printf("r =  %d / \n", display->tpoint->r);
+//	printf("g =  %d / \n", display->tpoint->g);
+//	printf("b =  %d / \n", display->tpoint->b);
 }
 
 void		display_repere(t_win *display)
@@ -116,10 +130,10 @@ void		display_repere(t_win *display)
 	tmp = display->tpoint;
 	display_max(&display);
 	display_min(&display);
-	while (tmp->next)
-	{
-		display_point(tmp);
-		tmp = tmp->next;
-	}
+//	while (tmp->next)
+//	{
+//		display_point(tmp);
+//		tmp = tmp->next;
+//	}
 	display_borne(display);
 }

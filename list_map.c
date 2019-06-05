@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 03:25:03 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/01 18:59:44 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/04 23:07:14 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_point		*init_repere(char **tab_pts, t_point **list, int y)
 		tmp->coor_x = x;
 		tmp->coor_y = y;
 		tmp->y = y;
-		tmp->couleur = 0xFFFFFF;
+		tmp->couleur = ft_rgb(155, 30, 50);
 		elem = (t_point*)malloc(sizeof(t_point));
 		tmp->next = elem;
 		tmp = tmp->next;
@@ -91,7 +91,7 @@ t_point		*init_repere_couleur(char **tab_pts, t_point **list, int y, int x)
 		tmp->couleur = ft_atoi_base(tab_pts[i], 16);
 	}
 	else
-		tmp->couleur = 0xFFFFFF;
+		tmp->couleur = 0xB222222;
 	return (tmp);
 }
 
@@ -137,18 +137,18 @@ t_point	*read_to_list(int fd, t_win *display)
 	while (get_next_line(fd, &line) > 0)
 	{
 		tab_pts = ft_strsplit(line, ' ');
-		if (ft_strchr(line, ',') != NULL)
-		{
-			tmp = read_couleur(tab_pts, &tmp, ++y);
-			if (tmp == NULL)
-				return (0);
-		}
-		else
-		{
+//		if (ft_strchr(line, ',') != NULL)
+//		{
+//			tmp = read_couleur(tab_pts, &tmp, ++y);
+//			if (tmp == NULL)
+//				return (0);
+//		}
+//		else
+//		{
 			tmp = init_repere(tab_pts,&tmp,++y);
 			if (tmp == NULL)
 				return (0);
-		}
+//		}
 	}
 	free(tmp);
 	return (list);

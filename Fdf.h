@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 02:08:25 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/01 19:52:56 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/05 04:21:21 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ typedef struct	s_point
 {
 	int coor_x;
 	int coor_y;
+	int r;
+	int g;
+	int b;
 	float x;
 	float y;
 	float z;
@@ -33,13 +36,16 @@ typedef struct	s_point
 typedef struct	s_win
 {
 	void	*mlx;
+	void	*mlx_2;
 	void	*win_ptr_s;
+	void	*win;
 	void	*img;
 	int *addr;
 	//castablen en int
 	int		screen;
 	float x_o;
 	float y_o;
+	int			iso;
 	float		x_win;
 	float		y_win;
 	float		x_max;
@@ -47,18 +53,34 @@ typedef struct	s_win
 	float		x_min;
 	float		y_min;
 	float		z;
+	float		z_max;
 	int			xinc;
 	int			yinc;
 	float		echelle;
 	float		angle;
 	int		couleur;
+	int		couleur_on;
 	//Couleur (en hexa)
 	//screen en fonction de display->x_max et display->y_max
 	t_point *tpoint;
 	t_point *middle;
 }				t_win;
 
-void	change_couleur_point(t_win **display, int couleur);
+typedef struct	s_fen
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+	int		screen;
+	int *addr;
+}				t_fen;
+
+
+int		ft_error(int error);
+int		ft_error_maps(int ac, char **av);
+void	fix_couleur(t_win **display);
+int		ft_rgb(int r, int g, int b);
+void	change_couleur_point(t_win **display, int r, int g, int b);
 void	ft_origin_z(t_win **display);
 void	point_central(t_win **display);
 void	display_borne(t_win *display);
@@ -96,14 +118,13 @@ t_point	*read_to_list(int fd, t_win *display);
 void	ft_display(t_win *display);
 void	set_display(t_win *display, int x_win, int y_win, float echelle);
 void	ft_echelle(t_win **display, float echelle);
-int	barre_pixel(int button, int x, int y, t_win *display);
-int	trait(int max, int min, float ratio, t_win *display, float toto);
 void	display_display(t_win *display);
 void	ft_relier_h(t_win *display);
 void	display_point(t_point *tpoint);
-void	ft_origin(t_win **display, int echelle, float angle, int iso);
+void	ft_origin(t_win **display);
 void	ft_relier_v(t_win *display);
 void	rotation_y(float teta, float *x, float *z, t_win *display);
 void	rotation_list_y(t_win *display, float angle);
 int		deal_toto(int key, t_win *display);
+int		deal_key_couleur(int key, t_win *display);
 #endif

@@ -6,77 +6,62 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 06:09:09 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/01 20:01:44 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/05 05:14:38 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "Fdf.h"
 
-int		ft_error(int error)
-{
-
-	if (error == 0)
-	{
-		ft_putendl("error");
-		return (0);
-	}
-	return (0);
-}
-
-int		ft_error_maps(int ac, char **av)
-{
-	int fd;
-
-	if (ac != 2 || av[1] == NULL)
-	{
-		ft_putendl("error map");
-		return (0);
-	}
-	else
-	{
-		fd = open(av[1], O_RDONLY);
-		return (fd);
-	}
-	return (0);
-}
-
 void	fix_display(t_win **display, int echelle, float angle, float z)
 {
 
 	(*display)->angle = angle;
 	(*display)->z = z;
-	ft_echelle(display, echelle);
-	iso_list(*display);
-	(*display)->couleur = 100;
-//	display_min(display);
-//	display_max(display);
+//	ft_echelle(display, echelle);
+	if ((*display)->iso == 1)
+		iso_list(*display);
+//	(*display)->couleur = 100;
+	display_repere(*display);
 	point_central(display);
 	centrer(display);
 }
 
-
 void	graphic(t_win *display)
 {
-	display->mlx = mlx_init();
+	int i;
 
-//	mlx_do_key_autorepeaton(display->mlx);
-	display->screen = 1000;
+	i = 0;
+
+	display->mlx = mlx_init();
+//	display->mlx_2 = mlx_init();
+//	info->mlx = mlx_init();
+//	info->screen = 1000;
+//	(info)->win = mlx_new_window(info->mlx, info->screen, info->screen,"INFO");
+
+	display->iso = 1;
+	display->echelle = 50;
+	display->screen = 2000;
 	(display)->win_ptr_s = mlx_new_window(display->mlx, display->screen, display->screen,"FDF");
+	fix_couleur(&display);
 	fix_display(&display, 2, 4.2,1);
+	ft_echelle(&display, 50);
 	fix_image(&display, display->screen, display->screen);
-//	mlx_do_key_autorepeaton(display->mlx);
 	mlx_hook(display->win_ptr_s,2, 0, deal_key, display);
 //	mlx_loop_hook(display->mlx, deal_key,display);
-	if (display->mlx)
-		mlx_loop(display->mlx);
-
+//	if (display->mlx)
+	
+	mlx_loop(display->mlx);
+//	mlx_loop(display->mlx_2);
+//	mlx_loop(info->mlx);
 }
+
+
 
 int		coor_to_graph(int fd)
 {
 	t_win	*display;
-	t_point *list;
+	t_point	*list;
 	
 	if (!(display =(t_win *)malloc(sizeof(t_win))))
 		return (0);
@@ -86,7 +71,18 @@ int		coor_to_graph(int fd)
 		ft_error(0);
 		exit(EXIT_SUCCESS);
 	}
+//	display->screen = 1000;
+//	fix_couleur(&display);
+//	fix_display(&display, 2, 4.2,1);
+//	fix_image(&display, display->screen, display->screen);
 	graphic(display);
+//	graphic_2(display, info);
+
+//	display->mlx = mlx_init();
+//	display->screen = 1000;
+//	(display)->win = mlx_new_window(display->mlx, display->screen / 2, display->screen / 2,"coucou");
+//	mlx_string_put(display->mlx_2, display->win, 300, 300, 0xFFFFFF, "YOOOOOOOOOOOOOOOO");
+//	mlx_loop(display->mlx);
 	return (0);
 }
 

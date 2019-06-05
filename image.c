@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 17:57:56 by bebosson          #+#    #+#             */
-/*   Updated: 2019/05/28 18:28:10 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/02 21:05:06 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,25 @@ void	fix_image(t_win **display, int largeur, int hauteur)
 	free(image);
 }
 
-/*void	fill_image(t_win *display, int x_o, int y_o, int color)
+/*
+void	fix_info(t_win **display, int largeur, int hauteur)
+{
+	int		bpp;
+//	int		s_l;
+//	int		endian;
+//	void	*image;
+
+	
+//	image = mlx_new_image((*display)->mlx, largeur, hauteur);
+//	(*display)->addr = (int*)mlx_get_data_addr(image, &(bpp), &(s_l), &(endian));
+//	ft_trace(*display);
+//	mlx_put_image_to_window((*display)->mlx, (*display)->win_ptr_s, image , 0,0);
+//	free(image);
+	
+}
+
+
+void	fill_image(t_win *display, int x_o, int y_o, int color)
 {
 	int y;
 	int x;

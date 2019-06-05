@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 23:19:37 by bebosson          #+#    #+#             */
-/*   Updated: 2019/05/28 19:17:27 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/04 20:24:18 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	inf(int dx, int dy, t_win *display, int i)
 	int		xi;
 	int		yi;
 	int		p;
+
 	xi = display->x_o;
 	yi = display->y_o;
 	cumul = dy / 2 ;
@@ -72,7 +73,7 @@ void	ligne_2(t_point *pt1, t_point *pt2, t_win *display)
 	dy = pt2->y - pt1->y;
 	display->x_o = pt1->x;
 	display->y_o = pt1->y;
-	mlx_pixel_put(display->mlx,display->win_ptr_s, display->x_o, display->y_o, pt1->couleur);
+//	mlx_pixel_put(display->mlx,display->win_ptr_s, display->x_o, display->y_o, pt1->couleur);
 	display->xinc = (dx > 0) ? 1 : -1;
 	display->yinc = (dy > 0) ? 1 : -1;
 	dx = abs(dx);
