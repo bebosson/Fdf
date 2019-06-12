@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 19:05:50 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/05 04:56:45 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/12 21:11:21 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,10 @@ void		display_point(t_point *tmp)
 {
 //	printf("x = %.5f / ", tmp->x);
 //	printf("y = %.5f / ", tmp->y);
-	printf("z = %.5f / ", tmp->z);
-	printf("coor_x = %d /", tmp->coor_x);
-	printf("coor_y = %d / \n",tmp->coor_y);
-	//	printf("couleur = %d / \n", tmp->couleur);
+//	printf("z = %.5f / ", tmp->z);
+//	printf("coor_x = %d /", tmp->coor_x);
+//	printf("coor_y = %d / \n",tmp->coor_y);
+//	printf("couleur = %d / \n", tmp->couleur);
 //	printf("r =  %d / \n", tmp->r);
 //	printf("g =  %d / \n", tmp->g);
 //	printf("b =  %d / \n", tmp->b);
@@ -118,9 +118,9 @@ void		display_borne(t_win *display)
 //	printf("couleur = %d \n",display->couleur);
 	printf("display->echelle = %.5f\n",display->echelle);
 	printf("display->z_max = %.5f\n",display->z_max);
-	//	printf("r =  %d / \n", display->tpoint->r);
-//	printf("g =  %d / \n", display->tpoint->g);
-//	printf("b =  %d / \n", display->tpoint->b);
+		printf("r =  %d / \n", display->tpoint->r);
+	printf("g =  %d / \n", display->tpoint->g);
+	printf("b =  %d / \n", display->tpoint->b);
 }
 
 void		display_repere(t_win *display)
@@ -130,10 +130,10 @@ void		display_repere(t_win *display)
 	tmp = display->tpoint;
 	display_max(&display);
 	display_min(&display);
-//	while (tmp->next)
-//	{
-//		display_point(tmp);
-//		tmp = tmp->next;
-//	}
+	while (tmp->next)
+	{
+		display_point(tmp);
+		tmp = tmp->next;
+	}
 	display_borne(display);
 }

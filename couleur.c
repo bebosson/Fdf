@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:33 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/03 23:59:59 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/12 21:03:25 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,12 @@ int		ft_rgb(int r, int g, int b)
 	int divide;
 	int result;
 
-	result = b; 
-	result += ft_power(16,2) * g % 16;
-	result += ft_power(16,3) * g / 16;
-	result += ft_power(16,4) * r % 16;
-	result += ft_power(16,5) * r / 16;
-	return (result);
+	//result = b; 
+	//result += ft_power(16,2) * g % 16;
+	//result += ft_power(16,3) * g / 16;
+	//result += ft_power(16,4) * r % 16;
+	//result += ft_power(16,5) * r / 16;
+	return ((r << 16) | (g << 8) | b);
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 17:21:59 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/05 04:02:10 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/12 20:37:42 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_relier_v2(t_win *display)
 }
 void	ft_trace(t_win *display)
 {
-	mlx_clear_window(display->mlx,display->win_ptr_s);
+//	mlx_clear_window(display->mlx,display->win_ptr_s);
 	ft_relier_h2(display);
 	ft_relier_v2(display);
 //	display_repere(display);
