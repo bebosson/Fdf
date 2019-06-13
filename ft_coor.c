@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 19:05:50 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/13 03:02:56 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/13 21:02:38 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ void	ft_echelle(t_win **display, float echelle)
 	if ((*display)->echelle == 0)
 		(*display)->echelle = 1;
 	(*display)->echelle *= echelle;
-	if ((*display)->echelle > 32 || (*display)->echelle < 2)
-	{
-		(*display)->echelle = 4;
-		echelle = (*display)->echelle;
-		ft_origin(display);
-		if ((*display)->iso == 1)
-			iso_list(*display);
-		ft_origin_z(display);
-	}
+//	if ((*display)->echelle > 32 || (*display)->echelle < 2)
+//	{
+//		(*display)->echelle = 4;
+//		echelle = (*display)->echelle;
+//		ft_origin(display);
+//		if ((*display)->iso == 1)
+//			iso_list(*display);
+//		ft_origin_z(display);
+//	}
 		
 	tmp = (*display)->tpoint;
 	while (tmp->next)

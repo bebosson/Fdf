@@ -1,0 +1,1 @@
+cc -g -I /usr/local/include list_map.c  libft/libft.a get_next_line.c ligne_juepee.c  ft_coor.c rotation.c iso.c translation.c connect.c grille_display.c  main.c ft_atoi_base.c image.c couleur.c deal_key_couleur.c deal_key_rotation.c errors.c -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit

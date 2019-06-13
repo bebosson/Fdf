@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 19:38:33 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/13 03:06:11 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/14 01:14:06 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 
 int		deal_key_zoom(int key, t_win *display)
 {
-	
-	//echelle_min
 	if (key == 69)
 		ft_echelle(&display, 2);
 /*	else if (key == 69)
@@ -67,7 +65,7 @@ int		deal_key_ziso(int key, t_win *display)
 		ft_origin_z(&display);
 		display_repere(display);
 		if (display->iso == 1)
-			iso_list(display);
+		iso_list(display);
 		ft_echelle(&display, 2);
 		centrer(&display);
 		fix_image(&display, display->screen, display->screen);
@@ -82,7 +80,7 @@ int		deal_key_ziso_menu(int key, t_win *display)
 {
 	if (key == 35 && display->iso == 0)
 		mlx_key_hook(display->win_ptr_s, deal_key_ziso, display);
-	if (key == 31)
+	if (key == 31 && display->iso == 1)
 		mlx_key_hook(display->win_ptr_s, deal_key_ziso_plane, display);
 	if (key == 46)
 		mlx_key_hook(display->win_ptr_s, deal_key, display);
@@ -115,10 +113,9 @@ int		deal_key_translation(int key, t_win *display)
 		exit(EXIT_SUCCESS);
 	return (0);
 }
-
 int		deal_key(int key, t_win *display)
 {
-	display_repere(display);
+//	display_repere(display);
 	if (key == 8)
 		mlx_hook(display->win_ptr_s, 2, 0, deal_key_couleur, display);
 	if (key == 6)

@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 23:19:37 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/13 00:44:34 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/13 23:09:10 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ void	sup(int dx, int dy, t_win *display, int i)
 			cumul -= dx;
 			yi += display->yinc;
 		}
-		p = (int)(yi * display->screen + xi);
+		p = yi * display->screen + xi;
+		if (p > display->screen * display->screen - 1)
+			exit(0);
 		display->addr[p] = display->couleur;
 		i++;
 	}

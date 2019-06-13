@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 03:25:03 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/04 23:07:14 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/13 21:32:51 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ void	ft_print_tables(char **tab_pts)
 		printf("%s",tab_pts[x]);
 }
 
-t_point		*init_repere(char **tab_pts, t_point **list, int y)
+t_point		*init_repere(char **tab_pts, t_point *list, int y)
 {
 	int x;
 	t_point *tmp;
 	t_point *elem;
 
-	tmp = *list;
+	tmp = list;
 	x = -1;
 	while (tab_pts[++x])
 	{
@@ -62,6 +62,7 @@ t_point		*init_repere(char **tab_pts, t_point **list, int y)
 		tmp->y = y;
 		tmp->couleur = ft_rgb(155, 30, 50);
 		elem = (t_point*)malloc(sizeof(t_point));
+		ft_bzero(elem, sizeof(t_point));
 		tmp->next = elem;
 		tmp = tmp->next;
 	}
@@ -115,6 +116,7 @@ t_point	*read_couleur(char **tab_pts, t_point **list, int y)
 			return (0);
 		if (!(elem = (t_point*)malloc(sizeof(t_point))))
 				return (0);
+		ft_bzero(elem, sizeof(t_point));
 		tmp->next = elem;
 		tmp = tmp->next;
 	}
@@ -132,7 +134,9 @@ t_point	*read_to_list(int fd, t_win *display)
 	t_point *tmp;
 
 	y = -1;
-	list = (t_point *)malloc(sizeof(t_point));
+	if (!(list = (t_point *)malloc(sizeof(t_point))))
+		return (0);
+	ft_bzero(list, sizeof(t_point));
 	tmp = list;
 	while (get_next_line(fd, &line) > 0)
 	{
@@ -145,11 +149,10 @@ t_point	*read_to_list(int fd, t_win *display)
 //		}
 //		else
 //		{
-			tmp = init_repere(tab_pts,&tmp,++y);
+			tmp = init_repere(tab_pts,tmp,++y);
 			if (tmp == NULL)
 				return (0);
 //		}
 	}
-	free(tmp);
 	return (list);
 }

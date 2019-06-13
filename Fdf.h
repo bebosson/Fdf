@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 02:08:25 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/05 04:21:21 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/13 21:27:04 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	rotation_x(float teta, float *x, float *y, t_win *display);
 void	rotation_list_z(t_win *display, float angle);
 void ligne(int xi,int yi,int xf,int yf, t_win *display);
 void	ft_print_tables(char **tab_pts);
-t_point		*init_repere(char **tab_pts, t_point **list, int y);
+t_point		*init_repere(char **tab_pts, t_point *list, int y);
 void		display_repere(t_win *display);
 int		ft_x_max(t_point *list);
 t_point	*read_to_list(int fd, t_win *display);

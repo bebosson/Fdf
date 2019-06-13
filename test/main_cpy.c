@@ -1,53 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_cpy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/14 06:09:09 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/14 01:19:02 by bebosson         ###   ########.fr       */
+/*   Created: 2019/06/14 00:29:17 by bebosson          #+#    #+#             */
+/*   Updated: 2019/06/14 00:56:39 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
-#include "Fdf.h"
-
-void	fix_display(t_win **display, int echelle, float angle, float z)
-{
-
-	(*display)->angle = angle;
-	(*display)->z = z;
-//	ft_echelle(display, echelle);
-	if ((*display)->iso == 1)
-		iso_list(*display);
-//	(*display)->couleur = 100;
-//	display_repere(*display);
-	point_central(display);
-	centrer(display);
-}
-void	set_wireframe(t_win *display)
-{
-	display->iso = 0;
-	display->echelle = 8;
-}
-
-void	graphic(t_win *display)
-{
-	int i;
-
-	i = 0;
-
-	display->mlx = mlx_init();
-	(display)->win_ptr_s = mlx_new_window(display->mlx, display->screen, display->screen,"FDF");
-	display->screen = 1000;
-	fix_couleur(&display);
-	fix_display(&display, 8, 4.2,1);
-	fix_image(&display, display->screen, display->screen);
-	mlx_hook(display->win_ptr_s,2, 0, deal_key, display);
-	mlx_loop(display->mlx);
-}
-
 
 
 int		coor_to_graph(int fd)
