@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 23:19:37 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/12 21:08:34 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/13 00:44:34 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	ligne_2(t_point *pt1, t_point *pt2, t_win *display)
 	display->yinc = (dy > 0) ? 1 : -1;
 	dx = abs(dx);
 	dy = abs(dy);
-	display->couleur = pt1->couleur;
+	display->couleur = pt2->couleur;
 	if (dx > dy)
 		sup(dx, dy, display, 1);
 	else

@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 23:42:39 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/05 04:38:51 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/13 02:51:48 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	ft_origin_z(t_win **display)
 	{
 		if (tmp->z_o != 0)
 			tmp->z = tmp->z_o;
+		else
+			tmp->z = 0;
 		tmp = tmp->next;
 	}
 }

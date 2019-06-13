@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 17:21:59 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/12 20:37:42 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/13 00:44:33 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_relier_h2(t_win *display)
 	tmp_2 = display->tpoint->next;
 	while (tmp_2->next)
 	{
-		if ((tmp_1->coor_y == tmp_2->coor_y && relier_valide(tmp_1, tmp_2, display) == 1) || display->echelle <= 1)
+		if ((tmp_1->coor_y == tmp_2->coor_y && relier_valide(tmp_1, tmp_2, display) == 1))
 			ligne_2(tmp_1,tmp_2,display);
 		tmp_2 = tmp_2->next;
 		tmp_1 = tmp_1->next;

@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 06:09:09 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/12 21:14:19 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/13 01:04:03 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void	graphic(t_win *display)
 //	(info)->win = mlx_new_window(info->mlx, info->screen, info->screen,"INFO");
 
 	display->iso = 0;
-	display->echelle = 1;
-	display->screen = 2000;
+	display->echelle = 8;
+	display->screen = 500;
 	(display)->win_ptr_s = mlx_new_window(display->mlx, display->screen, display->screen,"FDF");
 	fix_couleur(&display);
-	fix_display(&display, 2, 4.2,1);
+	fix_display(&display, 8, 4.2,1);
 //	ft_echelle(&display, 50);
 	fix_image(&display, display->screen, display->screen);
 	mlx_hook(display->win_ptr_s,2, 0, deal_key, display);

@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:33 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/12 21:03:25 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/13 01:24:40 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	fix_couleur(t_win **display)
 		tmp->r = 155;
 		tmp->g = 30;
 		tmp->b = 50;
+		if (tmp->z != 0)
+			tmp->b = 250 - tmp->g;
+		tmp->couleur = ft_rgb(tmp->r,tmp->g,tmp->b);
 		tmp = tmp->next;
 	}
 }
@@ -37,6 +40,8 @@ void	change_couleur_point(t_win **display, int r, int g, int b)
 		tmp->r += r;
 		tmp->g += g;
 		tmp->b += b;
+		if (tmp->z && tmp->b < 255)
+			tmp->b += 250 - tmp->g;
 		tmp->couleur = ft_rgb(tmp->r,tmp->g,tmp->b);
 		tmp = tmp->next;
 	}
