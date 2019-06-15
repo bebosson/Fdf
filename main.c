@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 06:09:09 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/15 20:03:19 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/15 21:14:10 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,22 @@ void	fix_display(t_win **display, int echelle, float angle, float z)
 	point_central(display);
 	centrer(display);
 }
-void	set_wireframe(t_win *display)
+
+void	set_wireframe(t_win *display, char *av)
 {
 
-	display->iso = 0; // atoi(av[2]) ? 
+	display->iso = ft_atoi(av); // atoi(av[2]) ? 
+	if (display->iso == 1)
+		iso_list(display);
 	display->echelle = 16; //definir une echelle de zoom adapte a la maps
 	display->screen = 1000; //define header
 	display->mlx = mlx_init();
 	(display)->win_ptr_s = mlx_new_window(display->mlx, display->screen, display->screen,"FDF");
 }
 
-void	graphic(t_win *display)
+void	graphic(t_win *display, char *av)
 {
-	set_wireframe(display);
+	set_wireframe(display,av);
 	fix_couleur(&display); // & ?
 	fix_display(&display, 8, 4.2,1);
 	get_image(display);
@@ -72,7 +75,7 @@ void	graphic(t_win *display)
 
 
 
-int		coor_to_graph(int fd)
+int		coor_to_graph(int fd, char *av)
 {
 	t_win	*display;
 
@@ -84,7 +87,7 @@ int		coor_to_graph(int fd)
 		ft_error(0);
 		exit(EXIT_SUCCESS);
 	}
-	graphic(display);
+	graphic(display, av);
 // refaire une fenetre pour l'info ou print en sortie standart	
 	return (0);
 }
@@ -96,7 +99,7 @@ int main(int ac, char **av)
 	
 	fd = ft_error_maps(ac, av);
 	if (fd != 0)
-		coor_to_graph(fd);
+		coor_to_graph(fd, av[2]);
 	else
 		return (0);
 }

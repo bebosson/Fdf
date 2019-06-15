@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 23:19:37 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/15 18:19:37 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/15 20:59:30 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,8 @@ void	inf(int dx, int dy, t_win *display, int i)
 			xi += display->xinc;
 		}
 			p = yi * (display->screen) + xi;
-	 //get new size of address
 		if (p < 1000000 && p >= 0)
 			display->addr[p] = display->couleur;
-//		else
-//			i = dy + 1;
-//			printf("%d \n",p);
 		i++;
 	}
 }
@@ -83,7 +79,6 @@ void	ligne_2(t_point *pt1, t_point *pt2, t_win *display)
 	dy = pt2->y - pt1->y;
 	display->x_o = pt1->x;
 	display->y_o = pt1->y;
-//	mlx_pixel_put(display->mlx,display->win_ptr_s, display->x_o, display->y_o, pt1->couleur);
 	display->xinc = (dx > 0) ? 1 : -1;
 	display->yinc = (dy > 0) ? 1 : -1;
 	dx = abs(dx);

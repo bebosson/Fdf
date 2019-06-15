@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 19:38:33 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/15 20:21:06 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/15 20:23:55 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ int		deal_key_translation(int key, t_win *display)
 		y = -5;
 	ft_coor_delta(&display, x, y);
 	fix_image(&display,0,0);
-	//	fix_image(&display, display->screen, display->screen); //ft_trace
 	if (key == 46)
 		mlx_key_hook(display->win_ptr_s, deal_key, display);
 	if (key == 53)

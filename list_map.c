@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 03:25:03 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/13 21:32:51 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/15 20:54:20 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ t_point		*init_repere(char **tab_pts, t_point *list, int y)
 		tmp->couleur = ft_rgb(155, 30, 50);
 		elem = (t_point*)malloc(sizeof(t_point));
 		ft_bzero(elem, sizeof(t_point));
+		free(tab_pts[x]);
 		tmp->next = elem;
 		tmp = tmp->next;
 	}
@@ -150,9 +151,12 @@ t_point	*read_to_list(int fd, t_win *display)
 //		else
 //		{
 			tmp = init_repere(tab_pts,tmp,++y);
+			free(tab_pts);
 			if (tmp == NULL)
 				return (0);
+		free(line);
 //		}
 	}
+	free(line);
 	return (list);
 }
