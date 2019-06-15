@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 02:08:25 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/13 21:27:04 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/15 18:36:44 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ typedef struct	s_win
 	int			xinc;
 	int			yinc;
 	float		echelle;
+	float		echelle_max;
+	float		echelle_min;
 	float		angle;
+	int			nbr_print;
 	int		couleur;
 	int		couleur_on;
 	//Couleur (en hexa)
@@ -76,6 +79,10 @@ typedef struct	s_fen
 }				t_fen;
 
 
+int		test_echelle(t_win *display);
+int		ft_relier_halid(t_win *display);
+int		ft_relier_valid(t_win *display);
+void	get_image(t_win		*display);
 int		ft_error(int error);
 int		ft_error_maps(int ac, char **av);
 void	fix_couleur(t_win **display);

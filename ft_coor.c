@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 19:05:50 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/13 21:02:38 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/15 20:17:16 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	ft_echelle(t_win **display, float echelle)
 			tmp->y *= echelle;
 			tmp = tmp->next;
 		}
-
 	//	free(tmp);
 }
 
@@ -116,8 +115,8 @@ void		display_point(t_point *tmp)
 		printf("x = %.5f / ", tmp->x);
 		printf("y = %.5f / ", tmp->y);
 		printf("z = %.5f \n ", tmp->z);
-	//	printf("coor_x = %d /", tmp->coor_x);
-	//	printf("coor_y = %d / \n",tmp->coor_y);
+		printf("coor_x = %d /", tmp->coor_x);
+		printf("coor_y = %d / \n",tmp->coor_y);
 	//	printf("couleur = %d / \n", tmp->couleur);
 	//	printf("r =  %d / \n", tmp->r);
 	//	printf("g =  %d / \n", tmp->g);
@@ -126,13 +125,13 @@ void		display_point(t_point *tmp)
 
 void		display_borne(t_win *display)
 {
-	//	printf("x_max = %.5f \n",display->x_max);
-	//	printf("y_max = %.5f \n",display->y_max);
+//	printf("x_max = %.5f \n",display->x_max);
+//	printf("y_max = %.5f \n",display->y_max);
 	//	printf("x_min = %.5f \n",display->x_min);
 	//	printf("y_min = %.5f \n",display->y_min);
 	//	printf("couleur = %d \n",display->couleur);
-	printf("display->echelle = %.5f\n",display->echelle);
-	printf("display->iso = %d\n",display->iso);
+//	printf("display->echelle = %.5f\n",display->echelle);
+//	printf("display->iso = %d\n",display->iso);
 	printf("r =  %d / \n", display->tpoint->r);
 	printf("g =  %d / \n", display->tpoint->g);
 	printf("b =  %d / \n", display->tpoint->b);
@@ -145,10 +144,10 @@ void		display_repere(t_win *display)
 	tmp = display->tpoint;
 	display_max(&display);
 	display_min(&display);
-	while (tmp->next)
-	{
-		display_point(tmp);
-		tmp = tmp->next;
-	}
+//	while (tmp->next)
+//	{
+//		display_point(tmp);
+//		tmp = tmp->next;
+//	}
 	display_borne(display);
 }

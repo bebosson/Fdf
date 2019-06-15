@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:33 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/13 21:13:37 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/15 20:19:10 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	fix_couleur(t_win **display)
 		printf("toto\n");
 	while(tmp)
 	{
-		tmp->r = 155;
+		tmp->r = 0;
 		tmp->g = 30;
 		tmp->b = 50;
 		if (tmp->z != 0)

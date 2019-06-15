@@ -6,45 +6,67 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 06:09:09 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/14 01:19:02 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/15 20:03:19 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "Fdf.h"
 
-void	fix_display(t_win **display, int echelle, float angle, float z)
+void	fix_nbr_pt(t_win *display)
+{
+	int	max;
+	int	min;
+
+	max = ft_relier_halid(display);
+	min = ft_relier_valid(display);
+	if (max < min)
+		max = min;
+	if (max > 10000)
+		display->nbr_print = 4000;
+	else
+		display->nbr_print = max;
+}
+
+int		test_echelle(t_win *display)
 {
 
+	printf("relier_halid %d \n",ft_relier_halid(display));
+	printf("relier_valid %d \n",ft_relier_valid(display));
+	if (ft_relier_halid(display) < display->nbr_print && ft_relier_valid(display) < display->nbr_print)
+		return (0);
+	else
+		return (1);
+}
+
+void	fix_display(t_win **display, int echelle, float angle, float z)
+{
 	(*display)->angle = angle;
 	(*display)->z = z;
-//	ft_echelle(display, echelle);
-	if ((*display)->iso == 1)
-		iso_list(*display);
-//	(*display)->couleur = 100;
-//	display_repere(*display);
 	point_central(display);
 	centrer(display);
 }
 void	set_wireframe(t_win *display)
 {
-	display->iso = 0;
-	display->echelle = 8;
+
+	display->iso = 0; // atoi(av[2]) ? 
+	display->echelle = 16; //definir une echelle de zoom adapte a la maps
+	display->screen = 1000; //define header
+	display->mlx = mlx_init();
+	(display)->win_ptr_s = mlx_new_window(display->mlx, display->screen, display->screen,"FDF");
 }
 
 void	graphic(t_win *display)
 {
-	int i;
-
-	i = 0;
-
-	display->mlx = mlx_init();
-	(display)->win_ptr_s = mlx_new_window(display->mlx, display->screen, display->screen,"FDF");
-	display->screen = 1000;
-	fix_couleur(&display);
+	set_wireframe(display);
+	fix_couleur(&display); // & ?
 	fix_display(&display, 8, 4.2,1);
-	fix_image(&display, display->screen, display->screen);
-	mlx_hook(display->win_ptr_s,2, 0, deal_key, display);
+	get_image(display);
+	fix_image(&display, display->screen, display->screen); // on cree l'image puis detruit
+	test_echelle(display);
+	fix_nbr_pt(display);
+	printf("nbr_print = %d \n",display->nbr_print);
+	mlx_hook(display->win_ptr_s,2, 0, deal_key, display); //ft hook
 	mlx_loop(display->mlx);
 }
 
@@ -53,8 +75,7 @@ void	graphic(t_win *display)
 int		coor_to_graph(int fd)
 {
 	t_win	*display;
-	t_point	*list;
-	
+
 	if (!(display =(t_win *)malloc(sizeof(t_win))))
 		return (0);
 	display->tpoint = read_to_list(fd, display);
@@ -63,18 +84,8 @@ int		coor_to_graph(int fd)
 		ft_error(0);
 		exit(EXIT_SUCCESS);
 	}
-//	display->screen = 1000;
-//	fix_couleur(&display);
-//	fix_display(&display, 2, 4.2,1);
-//	fix_image(&display, display->screen, display->screen);
 	graphic(display);
-//	graphic_2(display, info);
-
-//	display->mlx = mlx_init();
-//	display->screen = 1000;
-//	(display)->win = mlx_new_window(display->mlx, display->screen / 2, display->screen / 2,"coucou");
-//	mlx_string_put(display->mlx_2, display->win, 300, 300, 0xFFFFFF, "YOOOOOOOOOOOOOOOO");
-//	mlx_loop(display->mlx);
+// refaire une fenetre pour l'info ou print en sortie standart	
 	return (0);
 }
 

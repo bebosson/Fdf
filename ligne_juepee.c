@@ -6,12 +6,13 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 23:19:37 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/13 23:09:10 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/15 18:19:37 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fdf.h"
 
+#define X_W 1000
 
 void	sup(int dx, int dy, t_win *display, int i)
 {
@@ -32,10 +33,13 @@ void	sup(int dx, int dy, t_win *display, int i)
 			cumul -= dx;
 			yi += display->yinc;
 		}
-		p = yi * display->screen + xi;
-		if (p > display->screen * display->screen - 1)
-			exit(0);
-		display->addr[p] = display->couleur;
+			p = yi * display->screen + xi;
+		//get new size of address
+		
+		if (p < 1000000 && p >= 0)
+			display->addr[p] = display->couleur;
+//		else
+//			printf("%d \n",p);
 		i++;
 	}
 }
@@ -59,8 +63,13 @@ void	inf(int dx, int dy, t_win *display, int i)
 			cumul -= dy;
 			xi += display->xinc;
 		}
-		p = yi * display->screen + xi;
-		display->addr[p] = display->couleur;
+			p = yi * (display->screen) + xi;
+	 //get new size of address
+		if (p < 1000000 && p >= 0)
+			display->addr[p] = display->couleur;
+//		else
+//			i = dy + 1;
+//			printf("%d \n",p);
 		i++;
 	}
 }
@@ -69,7 +78,6 @@ void	ligne_2(t_point *pt1, t_point *pt2, t_win *display)
 {
 	int		dx;
 	int		dy;
-	int		i;
 
 	dx = pt2->x - pt1->x;
 	dy = pt2->y - pt1->y;
