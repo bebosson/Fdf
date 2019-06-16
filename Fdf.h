@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 02:08:25 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/15 18:36:44 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/16 18:20:41 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,14 @@ typedef struct	s_point
 typedef struct	s_win
 {
 	void	*mlx;
-	void	*mlx_2;
+//	void	*mlx_2;
 	void	*win_ptr_s;
 	void	*win;
 	void	*img;
 	int *addr;
 	//castablen en int
 	int		screen;
+	int		screen2;
 	float x_o;
 	float y_o;
 	int			iso;
