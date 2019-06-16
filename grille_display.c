@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 19:38:33 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/15 20:23:55 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/16 17:48:26 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,12 @@ int		deal_key_zoom(int key, t_win *display)
 {
 	if (key == 69 && test_echelle(display) == 1)
 		ft_echelle(&display, 2);
-	if (key == 78 && display->echelle > 16)// V// ^
+	if (key == 78 && display->echelle > display->echelle_max)// V// ^
 		ft_echelle(&display, 0.5);
 
-//	ft_echelle(&display, display->echelle);
-//	printf("display->echelle = %.5f\n",display->echelle);
+	printf("ft_echelle = %.0f",display->echelle);
 	centrer(&display);
 	fix_image(&display, display->screen, display->screen); //ft_trace !
-//	display_repere(display);
 	if (key == 46)
 		mlx_key_hook(display->win_ptr_s, deal_key, display);
 	if (key == 53)
@@ -39,7 +37,8 @@ int		deal_key_ziso_plane(int key, t_win *display)
 		display->iso = 0;
 		ft_origin(&display);
 		ft_origin_z(&display);
-		ft_echelle(&display, display->echelle);
+		display->echelle = 16;
+//		ft_echelle(&display, display->echelle);
 		centrer(&display);
 		fix_image(&display, display->screen, display->screen);
 	if (key == 46)
@@ -56,7 +55,8 @@ int		deal_key_ziso(int key, t_win *display)
 		ft_origin(&display); //regrouper origine
 		ft_origin_z(&display);
 		iso_list(display);
-		ft_echelle(&display, 2);
+		display->echelle = 16;
+//		ft_echelle(&display, 2);
 		centrer(&display);
 		fix_image(&display, display->screen, display->screen);
 	if (key == 46)
@@ -66,6 +66,9 @@ int		deal_key_ziso(int key, t_win *display)
 
 	return (0);
 }
+
+
+
 int		deal_key_ziso_menu(int key, t_win *display)
 {
 	if (key == 35 && display->iso == 0)
@@ -115,7 +118,7 @@ int		deal_key(int key, t_win *display)
 		mlx_hook(display->win_ptr_s, 2, 0,deal_key_rotation, display);
 	if (key == 17) // ->
 		mlx_hook(display->win_ptr_s, 2, 0, deal_key_translation, display);
-	if (key == 34 && display->iso == 0)
+	if (key == 34)
 		mlx_hook(display->win_ptr_s, 2, 0, deal_key_ziso_menu, display);
 	if (key == 53)
 		exit(EXIT_SUCCESS);

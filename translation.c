@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 23:42:39 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/13 02:51:48 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/16 14:51:35 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	centrer(t_win **display)
 	float sym_x;
 	float sym_y;
 
-//	display_repere(*display);
 	sym_x = (*display)->middle->x;
 	sym_y = (*display)->middle->y;
 	delta_x = ((*display)->screen / 2) - sym_x;
