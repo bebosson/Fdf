@@ -30,7 +30,6 @@ void	fix_nbr_pt(t_win *display)
 
 int		test_echelle(t_win *display)
 {
-
 	printf("relier_halid %d \n",ft_relier_halid(display));
 	printf("relier_valid %d \n",ft_relier_valid(display));
 	if (ft_relier_halid(display) < display->nbr_print && ft_relier_valid(display) < display->nbr_print)
@@ -97,9 +96,11 @@ int main(int ac, char **av)
 {
 	int fd;
 	
-	fd = ft_error_maps(ac, av);
-	if (fd != 0)
+	if (ft_error_maps(ac, av) > 0)
+	{
+		fd = open(av[1], O_RDONLY);
 		coor_to_graph(fd, av[2]);
+	}
 	else
 		return (0);
 }

@@ -24,32 +24,33 @@ int		ft_error(int error)
 	return (0);
 }
 
-int		ft_error_maps(int ac, char **av)
+int		check_fd(char *av)
 {
 	int fd;
+//	fd = open(av, O_RDONLY);
+	if ((fd = open(av, O_DIRECTORY) >= 0))
+		return (-1);
+	else if ((fd = open(av, O_RDONLY)) < 0)
+		return (-1);
+	else
+		return (fd);
+}
 
-	if (ac != 3 || av[1] == NULL || av[2] == NULL)
+int		ft_error_maps(int ac, char **av)
+{
+	if (av[2] == NULL || (ft_atoi(av[2]) != 0 && ft_atoi(av[2]) != 1))
 	{
-		if (av[1] == NULL)
-		{
-			ft_putendl("error map");
-			return (0);
-		}
-		if (av[2] == NULL)
-		{
-			ft_putendl("error projection");
-			ft_putendl("rappel :");
-			ft_putendl("0 => parallele");
-			ft_putendl("1 => conique");
-			return (0);
-		}
+		ft_putendl("error projection");
+		ft_putendl("rappel :");
+		ft_putendl("0 => parallele");
+		ft_putendl("1 => conique");
+		return (0);
+	}
+	else if ((check_fd(av[1])) < 0 || av[1] == NULL)
+	{
+		ft_putendl("error map");
+		return (0);
 	}
 	else
 		return (1);
-	return (0);
-}
-
-int		check_fd(char *av)
-{
-
 }
