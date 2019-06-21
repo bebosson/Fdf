@@ -6,7 +6,7 @@
 #    By: bebosson <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/13 15:55:23 by bebosson          #+#    #+#              #
-#    Updated: 2018/11/22 14:28:44 by bebosson         ###   ########.fr        #
+#    Updated: 2019/06/21 14:49:57 by bebosson         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,14 +86,17 @@ NAME = libft.a
 all : $(NAME)
 
 $(NAME) :
-	$(CC) $(CFLAGS) $(SRC)
-	ar -rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@$(CC) $(CFLAGS) $(SRC)
+	@ar -rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	@echo "Compilation of Libft:   \033[1;32mOK\033[m"
 
 clean :
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
+
 
 fclean : clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "Libft : Removing Libft"
 
 re : fclean all
