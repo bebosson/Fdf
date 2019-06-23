@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 03:52:53 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/12 23:31:27 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/23 17:20:54 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int		deal_key_couleur_r(int key, t_win *display)
 	if (key == 46)
 		mlx_key_hook(display->win_ptr_s,deal_key, display);
 	change_couleur_point(&display, delta_r,0,0);
-//	ft_origin(&display,25,display->angle, 1);
 	fix_image(&display, display->screen, display->screen);
 	if (key == 53)
 		exit(EXIT_SUCCESS);
@@ -47,7 +46,6 @@ int		deal_key_couleur_g(int key, t_win *display)
 		mlx_hook(display->win_ptr_s, 2, 0, deal_key, display);
 
 	change_couleur_point(&display, 0,delta_g,0);
-//	ft_origin(&display,25,display->angle, 1);
 	fix_image(&display, display->screen, display->screen);
 	if (key == 46) // ->
 		mlx_key_hook(display->win_ptr_s, deal_key_translation, display);
@@ -68,7 +66,6 @@ int		deal_key_couleur_b(int key, t_win *display)
 	else
 		delta_b = 0;
 	change_couleur_point(&display, 0,0,delta_b);
-//	ft_origin(&display,25,display->angle, 1);
 	fix_image(&display, display->screen, display->screen);
 	if (key == 8)
 		mlx_key_hook(display->win_ptr_s, deal_key, display);

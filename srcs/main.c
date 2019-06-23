@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 06:09:09 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/21 16:50:18 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/23 18:42:24 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	graphic(t_win *display, char *av)
 	fix_couleur(&display); // & ?
 	fix_display(&display, 8, 4.2,1);
 	get_image(display);
+	display_borne(display);
 	test_echelle(display);
 	fix_nbr_pt(display);
 	centrer(&display);

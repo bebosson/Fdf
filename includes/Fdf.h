@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 02:08:25 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/21 16:07:09 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/23 18:37:23 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ typedef struct	s_win
 	void	*win_ptr_s;
 	void	*win;
 	void	*img;
-	int *addr;
+	void	*img2;
+	int		*addr;
+	int		*addr2;
 	//castablen en int
 	int		screen;
 	int		screen2;
@@ -125,4 +127,6 @@ void	rotation_y(float teta, float *x, float *z, t_win *display);
 void	rotation_list_y(t_win *display, float angle);
 int		deal_toto(int key, t_win *display);
 int		deal_key_couleur(int key, t_win *display);
+
+int	color_map_1(t_win *display,int w,int h);
 #endif

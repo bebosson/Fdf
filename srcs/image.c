@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 17:57:56 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/21 15:22:41 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/23 18:39:31 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,12 @@ void	get_new_image(t_win		*display)
 	int		s_l;
 	int		endian;
 
-	free(display->img);
-	free(display->addr);
 	display->img = mlx_new_image(display->mlx, X_W, X_W);
 
 	display->addr = (int*)mlx_get_data_addr(display->img, &(bpp), &(s_l), &(endian));
-
-
+	display->img2 = mlx_new_image(display->mlx, X_W/2, X_W/2);
+	display->addr2 = (int*)mlx_get_data_addr(display->img, &(bpp), &(s_l), &(endian));
+	color_map_1(display, display->screen2/2, display->screen2/2);
 }
 
 void	fix_image(t_win **display, int largeur, int hauteur)

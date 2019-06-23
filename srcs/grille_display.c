@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 19:38:33 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/21 16:24:46 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/23 17:19:58 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int		deal_key_zoom(int key, t_win *display)
 	if (key == 78 && display->echelle > display->echelle_max)
 		ft_echelle(&display, 0.5);
 
-//	printf("ft_echelle = %.0f",display->echelle);
 	centrer(&display);
 	fix_image(&display, display->screen, display->screen); //ft_trace !
 	if (key == 46)
@@ -56,7 +55,6 @@ int		deal_key_ziso(int key, t_win *display)
 		ft_origin_z(&display);
 		iso_list(display);
 		display->echelle = 16;
-//		ft_echelle(&display, 2);
 		centrer(&display);
 		fix_image(&display, display->screen, display->screen);
 	if (key == 46)
@@ -109,7 +107,6 @@ int		deal_key_translation(int key, t_win *display)
 
 int		deal_key(int key, t_win *display)
 {
-//	display_repere(display);
 	if (key == 8)
 		mlx_hook(display->win_ptr_s, 2, 0, deal_key_couleur, display);
 	if (key == 6)
