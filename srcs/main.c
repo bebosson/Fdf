@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 06:09:09 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/23 18:42:24 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/24 14:58:45 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	fix_display(t_win **display, int echelle, float angle, float z)
 
 void	set_wireframe(t_win *display, char *av)
 {
-
+	t_color *color_info;
 	display->iso = ft_atoi(av); // atoi(av[2]) ? 
 	if (display->iso == 1)
 		iso_list(display);
@@ -77,7 +77,10 @@ void	set_wireframe(t_win *display, char *av)
 	(display)->win_ptr_s = mlx_new_window(display->mlx, display->screen, display->screen,"FDF");
 	display->screen2 = 500; //define header
 	(display)->win = mlx_new_window(display->mlx, display->screen2, display->screen2,"info");
-
+	if (!(color_info = malloc(sizeof(t_color))))
+		return ;
+	display->color = color_info;
+	set_colour_info(display);
 }
 
 void	graphic(t_win *display, char *av)

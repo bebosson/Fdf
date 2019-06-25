@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 02:08:25 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/23 18:37:23 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/25 15:47:25 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,21 @@ typedef struct	s_point
 	struct s_point *next; 
 }				t_point;
 // Tout faire en float ? 
+typedef struct	s_color
+{
+	int	menu;
+	int	zoom;
+	int	zoom_action;
+	int	translation;
+	int	rotation_y;
+	int	rotation_x;
+	int	rotation_z;
+	int	couleur_r;
+	int	couleur_g;
+	int	couleur_b;
+	int	couleur;
+}				t_color;
+
 typedef struct	s_win
 {
 	void	*mlx;
@@ -62,7 +77,9 @@ typedef struct	s_win
 	float		echelle;
 	float		echelle_max;
 	float		echelle_min;
-	float		angle;
+	float		angle; //float x, float y, float z ? 
+	float		angle_x; //float x, float y, float z ? 
+	float		angle_y;
 	int			nbr_print;
 	int		couleur;
 	int		couleur_on;
@@ -70,6 +87,7 @@ typedef struct	s_win
 	//screen en fonction de display->x_max et display->y_max
 	t_point *tpoint;
 	t_point *middle;
+	t_color *color;
 }				t_win;
 
 
@@ -87,7 +105,6 @@ void	point_central(t_win **display);
 void	display_borne(t_win *display);
 void	fix_image(t_win **display, int largeur, int hauteur);
 void	fill_image(t_win *display, int x, int y, int color);
-int		ft_atoi_base(const char *str, int str_base);
 void	ligne_2(t_point *pt1, t_point *pt2, t_win *display);
 void	inf(int dx, int dy, t_win *display, int i);
 void	sup(int dx, int dy, t_win *display, int i);
@@ -128,5 +145,6 @@ void	rotation_list_y(t_win *display, float angle);
 int		deal_toto(int key, t_win *display);
 int		deal_key_couleur(int key, t_win *display);
 
+void	set_colour_info(t_win *display);
 int	color_map_1(t_win *display,int w,int h);
 #endif

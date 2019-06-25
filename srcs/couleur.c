@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:33 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/15 20:19:10 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/25 15:55:34 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	fix_couleur(t_win **display)
 	t_point	*tmp;
 
 	tmp = (*display)->tpoint;
-	if (tmp == NULL)
-		printf("toto\n");
 	while(tmp)
 	{
 		tmp->r = 0;
@@ -42,7 +40,7 @@ void	change_couleur_point(t_win **display, int r, int g, int b)
 		tmp->r += r;
 		tmp->g += g;
 		tmp->b += b;
-		if (tmp->z && tmp->b < 255)
+		if (tmp->z != 0 && tmp->b < 255)
 			tmp->b += 250 - tmp->g;
 		tmp->couleur = ft_rgb(tmp->r,tmp->g,tmp->b);
 		tmp = tmp->next;
@@ -65,16 +63,5 @@ static	int		ft_power(int nbr, int pwr)
 
 int		ft_rgb(int r, int g, int b)
 {
-	int i;
-	int divide;
-	int result;
-
-	//result = b; 
-	//result += ft_power(16,2) * g % 16;
-	//result += ft_power(16,3) * g / 16;
-	//result += ft_power(16,4) * r % 16;
-	//result += ft_power(16,5) * r / 16;
 	return ((r << 16) | (g << 8) | b);
 }
-
-

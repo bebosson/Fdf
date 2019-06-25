@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 03:52:53 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/23 17:20:54 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/25 15:48:57 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 int		deal_key_couleur_r(int key, t_win *display)
 {
 	int delta_r;
-	
-	if (key == 126 && display->tpoint->r < 255)
+
+	display->color->couleur_r = 0xff88ff;
+	display_borne(display);
+		if (key == 126 && display->tpoint->r < 255)
 		delta_r = 5;
 	else if (key == 125 && display->tpoint->r >= 1)
 		delta_r = -5;
@@ -36,6 +38,8 @@ int		deal_key_couleur_g(int key, t_win *display)
 {
 	int delta_g;
 
+	display->color->couleur_g = 0xff88ff;
+	display_borne(display);
 	if (key == 126 && display->tpoint->g < 255)
 		delta_g = 5;
 	else if (key == 125 && display->tpoint->g >= 1)
@@ -59,6 +63,8 @@ int		deal_key_couleur_b(int key, t_win *display)
 {
 	int delta_b;
 
+	display->color->couleur_b = 0xff88ff;
+	display_borne(display);
 	if (key == 126 && display->tpoint->b < 255)
 		delta_b = 5;
 	else if (key == 125 && display->tpoint->b >= 1)
@@ -80,6 +86,8 @@ int		deal_key_couleur_b(int key, t_win *display)
 
 int		deal_key_couleur(int key, t_win *display)
 {
+	display->color->couleur = 0xff88ff;
+	display_borne(display);
 	if (key == 14) //r
 		mlx_hook(display->win_ptr_s, 2, 0,deal_key_couleur_r, display);
 	if (key == 5) //g

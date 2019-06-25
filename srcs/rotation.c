@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 14:05:55 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/13 02:43:51 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/25 14:38:57 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ void	rotation_list_z(t_win *display, float angle)
 {
 	t_point *tmp;
 
+	display->color->rotation_z = 0xff88ff;
+	display_borne(display);
+
 	tmp = display->tpoint;
 	while (tmp->next)
 	{
@@ -42,6 +45,8 @@ void	rotation_x(float teta, float *y, float *z, t_win *display)
 	float z_p;
 	int sym_x;
 	int sym_y;
+
+
 	y_p = ((*y)) * cos(teta) + ((*z)) * sin(teta);
 	z_p = ((*z)) * cos(teta) - ((*y)) * sin(teta);
 	*y = y_p;
@@ -52,10 +57,12 @@ void	rotation_list_x(t_win *display, float angle)
 {
 	t_point *tmp;
 
+	display->color->rotation_x = 0xff88ff;
+	display_borne(display);
 	tmp = display->tpoint;
 	while (tmp->next)
 	{
-		rotation_z(angle,&tmp->y,&tmp->z, display);
+		rotation_x(angle,&tmp->y,&tmp->z, display);
 		tmp = tmp->next;
 	}
 }
@@ -74,6 +81,8 @@ void	rotation_list_y(t_win *display, float angle)
 {
 	t_point *tmp;
 
+	display->color->rotation_y = 0xff88ff;
+	display_borne(display);
 	tmp = display->tpoint;
 	while (tmp->next)
 	{
