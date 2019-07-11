@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 06:09:09 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/24 14:58:45 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/25 19:45:16 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	fix_nbr_pt(t_win *display)
 		echelle = 1;
 	}
 	ft_echelle(&display, echelle);
-	//	fix_image(&display, display->screen, display->screen); // on cree l'image puis detruit
 }
 
 int		test_echelle(t_win *display)

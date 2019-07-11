@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 23:42:39 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/16 14:51:35 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/25 17:28:13 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ int	ft_coor_z(t_win **display, float trans)
 	while (tmp->next)
 	{
 		if (tmp->z_o != 0)
-			tmp->z = tmp->z * trans;
+			tmp->z = tmp->z * trans + 10;
 		tmp = tmp->next;
 	}
 	return (0);
 }
+
 void	ft_origin(t_win **display)
 {
 	t_point *tmp;
@@ -57,6 +58,7 @@ void	ft_origin(t_win **display)
 		tmp = tmp->next;
 	}
 }
+
 void	ft_origin_z(t_win **display)
 {
 	t_point *tmp;
@@ -71,6 +73,7 @@ void	ft_origin_z(t_win **display)
 		tmp = tmp->next;
 	}
 }
+
 void	centrer(t_win **display)
 {
 	float delta_x;

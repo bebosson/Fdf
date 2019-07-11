@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 22:13:23 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/25 14:46:47 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/07/06 19:18:50 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		deal_key_rotation_x(int key, t_win *display)
 		angle = -0.25;
 	display->angle_x += angle;
 	if (display->angle_y != 0)
-	{	
+	{
 		rotation_list_y(display, -display->angle_y);
 		centrer(&display);
 		display->angle_y = 0;
@@ -62,9 +62,9 @@ int		deal_key_rotation_y(int key, t_win *display)
 {
 	float angle;
 	if (key == 22)
-		angle = 0.25;
+		angle = 0.1;
 	if (key == 26)
-		angle = -0.25;
+		angle = -0.1;
 	display->angle_y += angle;
 	rotation_list_y(display, angle);
 	centrer(&display);

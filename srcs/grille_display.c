@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 19:38:33 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/25 15:46:18 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/25 17:32:29 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,16 +118,17 @@ int		deal_key(int key, t_win *display)
 	if (key == 6)
 	{
 		mlx_hook(display->win_ptr_s, 2, 0, deal_key_zoom, display);
-		display->color->zoom = 0xff88ff;
+		display->color->rotation = 0xff88ff;
 		display_borne(display);
-
 	}
 	if (key == 15)
-		mlx_hook(display->win_ptr_s, 2, 0,deal_key_rotation, display);
-	if (key == 17) // ->
 	{
-		mlx_hook(display->win_ptr_s, 2, 0, deal_key_translation, display);
+		display->color->rotation = 0xff88ff;
+		display_borne(display);
+		mlx_hook(display->win_ptr_s, 2, 0,deal_key_rotation, display);
 	}
+	if (key == 17) // ->
+		mlx_hook(display->win_ptr_s, 2, 0, deal_key_translation, display);
 	if (key == 34)
 		mlx_hook(display->win_ptr_s, 2, 0, deal_key_ziso_menu, display);
 	if (key == 53)

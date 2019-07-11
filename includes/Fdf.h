@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 02:08:25 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/25 15:47:25 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/25 17:08:14 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct	s_color
 	int	couleur_g;
 	int	couleur_b;
 	int	couleur;
+	int	rotation;
 }				t_color;
 
 typedef struct	s_win

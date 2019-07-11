@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 15:44:16 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/25 15:52:28 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/06/25 17:26:25 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,26 +154,31 @@ void	set_win_info(t_win *display)
 	mlx_string_put (display->mlx, display->win, 20, 20, display->color->zoom,"(2) z -> zoom");
 	mlx_string_put (display->mlx, display->win, 40, 40, display->color->zoom_action,"(3) + -> zoom avant -> - -> zoom arriere" );
 	mlx_string_put (display->mlx, display->win, 20, 60, display->color->translation,"(2) t->translation ((3) fleches)");
-	mlx_string_put (display->mlx, display->win, 20, 80, display->color->rotation_y,"(2) rotation selon y (y)");
-	mlx_string_put (display->mlx, display->win, 40, 100, couleur_txt,"(3) 6 -> avant");
-	mlx_string_put (display->mlx, display->win, 40, 120, couleur_txt,"(3) 7 -> arriere");
-	mlx_string_put (display->mlx, display->win, 20, 140, display->color->rotation_x,"(2) rotation selon x (x)");
-	mlx_string_put (display->mlx, display->win, 40, 160, couleur_txt,"(3) s -> avant");
-	mlx_string_put (display->mlx, display->win, 40, 180, couleur_txt,"(3) d -> arriere");
-	mlx_string_put (display->mlx, display->win, 20, 200, display->color->rotation_z,"(2) rotation selon z (f)");
-	mlx_string_put (display->mlx, display->win, 40, 220, couleur_txt,"(3) q -> avant");
-	mlx_string_put (display->mlx, display->win, 40, 240, couleur_txt,"(3) a -> arriere");
-	mlx_string_put (display->mlx, display->win, 20, 260, display->color->couleur,"(2) couleur (c) (fleches)");
-	mlx_string_put (display->mlx, display->win, 40, 280, display->color->couleur_r,"(3) e -> rouge = ");
-	mlx_string_put (display->mlx, display->win, 40, 300, display->color->couleur_g,"(3) g -> vert  = ");
-	mlx_string_put (display->mlx, display->win, 40, 320, display->color->couleur_b,"(3) b -> bleue = ");
+	mlx_string_put (display->mlx, display->win, 20, 80, display->color->rotation,"(2) rotation (R)");
+	mlx_string_put (display->mlx, display->win, 40, 100, display->color->rotation_y,"(3) rotation selon y (y)");
+	mlx_string_put (display->mlx, display->win, 60, 120, couleur_txt,"(4) 6 -> avant");
+	mlx_string_put (display->mlx, display->win, 60, 140, couleur_txt,"(4) 7 -> arriere");
+	mlx_string_put (display->mlx, display->win, 40, 160, display->color->rotation_x,"(3) rotation selon x (x)");
+	mlx_string_put (display->mlx, display->win, 60, 180, couleur_txt,"(4) s -> avant");
+	mlx_string_put (display->mlx, display->win, 60, 200, couleur_txt,"(4) d -> arriere");
+	mlx_string_put (display->mlx, display->win, 40, 220, display->color->rotation_z,"(3) rotation selon z (f)");
+	mlx_string_put (display->mlx, display->win, 60, 240, couleur_txt,"(4) q -> avant");
+	mlx_string_put (display->mlx, display->win, 60, 260, couleur_txt,"(4) a -> arriere");
+	mlx_string_put (display->mlx, display->win, 40, 280, display->color->couleur,"(2) couleur (c) (fleches)");
+	mlx_string_put (display->mlx, display->win, 60, 300, display->color->couleur_r,"(3) e -> rouge = ");
+	mlx_string_put (display->mlx, display->win, 60, 320, display->color->couleur_g,"(3) g -> vert  = ");
+	mlx_string_put (display->mlx, display->win, 60, 340, display->color->couleur_b,"(3) b -> bleue = ");
+	mlx_string_put (display->mlx, display->win, 0, 360, couleur_txt,"*Pour toute action, veuillez presser dans l'ordre: ");
+	mlx_string_put (display->mlx, display->win, 80, 380, couleur_txt,"(1)+(2)+(3)+(4)");
 }
+
 void	set_colour_info(t_win *display)
 {
 	display->color->menu = 0xFFFFFF;
 	display->color->translation = 0xFFFFFF;
 	display->color->zoom = 0xFFFFFF;
 	display->color->zoom_action = 0xFFFFFF;
+	display->color->rotation = 0xFFFFFF;
 	display->color->rotation_x = 0xFFFFFF;
 	display->color->rotation_y = 0xFFFFFF;
 	display->color->rotation_z = 0xFFFFFF;
@@ -182,6 +187,7 @@ void	set_colour_info(t_win *display)
 	display->color->couleur_b = 0xFFFFFF;
 	display->color->couleur = 0xFFFFFF;
 }
+
 void		display_borne(t_win *display)
 {
 	char *r;
@@ -192,11 +198,11 @@ void		display_borne(t_win *display)
 	mlx_clear_window(display->mlx, display->win);
 	set_win_info(display);
 	r = ft_itoa(display->tpoint->r);
-	mlx_string_put (display->mlx, display->win, 220, 280, display->color->couleur_r,r);
+	mlx_string_put (display->mlx, display->win, 230, 300, display->color->couleur_r,r);
 	g = ft_itoa(display->tpoint->g);
-	mlx_string_put (display->mlx, display->win, 220, 300, display->color->couleur_g,g);
+	mlx_string_put (display->mlx, display->win, 230, 320, display->color->couleur_g,g);
 	b = ft_itoa(display->tpoint->b);
-	mlx_string_put (display->mlx, display->win, 220, 320, display->color->couleur_b,b);
+	mlx_string_put (display->mlx, display->win, 230, 340, display->color->couleur_b,b);
 }
 
 void		display_repere(t_win *display)
