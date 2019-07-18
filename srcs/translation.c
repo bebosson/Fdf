@@ -6,13 +6,12 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 23:42:39 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/25 17:28:13 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/07/18 12:40:37 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "Fdf.h"
-
 
 
 void	ft_coor_delta(t_win **display, int trans_x , int trans_y)
@@ -28,24 +27,39 @@ void	ft_coor_delta(t_win **display, int trans_x , int trans_y)
 	}
 }
 
-int	ft_coor_z(t_win **display, float trans)
+int		ft_coor_z(t_win **display, float trans)
 {
-	int var;
-
-	var = 1; // ternaire 
 	t_point *tmp;
-	
+
 	tmp = (*display)->tpoint;
 //	trans = (*display)->z_max > 0 ? -trans : trans;
 	while (tmp->next)
 	{
-		if (tmp->z_o != 0)
-			tmp->z = tmp->z * trans + 10;
+		if (tmp->z_o > 0)
+			tmp->z = tmp->z * 0.25;
+//		printf("tmp->z = %.0f\n",tmp->z);
+//		printf("tmp->z_o = %.0f\n",tmp->z_o);
 		tmp = tmp->next;
 	}
 	return (0);
 }
+int		ft_change_z(t_win **display, float trans)
+{
+	t_point *tmp;
 
+	tmp = (*display)->tpoint;
+//	trans = (*display)->z_max > 0 ? -trans : trans;
+	while (tmp->next)
+	{
+		if (tmp->z_o > 0)
+			tmp->z = tmp->z + trans;
+//		printf("tmp->z = %.0f\n",tmp->z);
+//		printf("tmp->z_o = %.0f\n",tmp->z_o);
+		tmp = tmp->next;
+	}
+//	printf("----------------\n");
+	return (0);
+}
 void	ft_origin(t_win **display)
 {
 	t_point *tmp;

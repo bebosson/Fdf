@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 02:08:25 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/25 17:08:14 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/07/18 10:57:01 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ typedef struct	s_win
 	float		echelle;
 	float		echelle_max;
 	float		echelle_min;
-	float		angle; //float x, float y, float z ? 
-	float		angle_x; //float x, float y, float z ? 
+	float		angle;
+	float		angle_x;
 	float		angle_y;
 	int			nbr_print;
 	int		couleur;
@@ -92,6 +92,7 @@ typedef struct	s_win
 }				t_win;
 
 
+int		ft_change_z(t_win **display, float trans);
 int		test_echelle(t_win *display);
 int		ft_relier_halid(t_win *display);
 int		ft_relier_valid(t_win *display);
@@ -99,7 +100,7 @@ void	get_image(t_win		*display);
 int		ft_error(int error);
 int		ft_error_maps(int ac, char **av);
 void	fix_couleur(t_win **display);
-int		ft_rgb(int r, int g, int b);
+int		ft_rgb(t_point **tmp, int r, int g, int b);
 void	change_couleur_point(t_win **display, int r, int g, int b);
 void	ft_origin_z(t_win **display);
 void	point_central(t_win **display);
@@ -147,5 +148,4 @@ int		deal_toto(int key, t_win *display);
 int		deal_key_couleur(int key, t_win *display);
 
 void	set_colour_info(t_win *display);
-int	color_map_1(t_win *display,int w,int h);
 #endif

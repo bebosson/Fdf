@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 19:38:33 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/25 17:32:29 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/07/18 12:37:55 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int		deal_key_ziso_plane(int key, t_win *display)
 		ft_origin_z(&display);
 		test_echelle(display);
 		display->echelle_max = 8;
-//		ft_echelle(&display, display->echelle);
 		centrer(&display);
 		fix_image(&display, display->screen, display->screen);
 	if (key == 46)
@@ -109,6 +108,17 @@ int		deal_key_translation(int key, t_win *display)
 		exit(EXIT_SUCCESS);
 	return (0);
 }
+int		deal_key_change_z(int key, t_win *display)
+{
+	ft_change_z(&display, 100);
+//	centrer(&display);
+	fix_image(&display,0,0);
+	if (key == 46)
+		mlx_key_hook(display->win_ptr_s, deal_key, display);
+	if (key == 53)
+		exit(EXIT_SUCCESS);
+	return (0);
+}
 
 int		deal_key(int key, t_win *display)
 {
@@ -127,6 +137,12 @@ int		deal_key(int key, t_win *display)
 		display_borne(display);
 		mlx_hook(display->win_ptr_s, 2, 0,deal_key_rotation, display);
 	}
+	if (key == 4)
+	{
+		mlx_hook(display->win_ptr_s, 2, 0,deal_key_change_z, display);
+	}
+//	if (key == 2)
+//		display_repere(display);
 	if (key == 17) // ->
 		mlx_hook(display->win_ptr_s, 2, 0, deal_key_translation, display);
 	if (key == 34)

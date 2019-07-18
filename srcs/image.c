@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 17:57:56 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/23 18:39:31 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/07/18 11:02:10 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,17 @@ void	get_new_image(t_win		*display)
 	display->addr = (int*)mlx_get_data_addr(display->img, &(bpp), &(s_l), &(endian));
 	display->img2 = mlx_new_image(display->mlx, X_W/2, X_W/2);
 	display->addr2 = (int*)mlx_get_data_addr(display->img, &(bpp), &(s_l), &(endian));
-	color_map_1(display, display->screen2/2, display->screen2/2);
 }
 
 void	fix_image(t_win **display, int largeur, int hauteur)
 {
 	int i;
 
-	//bzero de l'adresse ? quid de n ?
 	(*display)->addr = ft_bzero_int((*display)->addr, 1000000);
 	mlx_clear_window((*display)->mlx, (*display)->win_ptr_s);
 	display_repere(*display);
 	ft_trace(*display);
 	mlx_put_image_to_window((*display)->mlx, (*display)->win_ptr_s, (*display)->img, 0,0);
-
-	//	free(image);
 }
 
 //Fonction ft_trace  clear_window

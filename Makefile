@@ -6,7 +6,7 @@
 #    By: bebosson <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/21 13:00:20 by bebosson          #+#    #+#              #
-#    Updated: 2019/06/21 16:28:54 by bebosson         ###   ########.fr        #
+#    Updated: 2019/07/11 14:38:32 by bebosson         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRC_NAME = connect.c deal_key_rotation.c ft_coor.c grille_display.c 		\
 OBJ_PATH = objs
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
-CC = clang
+CC = clang -g
 #CFLAGS = -Wall -Werror -Wextra
 
 CPPFLAGS = -I includes
@@ -40,7 +40,7 @@ $(NAME): $(OBJ)
 	@echo "Compilation of Fdf:	\033[1;32mOK\033[m"
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
-	@mkdir $(OBJ_PATH) 2> /dev/null || true
+	@mkdir -p $(OBJ_PATH)
 	@$(CC) -c $< $(CPPFLAGS) -o $@
 
 clean:

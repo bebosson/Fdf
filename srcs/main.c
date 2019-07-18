@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 06:09:09 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/25 19:45:16 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/07/14 18:40:10 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,17 +85,17 @@ void	set_wireframe(t_win *display, char *av)
 void	graphic(t_win *display, char *av)
 {
 	set_wireframe(display,av);
-	fix_couleur(&display); // & ?
+	fix_couleur(&display);
 	fix_display(&display, 8, 4.2,1);
 	get_image(display);
-	display_borne(display);
+	display_repere(display);
 	test_echelle(display);
 	fix_nbr_pt(display);
 	centrer(&display);
-	fix_image(&display, display->screen, display->screen); // on cree l'image puis detruit
+	fix_image(&display, display->screen, display->screen);
 
-	printf("nbr_print = %d \n",display->nbr_print);
-	mlx_hook(display->win_ptr_s,2, 0, deal_key, display); //ft hook
+	ft_coor_z(&display, 1);
+	mlx_hook(display->win_ptr_s,2, 0, deal_key, display);
 	mlx_loop(display->mlx);
 }
 
@@ -114,7 +114,6 @@ int		coor_to_graph(int fd, char *av)
 		exit(EXIT_SUCCESS);
 	}
 	graphic(display, av);
-	// refaire une fenetre pour l'info ou print en sortie standart	
 	return (0);
 }
 

@@ -6,45 +6,13 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 15:44:16 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/25 17:26:25 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/07/18 13:15:02 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_coor.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 19:05:50 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/25 15:43:33 by bebosson         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 
 #include "Fdf.h"
-
-int	color_map_1(t_win *display,int w,int h)
-{
-  int	x;
-  int	y;
-  int	color;
-  int	p;
-
-  x = w;
-  while (x--)
-    {
-      y = h;
-      while (y--)
-        {
-          color = (x*255)/w+((((w-x)*255)/w)<<16)+(((y*255)/h)<<8);
-		p = h * display->screen2 + w;
-		display->addr2[p] = color;
-		}
-    }
-  return (0);
-}
 
 void	point_central(t_win **display)
 {
@@ -137,7 +105,8 @@ void		display_point(t_point *tmp)
 		printf("y = %.5f / ", tmp->y);
 		printf("z = %.5f \n ", tmp->z);
 		printf("coor_x = %d /", tmp->coor_x);
-		printf("coor_y = %d / \n",tmp->coor_y);
+		printf("coor_y = %d /",tmp->coor_y);
+		printf("z_o = %.0f \n",tmp->z_o); 
 	//	printf("couleur = %d / \n", tmp->couleur);
 	//	printf("r =  %d / \n", tmp->r);
 	//	printf("g =  %d / \n", tmp->g);
@@ -198,11 +167,14 @@ void		display_borne(t_win *display)
 	mlx_clear_window(display->mlx, display->win);
 	set_win_info(display);
 	r = ft_itoa(display->tpoint->r);
+	free(r);
 	mlx_string_put (display->mlx, display->win, 230, 300, display->color->couleur_r,r);
 	g = ft_itoa(display->tpoint->g);
 	mlx_string_put (display->mlx, display->win, 230, 320, display->color->couleur_g,g);
+	free(g);
 	b = ft_itoa(display->tpoint->b);
 	mlx_string_put (display->mlx, display->win, 230, 340, display->color->couleur_b,b);
+	free(b);
 }
 
 void		display_repere(t_win *display)
@@ -217,5 +189,5 @@ void		display_repere(t_win *display)
 //		display_point(tmp);
 //		tmp = tmp->next;
 //	}
-	display_borne(display);
+//	display_borne(display);
 }
