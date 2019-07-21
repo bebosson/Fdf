@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/16 19:38:33 by bebosson          #+#    #+#             */
-/*   Updated: 2019/07/18 12:37:55 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/07/18 22:16:24 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,11 @@ int		deal_key_translation(int key, t_win *display)
 }
 int		deal_key_change_z(int key, t_win *display)
 {
-	ft_change_z(&display, 100);
-//	centrer(&display);
+	if (key == 38)
+		ft_coor_z(&display, 5);
+	if (key == 40)
+		ft_coor_z(&display, -5);
+	display_repere(display);
 	fix_image(&display,0,0);
 	if (key == 46)
 		mlx_key_hook(display->win_ptr_s, deal_key, display);
@@ -138,9 +141,7 @@ int		deal_key(int key, t_win *display)
 		mlx_hook(display->win_ptr_s, 2, 0,deal_key_rotation, display);
 	}
 	if (key == 4)
-	{
 		mlx_hook(display->win_ptr_s, 2, 0,deal_key_change_z, display);
-	}
 //	if (key == 2)
 //		display_repere(display);
 	if (key == 17) // ->

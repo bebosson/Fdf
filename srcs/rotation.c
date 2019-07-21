@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 14:05:55 by bebosson          #+#    #+#             */
-/*   Updated: 2019/07/06 19:10:48 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/07/21 17:32:56 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	rotation_list_y(t_win *display, float angle)
 	tmp = display->tpoint;
 	while (tmp->next)
 	{
-		rotation_y(angle,&tmp->x,&tmp->z, display);
+		rotation_y(angle,&tmp->z,&tmp->x, display);
 		tmp = tmp->next;
 	}
 }

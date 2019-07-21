@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 15:44:16 by bebosson          #+#    #+#             */
-/*   Updated: 2019/07/18 13:15:02 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/07/20 17:22:25 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,6 @@ void		display_point(t_point *tmp)
 		printf("x = %.5f / ", tmp->x);
 		printf("y = %.5f / ", tmp->y);
 		printf("z = %.5f \n ", tmp->z);
-		printf("coor_x = %d /", tmp->coor_x);
-		printf("coor_y = %d /",tmp->coor_y);
 		printf("z_o = %.0f \n",tmp->z_o); 
 	//	printf("couleur = %d / \n", tmp->couleur);
 	//	printf("r =  %d / \n", tmp->r);
@@ -184,10 +182,12 @@ void		display_repere(t_win *display)
 	tmp = display->tpoint;
 	display_max(&display);
 	display_min(&display);
-//	while (tmp->next)
-//	{
-//		display_point(tmp);
-//		tmp = tmp->next;
-//	}
+	printf("-------------------\n");
+	while (tmp->next != NULL)
+	{
+		display_point(tmp);
+		tmp = tmp->next;
+	}
+//	printf("z_o = %0.f || z = %0.f\n",tmp->z_o,tmp->z);
 //	display_borne(display);
 }

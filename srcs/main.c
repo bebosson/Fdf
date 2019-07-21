@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 06:09:09 by bebosson          #+#    #+#             */
-/*   Updated: 2019/07/14 18:40:10 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/07/20 19:06:46 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	fix_nbr_pt(t_win *display)
 
 int		test_echelle(t_win *display)
 {
-	printf("relier_halid %d \n",ft_relier_halid(display));
-	printf("relier_valid %d \n",ft_relier_valid(display));
+//	printf("relier_halid %d \n",ft_relier_halid(display));
+//	printf("relier_valid %d \n",ft_relier_valid(display));
 	if (ft_relier_halid(display) < display->nbr_print && ft_relier_valid(display) < display->nbr_print)
 		return (0);
 	else
@@ -88,13 +88,14 @@ void	graphic(t_win *display, char *av)
 	fix_couleur(&display);
 	fix_display(&display, 8, 4.2,1);
 	get_image(display);
-	display_repere(display);
+//	display_repere(display);
 	test_echelle(display);
 	fix_nbr_pt(display);
 	centrer(&display);
+	ft_coor_z(&display, 0.5);
+	ft_change_z(&display, 0);
 	fix_image(&display, display->screen, display->screen);
 
-	ft_coor_z(&display, 1);
 	mlx_hook(display->win_ptr_s,2, 0, deal_key, display);
 	mlx_loop(display->mlx);
 }
@@ -105,7 +106,7 @@ int		coor_to_graph(int fd, char *av)
 {
 	t_win	*display;
 
-	if (!(display =(t_win *)malloc(sizeof(t_win))))
+	if (!(display = (t_win *)malloc(sizeof(t_win))))
 		return (0);
 	display->tpoint = read_to_list(fd, display);
 	if (display->tpoint == NULL)

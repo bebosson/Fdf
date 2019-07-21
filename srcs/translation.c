@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 23:42:39 by bebosson          #+#    #+#             */
-/*   Updated: 2019/07/18 12:40:37 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/07/20 18:45:36 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,8 @@ int		ft_coor_z(t_win **display, float trans)
 //	trans = (*display)->z_max > 0 ? -trans : trans;
 	while (tmp->next)
 	{
-		if (tmp->z_o > 0)
-			tmp->z = tmp->z * 0.25;
-//		printf("tmp->z = %.0f\n",tmp->z);
-//		printf("tmp->z_o = %.0f\n",tmp->z_o);
+		if (tmp->z_o != 0)
+			tmp->z = tmp->z_o + trans;
 		tmp = tmp->next;
 	}
 	return (0);
@@ -51,8 +49,8 @@ int		ft_change_z(t_win **display, float trans)
 //	trans = (*display)->z_max > 0 ? -trans : trans;
 	while (tmp->next)
 	{
-		if (tmp->z_o > 0)
-			tmp->z = tmp->z + trans;
+		if (tmp->z_o != 0)
+			tmp->z *= -1;
 //		printf("tmp->z = %.0f\n",tmp->z);
 //		printf("tmp->z_o = %.0f\n",tmp->z_o);
 		tmp = tmp->next;
@@ -83,6 +81,19 @@ void	ft_origin_z(t_win **display)
 		if (tmp->z_o != 0)
 			tmp->z = tmp->z_o;
 		else
+			tmp->z = 0;
+		tmp = tmp->next;
+	}
+}
+
+void	ft_o_z(t_win **display)
+{
+	t_point *tmp;
+	
+	tmp = (*display)->tpoint;
+	while (tmp->next)
+	{
+		if (tmp->z_o == 0)
 			tmp->z = 0;
 		tmp = tmp->next;
 	}

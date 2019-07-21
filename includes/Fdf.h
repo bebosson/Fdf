@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 02:08:25 by bebosson          #+#    #+#             */
-/*   Updated: 2019/07/18 10:57:01 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/07/20 19:06:04 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct	s_point
 	float y;
 	float z;
 	float	z_o;
+	float	opp_z_o;
 	int couleur;
 	struct s_point *next; 
 }				t_point;
@@ -147,5 +148,6 @@ void	rotation_list_y(t_win *display, float angle);
 int		deal_toto(int key, t_win *display);
 int		deal_key_couleur(int key, t_win *display);
 
+void	ft_o_z(t_win **display);
 void	set_colour_info(t_win *display);
 #endif
