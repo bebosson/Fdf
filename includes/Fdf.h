@@ -6,14 +6,13 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 02:08:25 by bebosson          #+#    #+#             */
-/*   Updated: 2019/07/20 19:06:04 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/07/26 01:03:59 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef	FDF_H
 # define FDF_H
 # include <stdlib.h>
-# include "get_next_line.h"
 # include "../libft/libft.h"
 # include "mlx.h"
 #include <math.h>
@@ -31,7 +30,7 @@ typedef struct	s_point
 	float	z_o;
 	float	opp_z_o;
 	int couleur;
-	struct s_point *next; 
+	struct s_point *next;
 }				t_point;
 // Tout faire en float ? 
 typedef struct	s_color
@@ -53,14 +52,12 @@ typedef struct	s_color
 typedef struct	s_win
 {
 	void	*mlx;
-//	void	*mlx_2;
 	void	*win_ptr_s;
 	void	*win;
 	void	*img;
 	void	*img2;
 	int		*addr;
 	int		*addr2;
-	//castablen en int
 	int		screen;
 	int		screen2;
 	float x_o;
@@ -93,11 +90,14 @@ typedef struct	s_win
 }				t_win;
 
 
+void	ft_free_list_and_exit(t_win **display);
+void	fix_nbr_pt(t_win *display);
+void	fix_nbr_pt(t_win *display);
 int		ft_change_z(t_win **display, float trans);
 int		test_echelle(t_win *display);
 int		ft_relier_halid(t_win *display);
 int		ft_relier_valid(t_win *display);
-void	get_image(t_win		*display);
+void	get_image(t_win *display);
 int		ft_error(int error);
 int		ft_error_maps(int ac, char **av);
 void	fix_couleur(t_win **display);
@@ -117,7 +117,6 @@ void	ft_coor_delta(t_win **display, int trans_x, int trans_y);
 int		ft_coor_z(t_win **display, float trans);
 void	iso_list(t_win *display);
 void	trans_iso(float *x, float *y, int z);
-void	fix_display(t_win **display, int echelle, float angle, float z);
 int		deal_key_translation(int key, t_win *display);
 int		deal_key(int key, t_win *display);
 void	ft_trace(t_win *display);
@@ -145,9 +144,7 @@ void	ft_origin(t_win **display);
 void	ft_relier_v(t_win *display);
 void	rotation_y(float teta, float *x, float *z, t_win *display);
 void	rotation_list_y(t_win *display, float angle);
-int		deal_toto(int key, t_win *display);
 int		deal_key_couleur(int key, t_win *display);
-
-void	ft_o_z(t_win **display);
 void	set_colour_info(t_win *display);
+void	ft_set_to_zero(t_win *display, int angle_y, int angle_x);
 #endif

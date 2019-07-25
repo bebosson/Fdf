@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 22:13:23 by bebosson          #+#    #+#             */
-/*   Updated: 2019/07/21 17:33:09 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/07/26 00:05:51 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,14 @@ int		deal_key_rotation_z(int key, t_win *display)
 	if (key == 46)
 		mlx_key_hook(display->win_ptr_s, deal_key, display);
 	if (key == 53)
-		exit(EXIT_SUCCESS);
+		ft_free_list_and_exit(&display);
 	return (0);
 }
 
 int		deal_key_rotation_x(int key, t_win *display)
 {
-	//variable angle
 	float angle;
-	//	display->angle_x = 0;
+	
 	if (key == 1)
 		angle = 0.25;
 	if (key == 2)
@@ -53,7 +52,7 @@ int		deal_key_rotation_x(int key, t_win *display)
 	if (key == 46)
 		mlx_key_hook(display->win_ptr_s, deal_key, display);
 	if (key == 53)
-		exit(EXIT_SUCCESS);
+		ft_free_list_and_exit(&display);
 
 	return (0);
 }
@@ -61,11 +60,11 @@ int		deal_key_rotation_x(int key, t_win *display)
 int		deal_key_rotation_y(int key, t_win *display)
 {
 	float angle;
+	
 	if (key == 22)
 		angle = 0.1;
 	if (key == 26)
 		angle = -0.1;
-
 	display->angle_y += angle;
 	rotation_list_y(display, angle);
 	centrer(&display);
@@ -73,14 +72,13 @@ int		deal_key_rotation_y(int key, t_win *display)
 	if (key == 46)
 		mlx_key_hook(display->win_ptr_s, deal_key, display);
 	if (key == 53)
-		exit(EXIT_SUCCESS);
+		ft_free_list_and_exit(&display);
 	return (0);
 }
 
 
 int		deal_key_rotation(int key, t_win *display)
 {
-
 	set_colour_info(display);
 	if (key == 3)
 		mlx_hook(display->win_ptr_s, 2, 0,deal_key_rotation_z, display);
@@ -91,6 +89,7 @@ int		deal_key_rotation(int key, t_win *display)
 	if (key == 46)
 		mlx_hook(display->win_ptr_s, 2, 0,deal_key, display);
 	if (key == 53)
-		exit(EXIT_SUCCESS);
+		ft_free_list_and_exit(&display);
+
 	return (0);
 }

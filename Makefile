@@ -6,7 +6,7 @@
 #    By: bebosson <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/21 13:00:20 by bebosson          #+#    #+#              #
-#    Updated: 2019/07/11 14:38:32 by bebosson         ###   ########.fr        #
+#    Updated: 2019/07/25 22:07:42 by bebosson         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,10 @@ NAME = Fdf
 
 SRC_PATH = srcs
 SRC_NAME = connect.c deal_key_rotation.c ft_coor.c grille_display.c 		\
-		main.c translation.c couleur.c errors.c image.c			\
-		ligne_juepee.c deal_key_couleur.c  			\
-		get_next_line.c iso.c list_map.c rotation.c							\
+		   main.c translation.c couleur.c errors.c image.c			\
+		   ligne.c deal_key_couleur.c  			\
+		   iso.c list_map.c rotation.c	\
+		   rotation_list.c echelle.c info_window.c ft_free_all.c \
 
 OBJ_PATH = objs
 OBJ_NAME = $(SRC_NAME:.c=.o)

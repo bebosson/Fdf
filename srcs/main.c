@@ -6,101 +6,56 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 06:09:09 by bebosson          #+#    #+#             */
-/*   Updated: 2019/07/20 19:06:46 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/07/26 01:04:54 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "Fdf.h"
 
-void	fix_nbr_pt(t_win *display)
-{
-	int	max;
-	int	min;
-	int echelle;
-
-	max = ft_relier_halid(display);
-	min = ft_relier_valid(display);
-	display->echelle = 1;
-	if (max < min)
-		max = min;
-	if (max > 10000)
-	{
-		display->nbr_print = 4000;
-		display->echelle_max = 1;
-		echelle = 1;
-		if (display->iso == 1)
-		{
-			echelle = 4;
-			display->echelle_max = 4;
-		}
-	}
-	else
-	{
-		display->nbr_print = max;
-		display->echelle_max = 1;
-		echelle = 1;
-	}
-	ft_echelle(&display, echelle);
-}
-
-int		test_echelle(t_win *display)
-{
-//	printf("relier_halid %d \n",ft_relier_halid(display));
-//	printf("relier_valid %d \n",ft_relier_valid(display));
-	if (ft_relier_halid(display) < display->nbr_print && ft_relier_valid(display) < display->nbr_print)
-		return (0);
-	else
-		return (1);
-}
-
-void	fix_display(t_win **display, int echelle, float angle, float z)
-{
-	(*display)->angle = angle;
-	(*display)->z = z;
-	point_central(display);
-	centrer(display);
-}
-
-
-
-void	set_wireframe(t_win *display, char *av)
+int		set_wireframe(t_win *display, char *av)
 {
 	t_color *color_info;
-	display->iso = ft_atoi(av); // atoi(av[2]) ? 
+
+	display->iso = ft_atoi(av);
 	if (display->iso == 1)
 		iso_list(display);
-	//	display->echelle = 16; //definir une echelle de zoom adapte a la maps
-	display->screen = 1000; //define header
+	display->screen = 1000;
 	display->mlx = mlx_init();
-	(display)->win_ptr_s = mlx_new_window(display->mlx, display->screen, display->screen,"FDF");
-	display->screen2 = 500; //define header
-	(display)->win = mlx_new_window(display->mlx, display->screen2, display->screen2,"info");
+	(display)->win_ptr_s
+		= mlx_new_window(display->mlx, display->screen, display->screen,"FDF");
+	display->screen2 = 500;
+	(display)->win
+		= mlx_new_window(display->mlx, display->screen2, display->screen2,"d");
 	if (!(color_info = malloc(sizeof(t_color))))
-		return ;
+	{
+		ft_error(0);
+		ft_free_list_and_exit(&display);
+	}
 	display->color = color_info;
 	set_colour_info(display);
+	return (1);
 }
 
-void	graphic(t_win *display, char *av)
+int		graphic(t_win *display, char *av)
 {
-	set_wireframe(display,av);
+	if (!(set_wireframe(display,av)))
+	{
+		ft_error(0);
+		ft_free_list_and_exit(&display);
+	}
 	fix_couleur(&display);
-	fix_display(&display, 8, 4.2,1);
+	point_central(&display);
+	centrer(&display);
 	get_image(display);
-//	display_repere(display);
 	test_echelle(display);
 	fix_nbr_pt(display);
-	centrer(&display);
 	ft_coor_z(&display, 0.5);
-	ft_change_z(&display, 0);
 	fix_image(&display, display->screen, display->screen);
-
 	mlx_hook(display->win_ptr_s,2, 0, deal_key, display);
 	mlx_loop(display->mlx);
+	return (0);
 }
-
-
 
 int		coor_to_graph(int fd, char *av)
 {
@@ -108,16 +63,18 @@ int		coor_to_graph(int fd, char *av)
 
 	if (!(display = (t_win *)malloc(sizeof(t_win))))
 		return (0);
-	display->tpoint = read_to_list(fd, display);
-	if (display->tpoint == NULL)
+	if (!(display->tpoint = read_to_list(fd, display)))
 	{
 		ft_error(0);
-		exit(EXIT_SUCCESS);
+		ft_free_list_and_exit(&display);
 	}
-	graphic(display, av);
-	return (0);
+	if (!(graphic(display, av)))
+	{
+		ft_error(0);
+		ft_free_list_and_exit(&display);
+	}
+	return (1);
 }
-
 
 int main(int ac, char **av)
 {
@@ -126,8 +83,15 @@ int main(int ac, char **av)
 	if (ft_error_maps(ac, av) > 0)
 	{
 		fd = open(av[1], O_RDONLY);
-		coor_to_graph(fd, av[2]);
+		if (!(coor_to_graph(fd, av[2])))
+		{
+			ft_error(0);
+			exit(EXIT_SUCCESS);
+		}
 	}
 	else
-		return (0);
+	{
+		ft_error(0);
+		exit(EXIT_SUCCESS);
+	}
 }

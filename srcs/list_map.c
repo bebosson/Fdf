@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 03:25:03 by bebosson          #+#    #+#             */
-/*   Updated: 2019/07/20 19:13:16 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/07/25 23:49:45 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,8 @@ t_point		*init_repere(char **tab_pts, t_point *list, int y)
 		tmp->coor_x = x;
 		tmp->coor_y = y;
 		tmp->y = y;
-		tmp->opp_z_o = -tmp->z;
-//		tmp->couleur = ft_rgb(155, 30, 50);
-		elem = (t_point*)malloc(sizeof(t_point));
+		if (!(elem = (t_point*)malloc(sizeof(t_point))))
+				return (NULL);
 		ft_bzero(elem, sizeof(t_point));
 		free(tab_pts[x]);
 		tmp->next = elem;
@@ -87,12 +86,11 @@ t_point	*read_to_list(int fd, t_win *display)
 	while (get_next_line(fd, &line) > 0)
 	{
 		tab_pts = ft_strsplit(line, ' ');
-		tmp = init_repere(tab_pts,tmp,++y);
+		if (!(tmp = init_repere(tab_pts,tmp,++y)))
+			return (NULL);
 		free(tab_pts);
-		if (tmp == NULL)
-			return (0);
 		free(line);
-}
+	}
 	free(line);
 	return (list);
 }

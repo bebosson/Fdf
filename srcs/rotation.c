@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 14:05:55 by bebosson          #+#    #+#             */
-/*   Updated: 2019/07/21 17:32:56 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/07/21 20:51:38 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,11 @@ void	rotation_z(float teta, float *x, float *y, t_win *display)
 	float y_p;
 	int sym_x;
 	int sym_y;
-	
+
 	x_p = ((*x)) * cos(teta) - ((*y)) * sin(teta);
 	y_p = ((*x)) * sin(teta) + ((*y)) * cos(teta);
 	*x = x_p;
 	*y = y_p;
-}
-
-void	rotation_list_z(t_win *display, float angle)
-{
-	t_point *tmp;
-
-	display->color->rotation_z = 0xff88ff;
-	display_borne(display);
-	tmp = display->tpoint;
-	while (tmp->next)
-	{
-		rotation_z(angle,&tmp->x,&tmp->y, display);
-		tmp = tmp->next;
-	}
 }
 
 void	rotation_x(float teta, float *y, float *z, t_win *display)
@@ -52,42 +38,27 @@ void	rotation_x(float teta, float *y, float *z, t_win *display)
 	*z = z_p;
 }
 
-void	rotation_list_x(t_win *display, float angle)
-{
-	t_point *tmp;
-
-	display->color->rotation_x = 0xff88ff;
-	display_borne(display);
-	tmp = display->tpoint;
-	while (tmp->next)
-	{
-		rotation_x(angle,&tmp->y,&tmp->z, display);
-		tmp = tmp->next;
-	}
-}
-
 void	rotation_y(float teta, float *x, float *z, t_win *display)
 {
 	float x_p;
 	float z_p;
-	
+
 	x_p = ((*x)) * cos(teta) - ((*z)) * sin(teta);
 	z_p = ((*x)) * sin(teta) + ((*z)) * cos(teta);
 	*x = x_p;
 	*z = z_p;
 }
 
-void	rotation_list_y(t_win *display, float angle)
+void	ft_set_to_zero(t_win *display, int angle_y, int angle_x)
 {
-	t_point *tmp;
-
-	display->color->rotation_y = 0xff88ff;
-	display_borne(display);
-	tmp = display->tpoint;
-	while (tmp->next)
+	if (display->angle_y != 0)
 	{
-		rotation_y(angle,&tmp->z,&tmp->x, display);
-		tmp = tmp->next;
+		rotation_list_y(display, angle_y);
+		display->angle_y = 0;
+	}
+	if (display->angle_x != 0)
+	{
+		rotation_list_x(display, angle_x);
+		display->angle_x = 0;
 	}
 }
-

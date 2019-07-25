@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ligne_juepee.c                                     :+:      :+:    :+:   */
+/*   ligne.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/28 23:19:37 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/25 19:49:34 by bebosson         ###   ########.fr       */
+/*   Created: 2019/07/21 18:59:20 by bebosson          #+#    #+#             */
+/*   Updated: 2019/07/21 19:03:17 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fdf.h"
 
-#define X_W 1000
+#define X_W 1000000
 
 void	sup(int dx, int dy, t_win *display, int i)
 {
@@ -34,7 +34,7 @@ void	sup(int dx, int dy, t_win *display, int i)
 			yi += display->yinc;
 		}
 		p = yi * display->screen + xi;
-		if (p < 1000000 && p >= 0)
+		if (p < X_W && p >= 0)
 			display->addr[p] = display->couleur;
 		i++;
 	}
@@ -60,7 +60,7 @@ void	inf(int dx, int dy, t_win *display, int i)
 			xi += display->xinc;
 		}
 		p = yi * (display->screen) + xi;
-		if (p < 1000000 && p >= 0)
+		if (p < X_W && p >= 0)
 			display->addr[p] = display->couleur;
 		i++;
 	}

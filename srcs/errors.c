@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 04:02:26 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/15 21:20:14 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/07/25 23:30:14 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		ft_error_maps(int ac, char **av)
 		ft_putendl("error projection");
 		ft_putendl("rappel :");
 		ft_putendl("0 => parallele");
-		ft_putendl("1 => conique");
+		ft_putendl("1 => iso");
 		return (0);
 	}
 	else if ((check_fd(av[1])) < 0 || av[1] == NULL)

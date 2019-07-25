@@ -6,7 +6,7 @@
 #    By: bebosson <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/13 15:55:23 by bebosson          #+#    #+#              #
-#    Updated: 2019/06/21 14:49:57 by bebosson         ###   ########.fr        #
+#    Updated: 2019/07/21 21:31:02 by bebosson         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ SRC = ft_atoi.c \
 	ft_str_is_printable.c \
 	ft_isupper.c \
 	ft_lstmap.c \
+	get_next_line.c
 
 OBJ = $(SRC:%.c=%.o)
 
