@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 15:44:16 by bebosson          #+#    #+#             */
-/*   Updated: 2019/07/29 21:18:13 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/10/05 19:40:25 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 void	point_central(t_win **data)
 {
-	int coor_x;
-	int coor_y;	
-	t_point *tmp;
+	int		coor_x;
+	int		coor_y;
+	t_point	*tmp;
 	t_point *tmp2;
+
 	tmp = (*data)->tpoint;
 	tmp2 = (*data)->tpoint;
 	while (tmp->next)
@@ -32,7 +33,6 @@ void	point_central(t_win **data)
 		tmp2 = tmp2->next;
 	(*data)->middle = tmp2;
 }
-
 
 void	data_max(t_win **data)
 {
@@ -60,10 +60,10 @@ void	data_max(t_win **data)
 	(*data)->z_max = z_max;
 }
 
-float		data_z(t_win *data)
+float	data_z(t_win *data)
 {
-	t_point *tmp;
-	int x_max;
+	t_point	*tmp;
+	int		x_max;
 
 	tmp = data->tpoint;
 	while (tmp->next)
@@ -74,11 +74,12 @@ float		data_z(t_win *data)
 	}
 	return (x_max);
 }
+
 void	data_min(t_win **data)
 {
-	float x_min;
-	float y_min;
-	t_point *tmp;
+	float	x_min;
+	float	y_min;
+	t_point	*tmp;
 
 	tmp = (*data)->tpoint;
 	x_min = tmp->x;
@@ -94,4 +95,3 @@ void	data_min(t_win **data)
 	(*data)->x_min = x_min;
 	(*data)->y_min = y_min;
 }
-

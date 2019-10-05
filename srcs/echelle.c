@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/21 17:49:34 by bebosson          #+#    #+#             */
-/*   Updated: 2019/07/21 21:18:57 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/10/05 19:57:38 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	fix_nbr_pt(t_win *data)
 
 int		test_echelle(t_win *data)
 {
-	if (ft_relier_halid(data) < data->nbr_print && ft_relier_valid(data) < data->nbr_print)
+	if (ft_relier_halid(data) < data->nb_p
+			&& ft_relier_valid(data) < data->nb_p)
 		return (0);
 	else
 		return (1);

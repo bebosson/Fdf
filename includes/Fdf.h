@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 02:08:25 by bebosson          #+#    #+#             */
-/*   Updated: 2019/10/05 18:12:04 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/10/05 19:57:10 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct	s_co
 typedef struct	s_win
 {
 	void	*mlx;
-	void	*win_ptr_s;
+	void	*w;
 	void	*win;
 	void	*img;
 	void	*img2;
@@ -82,7 +82,7 @@ typedef struct	s_win
 	float		angle;
 	float		angle_x;
 	float		angle_y;
-	int			nbr_print;
+	int			nb_p;
 	int		c_on;
 	//Couleur (en hexa)
 	//scr en fonction de data->x_max et data->y_max

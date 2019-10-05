@@ -6,7 +6,7 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 17:57:56 by bebosson          #+#    #+#             */
-/*   Updated: 2019/10/05 18:17:05 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/10/05 18:23:02 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	fix_image(t_win **data, int largeur, int hauteur)
 {
 	int i;
 
-	(*data)->addr = ft_bzero_int((*data)->addr, WIN);
-	mlx_clear_window((*data)->mlx, (*data)->win_ptr_s);
+	(*data)->addr = ft_bzero_int((*data)->addr, X_W);
+	mlx_clear_window((*data)->mlx, (*data)->w);
 	ft_trace(*data);
-	mlx_put_image_to_window((*data)->mlx, (*data)->win_ptr_s, (*data)->img, 0, 0);
+	mlx_put_image_to_window((*data)->mlx, (*data)->w, (*data)->img, 0, 0);
 }

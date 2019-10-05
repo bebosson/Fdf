@@ -6,16 +6,14 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 04:02:26 by bebosson          #+#    #+#             */
-/*   Updated: 2019/07/25 23:30:14 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/10/05 19:59:18 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fdf.h"
 
-//Check fd directory
 int		ft_error(int error)
 {
-
 	if (error == 0)
 	{
 		ft_putendl("error");
@@ -27,7 +25,7 @@ int		ft_error(int error)
 int		check_fd(char *av)
 {
 	int fd;
-//	fd = open(av, O_RDONLY);
+
 	if ((fd = open(av, O_DIRECTORY) >= 0))
 		return (-1);
 	else if ((fd = open(av, O_RDONLY)) < 0)

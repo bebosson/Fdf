@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c.c                                          :+:      :+:    :+:   */
+/*   couleur.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/01 19:20:33 by bebosson          #+#    #+#             */
-/*   Updated: 2019/07/29 18:09:21 by bebosson         ###   ########.fr       */
+/*   Created: 2019/10/05 19:47:31 by bebosson          #+#    #+#             */
+/*   Updated: 2019/10/05 19:49:02 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	fix_c(t_win **data)
 	t_point	*tmp;
 
 	tmp = (*data)->tpoint;
-	while(tmp)
+	while (tmp)
 	{
 		if (tmp->z_o <= -500)
 			tmp->c = ft_rgb(&tmp, 0, 0, 255);
@@ -33,18 +33,17 @@ void	fix_c(t_win **data)
 	}
 }
 
-
 void	change_c_point(t_win **data, int r, int g, int b)
 {
 	t_point	*tmp;
 
 	tmp = (*data)->tpoint;
-	while(tmp->next)
+	while (tmp->next)
 	{
 		tmp->r += r;
 		tmp->g += g;
 		tmp->b += b;
-		tmp->c = ft_rgb(&tmp, tmp->r,tmp->g,tmp->b);
+		tmp->c = ft_rgb(&tmp, tmp->r, tmp->g, tmp->b);
 		tmp = tmp->next;
 	}
 }

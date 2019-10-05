@@ -25,7 +25,7 @@ int	deal_key_zoom(int key, t_win *data)
 	centrer(&data);
 	fix_image(&data, data->scr, data->scr);
 	if (key == 46)
-		mlx_key_hook(data->win_ptr_s, deal_key, data);
+		mlx_key_hook(data->w, deal_key, data);
 	if (key == 53)
 		ft_free_list_and_exit(&data);
 	return (0);
@@ -43,7 +43,7 @@ int	deal_key_ziso_plane(int key, t_win *data)
 	centrer(&data);
 	fix_image(&data, data->scr, data->scr);
 	if (key == 46)
-		mlx_key_hook(data->win_ptr_s, deal_key, data);
+		mlx_key_hook(data->w, deal_key, data);
 	if (key == 53)
 		ft_free_list_and_exit(&data);
 	return (0);
@@ -61,7 +61,7 @@ int	deal_key_ziso(int key, t_win *data)
 	centrer(&data);
 	fix_image(&data, data->scr, data->scr);
 	if (key == 46)
-		mlx_key_hook(data->win_ptr_s, deal_key, data);
+		mlx_key_hook(data->w, deal_key, data);
 	if (key == 53)
 		ft_free_list_and_exit(&data);
 	return (0);
@@ -70,11 +70,11 @@ int	deal_key_ziso(int key, t_win *data)
 int	deal_key_ziso_menu(int key, t_win *data)
 {
 	if (key == 35 && data->iso == 0)
-		mlx_key_hook(data->win_ptr_s, deal_key_ziso, data);
+		mlx_key_hook(data->w, deal_key_ziso, data);
 	if (key == 31 && data->iso == 1)
-		mlx_key_hook(data->win_ptr_s, deal_key_ziso_plane, data);
+		mlx_key_hook(data->w, deal_key_ziso_plane, data);
 	if (key == 46)
-		mlx_key_hook(data->win_ptr_s, deal_key, data);
+		mlx_key_hook(data->w, deal_key, data);
 	if (key == 53)
 		ft_free_list_and_exit(&data);
 	return (0);
@@ -100,7 +100,7 @@ int	deal_key_translation(int key, t_win *data)
 	ft_coor_delta(&data, x, y);
 	fix_image(&data, 0, 0);
 	if (key == 46)
-		mlx_key_hook(data->win_ptr_s, deal_key, data);
+		mlx_key_hook(data->w, deal_key, data);
 	if (key == 53)
 		exit(EXIT_SUCCESS);
 	return (0);

@@ -24,7 +24,7 @@ int		set_wireframe(t_win *data, char *av)
 	}
 	data->scr = 1000;
 	data->mlx = mlx_init();
-	(data)->win_ptr_s = mlx_new_window(data->mlx, data->scr, data->scr, "FDF");
+	(data)->w = mlx_new_window(data->mlx, data->scr, data->scr, "FDF");
 	data->scr2 = 500;
 	(data)->win = mlx_new_window(data->mlx, data->scr2, data->scr2, "info");
 	if (!(c_info = malloc(sizeof(t_co))))
@@ -52,7 +52,7 @@ int		graphic(t_win *data, char *av)
 	test_echelle(data);
 	fix_nbr_pt(data);
 	fix_image(&data, data->scr, data->scr);
-	mlx_hook(data->win_ptr_s, 2, 0, deal_key, data);
+	mlx_hook(data->w, 2, 0, deal_key, data);
 	mlx_loop(data->mlx);
 	return (0);
 }
@@ -80,10 +80,10 @@ int		deal_key(int key, t_win *data)
 {
 	set_colour_info(data);
 	if (key == 8)
-		mlx_hook(data->win_ptr_s, 2, 0, deal_key_c, data);
+		mlx_hook(data->w, 2, 0, deal_key_c, data);
 	if (key == 6)
 	{
-		mlx_hook(data->win_ptr_s, 2, 0, deal_key_zoom, data);
+		mlx_hook(data->w, 2, 0, deal_key_zoom, data);
 		data->c->r = 0xff88ff;
 		data_borne(data);
 	}
@@ -91,12 +91,12 @@ int		deal_key(int key, t_win *data)
 	{
 		data->c->r = 0xff88ff;
 		data_borne(data);
-		mlx_hook(data->win_ptr_s, 2, 0, deal_key_r, data);
+		mlx_hook(data->w, 2, 0, deal_key_r, data);
 	}
 	if (key == 17)
-		mlx_hook(data->win_ptr_s, 2, 0, deal_key_translation, data);
+		mlx_hook(data->w, 2, 0, deal_key_translation, data);
 	if (key == 34)
-		mlx_hook(data->win_ptr_s, 2, 0, deal_key_ziso_menu, data);
+		mlx_hook(data->w, 2, 0, deal_key_ziso_menu, data);
 	if (key == 53)
 		ft_free_list_and_exit(&data);
 	return (0);
