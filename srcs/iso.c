@@ -6,21 +6,20 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 14:08:53 by bebosson          #+#    #+#             */
-/*   Updated: 2019/07/25 21:11:32 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/10/05 18:11:10 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "Fdf.h"
 
-void	iso_list(t_win *display)
+void	iso_list(t_win *data)
 {
 	t_point *tmp;
 
-	tmp = display->tpoint;
+	tmp = data->tpoint;
 	while (tmp->next)
 	{
-		trans_iso(&tmp->x,&tmp->y,tmp->z);
+		trans_iso(&tmp->x, &tmp->y, tmp->z);
 		tmp = tmp->next;
 	}
 }

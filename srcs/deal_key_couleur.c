@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   deal_key_couleur.c                                 :+:      :+:    :+:   */
+/*   deal_key_c.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,89 +12,89 @@
 
 #include "Fdf.h"
 
-int		deal_key_couleur_r(int key, t_win *display)
+int		deal_key_c_r(int key, t_win *data)
 {
 	int delta_r;
 
-	display->color->couleur_r = 0xff88ff;
-	display_borne(display);
-		if (key == 126 && display->tpoint->r < 255)
+	data->c->c_r = 0xff88ff;
+	data_borne(data);
+		if (key == 126 && data->tpoint->r < 255)
 		delta_r = 5;
-	else if (key == 125 && display->tpoint->r >= 1)
+	else if (key == 125 && data->tpoint->r >= 1)
 		delta_r = -5;
 	else
 		delta_r = 0;
 	if (key == 46)
-		mlx_key_hook(display->win_ptr_s,deal_key, display);
-	change_couleur_point(&display, delta_r,0,0);
-	fix_image(&display, display->screen, display->screen);
+		mlx_key_hook(data->win_ptr_s,deal_key, data);
+	change_c_point(&data, delta_r,0,0);
+	fix_image(&data, data->scr, data->scr);
 	if (key == 53)
-		ft_free_list_and_exit(&display);
+		ft_free_list_and_exit(&data);
 
 	return (0);
 }
 
-int		deal_key_couleur_g(int key, t_win *display)
+int		deal_key_c_g(int key, t_win *data)
 {
 	int delta_g;
 
-	display->color->couleur_g = 0xff88ff;
-	display_borne(display);
-	if (key == 126 && display->tpoint->g < 255)
+	data->c->c_g = 0xff88ff;
+	data_borne(data);
+	if (key == 126 && data->tpoint->g < 255)
 		delta_g = 5;
-	else if (key == 125 && display->tpoint->g >= 1)
+	else if (key == 125 && data->tpoint->g >= 1)
 		delta_g = -5;
 	else
 		delta_g = 0;
 	if (key == 8)
-		mlx_hook(display->win_ptr_s, 2, 0, deal_key, display);
-	change_couleur_point(&display, 0,delta_g,0);
-	fix_image(&display, display->screen, display->screen);
+		mlx_hook(data->win_ptr_s, 2, 0, deal_key, data);
+	change_c_point(&data, 0,delta_g,0);
+	fix_image(&data, data->scr, data->scr);
 	if (key == 46) // ->
-		mlx_key_hook(display->win_ptr_s, deal_key_translation, display);
+		mlx_key_hook(data->win_ptr_s, deal_key_translation, data);
 	if (key == 53)
-		ft_free_list_and_exit(&display);
+		ft_free_list_and_exit(&data);
 
 	return (0);
 }
 
-int		deal_key_couleur_b(int key, t_win *display)
+int		deal_key_c_b(int key, t_win *data)
 {
 	int delta_b;
 
-	display->color->couleur_b = 0xff88ff;
-	display_borne(display);
-	if (key == 126 && display->tpoint->b < 255)
+	data->c->c_b = 0xff88ff;
+	data_borne(data);
+	if (key == 126 && data->tpoint->b < 255)
 		delta_b = 5;
-	else if (key == 125 && display->tpoint->b >= 1)
+	else if (key == 125 && data->tpoint->b >= 1)
 		delta_b = -5;
 	else
 		delta_b = 0;
-	change_couleur_point(&display, 0,0,delta_b);
-	fix_image(&display, display->screen, display->screen);
+	change_c_point(&data, 0,0,delta_b);
+	fix_image(&data, data->scr, data->scr);
 	if (key == 8)
-		mlx_key_hook(display->win_ptr_s, deal_key, display);
+		mlx_key_hook(data->win_ptr_s, deal_key, data);
 	if (key == 17) // ->
-		mlx_hook(display->win_ptr_s, 2, 0,deal_key_translation, display);
+		mlx_hook(data->win_ptr_s, 2, 0,deal_key_translation, data);
 	if (key == 53)
-		ft_free_list_and_exit(&display);
+		ft_free_list_and_exit(&data);
 	return (0);
 }
 
-int		deal_key_couleur(int key, t_win *display)
+int		deal_key_c(int key, t_win *data)
 {
-	display->color->couleur = 0xff88ff;
-	display_borne(display);
+	data->c->c = 0xff88ff;
+	data_borne(data);
 	if (key == 14) //r
-		mlx_hook(display->win_ptr_s, 2, 0,deal_key_couleur_r, display);
+		mlx_hook(data->win_ptr_s, 2, 0,deal_key_c_r, data);
 	if (key == 5) //g
-		mlx_hook(display->win_ptr_s, 2, 0,deal_key_couleur_g, display);
+		mlx_hook(data->win_ptr_s, 2, 0,deal_key_c_g, data);
 	if (key == 11) //b
-		mlx_hook(display->win_ptr_s, 2, 0,deal_key_couleur_b, display);
+		mlx_hook(data->win_ptr_s, 2, 0,deal_key_c_b, data);
 	if (key == 17) // ->
-		mlx_key_hook(display->win_ptr_s, deal_key, display);
+		mlx_key_hook(data->win_ptr_s, deal_key, data);
 	if (key == 53)
-		ft_free_list_and_exit(&display);
+		ft_free_list_and_exit(&data);
 
 	return (0);
 }

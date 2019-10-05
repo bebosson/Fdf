@@ -6,18 +6,17 @@
 #    By: bebosson <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/21 13:00:20 by bebosson          #+#    #+#              #
-#    Updated: 2019/07/25 22:07:42 by bebosson         ###   ########.fr        #
+#    Updated: 2019/09/27 17:36:43 by bebosson         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Fdf
 
 SRC_PATH = srcs
-SRC_NAME = connect.c deal_key_rotation.c ft_coor.c grille_display.c 		\
-		   main.c translation.c couleur.c errors.c image.c			\
-		   ligne.c deal_key_couleur.c  			\
-		   iso.c list_map.c rotation.c	\
-		   rotation_list.c echelle.c info_window.c ft_free_all.c \
+SRC_NAME = connect.c echelle.c grille_display.c ligne.c rotation.c \
+		   couleur.c errors.c  image.c list_map.c rotation_list.c deal_key_couleur.c \
+		   ft_coor.c info_window.c main.c translation.c  deal_key_rotation.c \
+		   ft_free_all.c iso.c \
 
 OBJ_PATH = objs
 OBJ_NAME = $(SRC_NAME:.c=.o)

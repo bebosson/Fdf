@@ -6,13 +6,11 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 17:57:56 by bebosson          #+#    #+#             */
-/*   Updated: 2019/07/20 20:39:25 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/10/05 18:17:05 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fdf.h"
-// get_addresse c'est tout
-#define X_W 1000
 
 void	*ft_bzero_int(void *s, size_t n)
 {
@@ -27,45 +25,35 @@ void	*ft_bzero_int(void *s, size_t n)
 	return (s);
 }
 
-void	get_image(t_win		*display)
+void	get_image(t_win *data)
 {
 	int		bpp;
 	int		s_l;
 	int		endian;
-	int i;
+	int		i;
 
-	display->img = mlx_new_image(display->mlx, X_W, X_W);
-	display->addr = (int*)mlx_get_data_addr(display->img, &(bpp), &(s_l), &(endian));
-//	while (display->addr[i])
-//	{
-//		((unsigned int *)display->addr)[i] = 0;
-//		i++;
-//	}
-
+	data->img = mlx_new_image(data->mlx, WIN, WIN);
+	data->addr = (int*)mlx_get_data_addr(data->img, &(bpp), &(s_l), &(endian));
 }
 
-void	get_new_image(t_win		*display)
+void	get_new_image(t_win *data)
 {
 	int		bpp;
 	int		s_l;
 	int		endian;
 
-	display->img = mlx_new_image(display->mlx, X_W, X_W);
-
-	display->addr = (int*)mlx_get_data_addr(display->img, &(bpp), &(s_l), &(endian));
-	display->img2 = mlx_new_image(display->mlx, X_W/2, X_W/2);
-	display->addr2 = (int*)mlx_get_data_addr(display->img, &(bpp), &(s_l), &(endian));
+	data->img = mlx_new_image(data->mlx, WIN, WIN);
+	data->addr = (int*)mlx_get_data_addr(data->img, &(bpp), &(s_l), &(endian));
+	data->img2 = mlx_new_image(data->mlx, WIN / 2, WIN / 2);
+	data->addr2 = (int*)mlx_get_data_addr(data->img, &(bpp), &(s_l), &(endian));
 }
 
-void	fix_image(t_win **display, int largeur, int hauteur)
+void	fix_image(t_win **data, int largeur, int hauteur)
 {
 	int i;
 
-	(*display)->addr = ft_bzero_int((*display)->addr, 1000000);
-	mlx_clear_window((*display)->mlx, (*display)->win_ptr_s);
-//	display_repere(*display);
-	ft_trace(*display);
-	mlx_put_image_to_window((*display)->mlx, (*display)->win_ptr_s, (*display)->img, 0,0);
+	(*data)->addr = ft_bzero_int((*data)->addr, WIN);
+	mlx_clear_window((*data)->mlx, (*data)->win_ptr_s);
+	ft_trace(*data);
+	mlx_put_image_to_window((*data)->mlx, (*data)->win_ptr_s, (*data)->img, 0, 0);
 }
-
-//Fonction ft_trace  clear_window

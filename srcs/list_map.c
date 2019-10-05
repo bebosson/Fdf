@@ -6,16 +6,16 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 03:25:03 by bebosson          #+#    #+#             */
-/*   Updated: 2019/07/25 23:49:45 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/10/05 18:04:11 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fdf.h"
 
-int		test_digit(char *a)
+int			test_digit(char *a)
 {
-	char t;
-	int i;
+	char	t;
+	int		i;
 
 	i = 0;
 	while (a[i])
@@ -32,18 +32,9 @@ int		test_digit(char *a)
 	return (0);
 }
 
-void	ft_print_tables(char **tab_pts)
-{
-	int x;
-
-	x = -1;
-	while (tab_pts[++x])
-		printf("%s",tab_pts[x]);
-}
-
 t_point		*init_repere(char **tab_pts, t_point *list, int y)
 {
-	int x;
+	int		x;
 	t_point *tmp;
 	t_point *elem;
 
@@ -53,7 +44,7 @@ t_point		*init_repere(char **tab_pts, t_point *list, int y)
 	{
 		if (test_digit(tab_pts[x]) == 1)
 			tmp->z = ft_atoi(tab_pts[x]);
-		else 
+		else
 			return (0);
 		tmp->z_o = tmp->z;
 		tmp->x = x;
@@ -61,7 +52,7 @@ t_point		*init_repere(char **tab_pts, t_point *list, int y)
 		tmp->coor_y = y;
 		tmp->y = y;
 		if (!(elem = (t_point*)malloc(sizeof(t_point))))
-				return (NULL);
+			return (NULL);
 		ft_bzero(elem, sizeof(t_point));
 		free(tab_pts[x]);
 		tmp->next = elem;
@@ -70,11 +61,11 @@ t_point		*init_repere(char **tab_pts, t_point *list, int y)
 	return (tmp);
 }
 
-t_point	*read_to_list(int fd, t_win *display)
+t_point		*read_to_list(int fd, t_win *data)
 {
-	int y;
-	char **tab_pts;
-	char *line;
+	int		y;
+	char	**tab_pts;
+	char	*line;
 	t_point *list;
 	t_point *tmp;
 
@@ -86,7 +77,7 @@ t_point	*read_to_list(int fd, t_win *display)
 	while (get_next_line(fd, &line) > 0)
 	{
 		tab_pts = ft_strsplit(line, ' ');
-		if (!(tmp = init_repere(tab_pts,tmp,++y)))
+		if (!(tmp = init_repere(tab_pts, tmp, ++y)))
 			return (NULL);
 		free(tab_pts);
 		free(line);

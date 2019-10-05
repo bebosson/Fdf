@@ -12,58 +12,58 @@
 
 #include "Fdf.h"
 
-void	set_echelle(t_win *display, int *echelle)
+void	set_echelle(t_win *data, int *echelle)
 {
-	display->echelle_max = 1;
+	data->echelle_max = 1;
 	*echelle = 1;
-	if (display->iso == 1)
+	if (data->iso == 1)
 	{
 		*echelle = 4;
-		display->echelle_max = 4;
+		data->echelle_max = 4;
 	}
 }
 
-void	fix_nbr_pt(t_win *display)
+void	fix_nbr_pt(t_win *data)
 {
 	int	max;
 	int	min;
 	int echelle;
 
-	max = ft_relier_halid(display);
-	min = ft_relier_valid(display);
-	display->echelle = 1;
+	max = ft_relier_halid(data);
+	min = ft_relier_valid(data);
+	data->echelle = 1;
 	if (max < min)
 		max = min;
 	if (max > 10000)
 	{
-		display->nbr_print = 4000;
-		set_echelle(display, &echelle);
+		data->nbr_print = 4000;
+		set_echelle(data, &echelle);
 	}
 	else
 	{
-		display->nbr_print = max;
-		display->echelle_max = 1;
+		data->nbr_print = max;
+		data->echelle_max = 1;
 		echelle = 1;
 	}
-	ft_echelle(&display, echelle);
+	ft_echelle(&data, echelle);
 }
 
-int		test_echelle(t_win *display)
+int		test_echelle(t_win *data)
 {
-	if (ft_relier_halid(display) < display->nbr_print && ft_relier_valid(display) < display->nbr_print)
+	if (ft_relier_halid(data) < data->nbr_print && ft_relier_valid(data) < data->nbr_print)
 		return (0);
 	else
 		return (1);
 }
 
-void	ft_echelle(t_win **display, float echelle)
+void	ft_echelle(t_win **data, float echelle)
 {
 	t_point *tmp;
 
-	if ((*display)->echelle == 0)
-		(*display)->echelle = 1;
-	(*display)->echelle *= echelle;
-	tmp = (*display)->tpoint;
+	if ((*data)->echelle == 0)
+		(*data)->echelle = 1;
+	(*data)->echelle *= echelle;
+	tmp = (*data)->tpoint;
 	while (tmp->next)
 	{
 		tmp->x *= echelle;

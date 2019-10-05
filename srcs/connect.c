@@ -5,70 +5,60 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/12 17:21:59 by bebosson          #+#    #+#             */
-/*   Updated: 2019/06/21 16:12:33 by bebosson         ###   ########.fr       */
+/*   Created: 2019/10/05 16:58:20 by bebosson          #+#    #+#             */
+/*   Updated: 2019/10/05 17:05:02 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fdf.h"
 
-int		relier_valide(t_point *pt1, t_point *pt2, t_win *display)
+static int		relier_v(t_point *pt1, t_point *pt2, t_win *data)
 {
-	if (pt1->x > display->screen || pt1->y > display->screen)
-	{
-//		display_point(pt1);
+	if (pt1->x > data->scr || pt1->y > data->scr)
 		return (0);
-	}
-	else if (pt2->x > display->screen || pt2->y > display->screen)
-	{
-//		display_point(pt2);
+	else if (pt2->x > data->scr || pt2->y > data->scr)
 		return (0);
-	}
 	else if (pt1->x < 0 || pt2->x < 0 || pt1->y < 0 || pt2->y < 0)
 		return (0);
 	else
 		return (1);
-
 }
 
-int		ft_relier_halid(t_win *display)
+int				ft_relier_halid(t_win *data)
 {
 	int		nbr_print;
 	t_point	*tmp_1;
 	t_point	*tmp_2;
 
 	nbr_print = 0;
-	tmp_1 = display->tpoint;
-	tmp_2 = display->tpoint->next;
+	tmp_1 = data->tpoint;
+	tmp_2 = data->tpoint->next;
 	while (tmp_2->next)
 	{
-		if (tmp_1->coor_y == tmp_2->coor_y && relier_valide(tmp_1, tmp_2, display) == 1)
+		if (tmp_1->coor_y == tmp_2->coor_y && relier_v(tmp_1, tmp_2, data))
 			nbr_print++;
 		tmp_2 = tmp_2->next;
 		tmp_1 = tmp_1->next;
 	}
-//	free(tmp_1);
-//	free(tmp_2);
 	tmp_1 = NULL;
 	tmp_2 = NULL;
 	return (nbr_print);
 }
 
-int		ft_relier_valid(t_win *display)
+int				ft_relier_valid(t_win *data)
 {
-
 	int		nbr_print;
 	t_point	*tmp_1;
 	t_point	*tmp_2;
 
 	nbr_print = 0;
-	tmp_1 = display->tpoint;
-	tmp_2 = display->tpoint->next;
+	tmp_1 = data->tpoint;
+	tmp_2 = data->tpoint->next;
 	while (tmp_2->coor_x != tmp_1->coor_x)
 		tmp_2 = tmp_2->next;
 	while (tmp_2->next)
 	{
-		if (tmp_1->coor_x ==  tmp_2->coor_x && relier_valide(tmp_1, tmp_2, display) == 1)
+		if (tmp_1->coor_x == tmp_2->coor_x && relier_v(tmp_1, tmp_2, data))
 			nbr_print++;
 		tmp_2 = tmp_2->next;
 		tmp_1 = tmp_1->next;
@@ -76,46 +66,38 @@ int		ft_relier_valid(t_win *display)
 	return (nbr_print);
 }
 
-void	ft_relier_h2(t_win *display)
+void			ft_relier_h2(t_win *data)
 {
 	t_point	*tmp_1;
 	t_point	*tmp_2;
 
-	tmp_1 = display->tpoint;
-	tmp_2 = display->tpoint->next;
+	tmp_1 = data->tpoint;
+	tmp_2 = data->tpoint->next;
 	while (tmp_2->next)
 	{
-		if (tmp_1->coor_y == tmp_2->coor_y && relier_valide(tmp_1, tmp_2, display) == 1)
-			ligne_2(tmp_1,tmp_2,display);
+		if (tmp_1->coor_y == tmp_2->coor_y && relier_v(tmp_1, tmp_2, data))
+			ligne_2(tmp_1, tmp_2, data);
 		tmp_2 = tmp_2->next;
 		tmp_1 = tmp_1->next;
 	}
-//	free(tmp_1);
-//	free(tmp_2);
 	tmp_1 = NULL;
 	tmp_2 = NULL;
 }
 
-void	ft_relier_v2(t_win *display)
+void			ft_relier_v2(t_win *data)
 {
 	t_point	*tmp_1;
 	t_point	*tmp_2;
 
-	tmp_1 = display->tpoint;
-	tmp_2 = display->tpoint->next;
+	tmp_1 = data->tpoint;
+	tmp_2 = data->tpoint->next;
 	while (tmp_2->coor_x != tmp_1->coor_x)
 		tmp_2 = tmp_2->next;
 	while (tmp_2->next)
 	{
-		if (tmp_1->coor_x ==  tmp_2->coor_x && relier_valide(tmp_1, tmp_2, display) == 1)
-			ligne_2(tmp_1,tmp_2,display);
+		if (tmp_1->coor_x == tmp_2->coor_x && relier_v(tmp_1, tmp_2, data))
+			ligne_2(tmp_1, tmp_2, data);
 		tmp_2 = tmp_2->next;
 		tmp_1 = tmp_1->next;
 	}
-}
-
-void	ft_trace(t_win *display)
-{
-	ft_relier_h2(display);
-	ft_relier_v2(display);
 }

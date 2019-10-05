@@ -6,82 +6,80 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/21 18:59:20 by bebosson          #+#    #+#             */
-/*   Updated: 2019/07/21 19:03:17 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/10/05 18:10:16 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fdf.h"
 
-#define X_W 1000000
-
-void	sup(int dx, int dy, t_win *display, int i)
+void	sup(int dx, int dy, t_win *data, int i)
 {
-	int		cumul;
-	int		xi; //display->x_o?
-	int		yi; //display->y_o?
+	int	cumul;
+	int	xi;
+	int	yi;
 	int p;
 
-	xi = display->x_o;
-	yi = display->y_o;
-	cumul = dx / 2 ;
+	xi = data->x_o;
+	yi = data->y_o;
+	cumul = dx / 2;
 	while (i <= dx)
 	{
-		xi += display->xinc ;
-		cumul += dy ;
+		xi += data->xinc;
+		cumul += dy;
 		if (cumul >= dx)
 		{
 			cumul -= dx;
-			yi += display->yinc;
+			yi += data->yinc;
 		}
-		p = yi * display->screen + xi;
+		p = yi * data->scr + xi;
 		if (p < X_W && p >= 0)
-			display->addr[p] = display->couleur;
+			data->addr[p] = data->c_on;
 		i++;
 	}
 }
 
-void	inf(int dx, int dy, t_win *display, int i)
+void	inf(int dx, int dy, t_win *data, int i)
 {
 	int		cumul;
 	int		xi;
 	int		yi;
 	int		p;
 
-	xi = display->x_o;
-	yi = display->y_o;
-	cumul = dy / 2 ;
+	xi = data->x_o;
+	yi = data->y_o;
+	cumul = dy / 2;
 	while (i <= dy)
 	{
-		yi += display->yinc;
+		yi += data->yinc;
 		cumul += dx;
 		if (cumul >= dy)
 		{
 			cumul -= dy;
-			xi += display->xinc;
+			xi += data->xinc;
 		}
-		p = yi * (display->screen) + xi;
+		p = yi * (data->scr) + xi;
 		if (p < X_W && p >= 0)
-			display->addr[p] = display->couleur;
+			data->addr[p] = data->c_on;
 		i++;
 	}
 }
 
-void	ligne_2(t_point *pt1, t_point *pt2, t_win *display)
+void	ligne_2(t_point *pt1, t_point *pt2, t_win *data)
 {
 	int		dx;
 	int		dy;
 
 	dx = pt2->x - pt1->x;
 	dy = pt2->y - pt1->y;
-	display->x_o = pt1->x;
-	display->y_o = pt1->y;
-	display->xinc = (dx > 0) ? 1 : -1;
-	display->yinc = (dy > 0) ? 1 : -1;
+	data->x_o = pt1->x;
+	data->y_o = pt1->y;
+	data->xinc = (dx > 0) ? 1 : -1;
+	data->yinc = (dy > 0) ? 1 : -1;
 	dx = abs(dx);
 	dy = abs(dy);
-	display->couleur = pt2->couleur;
+	data->c_on = pt2->c;
 	if (dx > dy)
-		sup(dx, dy, display, 1);
+		sup(dx, dy, data, 1);
 	else
-		inf(dx, dy, display, 1);
+		inf(dx, dy, data, 1);
 }

@@ -6,22 +6,20 @@
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 15:44:16 by bebosson          #+#    #+#             */
-/*   Updated: 2019/07/21 20:38:03 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/07/29 21:18:13 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "Fdf.h"
 
-void	point_central(t_win **display)
+void	point_central(t_win **data)
 {
 	int coor_x;
 	int coor_y;	
 	t_point *tmp;
 	t_point *tmp2;
-	tmp = (*display)->tpoint;
-	tmp2 = (*display)->tpoint;
+	tmp = (*data)->tpoint;
+	tmp2 = (*data)->tpoint;
 	while (tmp->next)
 	{
 		coor_x = tmp->coor_x;
@@ -32,17 +30,18 @@ void	point_central(t_win **display)
 	coor_y /= 2;
 	while (tmp2->coor_x != coor_x || tmp2->coor_y != coor_y)
 		tmp2 = tmp2->next;
-	(*display)->middle = tmp2;
+	(*data)->middle = tmp2;
 }
 
-void	display_max(t_win **display)
+
+void	data_max(t_win **data)
 {
 	float	x_max;
 	float	y_max;
 	float	z_max;
 	t_point *tmp;
 
-	tmp = (*display)->tpoint;
+	tmp = (*data)->tpoint;
 	x_max = tmp->x;
 	y_max = tmp->y;
 	z_max = tmp->z;
@@ -56,18 +55,32 @@ void	display_max(t_win **display)
 			z_max = tmp->z;
 		tmp = tmp->next;
 	}
-	(*display)->x_max = x_max;
-	(*display)->y_max = y_max;
-	(*display)->z_max = z_max;
+	(*data)->x_max = x_max;
+	(*data)->y_max = y_max;
+	(*data)->z_max = z_max;
 }
 
-void	display_min(t_win **display)
+float		data_z(t_win *data)
+{
+	t_point *tmp;
+	int x_max;
+
+	tmp = data->tpoint;
+	while (tmp->next)
+	{
+		if (data->z_max == tmp->z)
+			x_max = tmp->x;
+		tmp = tmp->next;
+	}
+	return (x_max);
+}
+void	data_min(t_win **data)
 {
 	float x_min;
 	float y_min;
 	t_point *tmp;
 
-	tmp = (*display)->tpoint;
+	tmp = (*data)->tpoint;
 	x_min = tmp->x;
 	y_min = tmp->y;
 	while (tmp->next)
@@ -78,6 +91,7 @@ void	display_min(t_win **display)
 			y_min = tmp->y;
 		tmp = tmp->next;
 	}
-	(*display)->x_min = x_min;
-	(*display)->y_min = y_min;
+	(*data)->x_min = x_min;
+	(*data)->y_min = y_min;
 }
+

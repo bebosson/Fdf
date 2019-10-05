@@ -5,51 +5,57 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bebosson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/21 17:34:32 by bebosson          #+#    #+#             */
-/*   Updated: 2019/07/21 19:13:34 by bebosson         ###   ########.fr       */
+/*   Created: 2019/07/29 21:22:16 by bebosson          #+#    #+#             */
+/*   Updated: 2019/10/05 17:08:33 by bebosson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fdf.h"
 
-void	rotation_list_z(t_win *display, float angle)
+void	r_list_z(t_win *data, float angle)
 {
 	t_point *tmp;
 
-	display->color->rotation_z = 0xff88ff;
-	display_borne(display);
-	tmp = display->tpoint;
+	data->c->r_z = 0xff88ff;
+	data_borne(data);
+	tmp = data->tpoint;
 	while (tmp->next)
 	{
-		rotation_z(angle,&tmp->x,&tmp->y, display);
+		r_z(angle, &tmp->x, &tmp->y, data);
 		tmp = tmp->next;
 	}
 }
 
-void	rotation_list_x(t_win *display, float angle)
+void	r_list_x(t_win *data, float angle)
 {
 	t_point *tmp;
 
-	display->color->rotation_x = 0xff88ff;
-	display_borne(display);
-	tmp = display->tpoint;
+	data->c->r_x = 0xff88ff;
+	data_borne(data);
+	tmp = data->tpoint;
 	while (tmp->next)
 	{
-		rotation_x(angle,&tmp->y,&tmp->z, display);
+		r_x(angle, &tmp->y, &tmp->z, data);
 		tmp = tmp->next;
 	}
 }
 
-void	rotation_list_y(t_win *display, float angle)
+void	r_list_y(t_win *data, float angle)
 {
 	t_point *tmp;
 
-	display->color->rotation_y = 0xff88ff;
-	display_borne(display);
-	tmp = display->tpoint;
+	data->c->r_y = 0xff88ff;
+	data_borne(data);
+	tmp = data->tpoint;
 	while (tmp->next)
 	{
-		rotation_y(angle,&tmp->z,&tmp->x, display);
+		r_y(angle, &tmp->z, &tmp->x, data);
 		tmp = tmp->next;
 	}
+}
+
+void	ft_trace(t_win *data)
+{
+	ft_relier_h2(data);
+	ft_relier_v2(data);
 }
