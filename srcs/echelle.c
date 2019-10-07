@@ -36,12 +36,12 @@ void	fix_nbr_pt(t_win *data)
 		max = min;
 	if (max > 10000)
 	{
-		data->nbr_print = 4000;
+		data->nb_p = 4000;
 		set_echelle(data, &echelle);
 	}
 	else
 	{
-		data->nbr_print = max;
+		data->nb_p = max;
 		data->echelle_max = 1;
 		echelle = 1;
 	}
