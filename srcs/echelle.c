@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fdf.h"
+#include "fdf.h"
 
 void	set_echelle(t_win *data, int *echelle)
 {

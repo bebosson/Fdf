@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fdf.h"
+#include "fdf.h"
 
 void	sup(int dx, int dy, t_win *data, int i)
 {

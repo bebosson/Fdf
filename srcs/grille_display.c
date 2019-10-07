@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fdf.h"
+#include "fdf.h"
 
 int	deal_key_zoom(int key, t_win *data)
 {

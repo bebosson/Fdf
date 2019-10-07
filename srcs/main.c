@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fdf.h"
+#include "fdf.h"
 
 int		set_wireframe(t_win *data, char *av)
 {

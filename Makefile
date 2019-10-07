@@ -11,18 +11,17 @@
 # **************************************************************************** #
 
 NAME = Fdf
-
 SRC_PATH = srcs
 SRC_NAME = connect.c echelle.c grille_display.c ligne.c rotation.c \
-		   couleur.c errors.c  image.c list_map.c rotation_list.c deal_key_couleur.c \
-		   ft_coor.c info_window.c main.c translation.c  deal_key_rotation.c \
-		   ft_free_all.c iso.c \
+	   couleur.c errors.c  image.c list_map.c rotation_list.c  \
+	   deal_key_couleur.c ft_coor.c info_window.c main.c translation.c \
+	   deal_key_rotation.c ft_free_all.c iso.c \
 
 OBJ_PATH = objs
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
 CC = clang -g
-#CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 
 CPPFLAGS = -I includes
 

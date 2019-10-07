@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fdf.h"
+#include "fdf.h"
 
 void	r_list_z(t_win *data, float angle)
 {

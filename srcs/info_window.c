@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fdf.h"
+#include "fdf.h"
 
 void	ft_win_info(t_win *d, int (*f) (void *, void *, int, int, int, char *))
 {

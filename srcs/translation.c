@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fdf.h"
+#include "fdf.h"
 
 void	ft_coor_delta(t_win **data, int trans_x, int trans_y)
 {

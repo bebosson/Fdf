@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fdf.h"
+#include "fdf.h"
 
 static int		relier_v(t_point *pt1, t_point *pt2, t_win *data)
 {
