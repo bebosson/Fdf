@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Fdf
+NAME = fdf
 SRC_PATH = srcs
 SRC_NAME = connect.c echelle.c grille_display.c ligne.c rotation.c \
 	   couleur.c errors.c  image.c list_map.c rotation_list.c  \
@@ -20,7 +20,7 @@ SRC_NAME = connect.c echelle.c grille_display.c ligne.c rotation.c \
 OBJ_PATH = objs
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
-CC = clang -g
+CC = clang
 CFLAGS = -Wall -Werror -Wextra
 
 CPPFLAGS = -I includes

@@ -76,12 +76,15 @@ t_point		*read_to_list(int fd, t_win *data)
 	tmp = list;
 	while (get_next_line(fd, &line) > 0)
 	{
-		tab_pts = ft_strsplit(line, ' ');
-		if (!(tmp = init_repere(tab_pts, tmp, ++y)))
-			return (NULL);
+		if (!(tab_pts = ft_strsplit(line, ' ')))
+			return (0);
+		if (!(tmp = init_repere(tab_pts, tmp, ++y)) || tab_pts == NULL)
+			return (0);
 		free(tab_pts);
 		free(line);
 	}
+	if (y == -1 && ft_strlen(line) == 0)
+		return (0);
 	free(line);
 	return (list);
 }

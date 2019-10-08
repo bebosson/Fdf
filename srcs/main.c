@@ -68,7 +68,7 @@ int		coor_to_graph(int fd, char *av)
 		ft_error(0);
 		ft_free_list_and_exit(&data);
 	}
-	if (!(graphic(data, av)))
+	if (!(graphic(data, av) || data->tpoint == NULL))
 	{
 		ft_error(0);
 		ft_free_list_and_exit(&data);

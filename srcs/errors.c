@@ -49,6 +49,11 @@ int		ft_error_maps(int ac, char **av)
 		ft_putendl("error map");
 		return (0);
 	}
+	else if (ac != 3)
+	{
+		ft_putendl("erreur parameters");
+		return (0);
+	}
 	else
 		return (1);
 }

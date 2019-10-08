@@ -31,7 +31,8 @@ void	ft_free_list_and_exit(t_win **data)
 	}
 	if (tmp2)
 		free(tmp2);
-	free(*data);
+	if (data)
+		free(*data);
 	data = NULL;
 	exit(EXIT_SUCCESS);
 }

@@ -52,7 +52,7 @@ int		get_next_line(const int fd, char **line)
 		if (!(tmp[fd] = ft_strjoin(tmp[fd], buff)))
 			return (-1);
 		free(tmp2);
-		if (ft_strchr(buff, '\n'))
+		if (ft_strchr(buff, '\n') || !ft_strlen(tmp[fd]))
 			break ;
 	}
 	if (ret < 0)
